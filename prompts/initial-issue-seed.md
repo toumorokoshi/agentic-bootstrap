@@ -11,9 +11,13 @@ modular tasks.
 ## Content
 
 1. study README.md
-2. study each specification in the specs/ directory.
-3. look at code that's already implemented.
-4. generate a list of tasks to perform, and create work items for them via `bd`. Include the following in the issue:
+2. enqueue the following tasks with `bd create`, as a P0:
+   - implement basic build scaffolding.
+   - implement `just lint` and `just fix`.
+   - implement CI.
+3. study each specification in the specs/ directory.
+4. look at code that's already implemented.
+5. generate a list of tasks to perform, and create work items for them via `bd`. Include the following in the issue:
    - the prefix "study README.md"
    - any relevant parts of the spec to follow.
-   - the suffix "check the production deployment to see where the gaps are. Create any additional issues as needed."
+   - the suffix "Check the production deployment to see where the gaps are. Create any additional issues as needed."
