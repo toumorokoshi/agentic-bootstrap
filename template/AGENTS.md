@@ -44,3 +44,12 @@ task.
 CI **must** pass after every commit.
 
 To verify CI status, use the GitHub MCP server.
+
+## Code Design
+
+The following code tenants are followed:
+
+- functional programming as much as possible.
+- separate state from functional programming.
+- re-use code as much as possible.
+- leverage best-practice third party libraries.
