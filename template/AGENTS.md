@@ -1,6 +1,18 @@
 ## ALWAYS RUN
 
 - study the README.md
+- as needed later in the task, read the appropriate specification from the
+  `specs/` directory.
+- if there is an follow-up or todo item, create an issue for it as described in
+  [Issue Management](#issue-management).
+- grep `design/` for any relevant keywords to the task you are implementing.
+  Study the matching files and adhere to the best practices described.
+- Always run linting and formatting before committing.
+
+## Branch cleanup
+
+When starting work, the branch should be clean, and you should try pull the
+latest changes from the primary upstream branch before continuing.
 
 ## Add and update documentation
 
@@ -53,3 +65,7 @@ The following code tenants are followed:
 - separate state from functional programming.
 - re-use code as much as possible.
 - leverage best-practice third party libraries.
+
+## Examples
+
+- example data is in the `examples/` directory.
