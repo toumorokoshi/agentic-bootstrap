@@ -34,8 +34,8 @@ For each test found in evals, do the following:
 
 ```json
 {
-  "prompt": "generate a react dashboard.",
-  "expected_output": "1. a functional react dashboard is created.",
+  "prompt": "{include the prompt from the test case in evals.json here}.",
+  "expected_output": "{include the expected output from the test case in evals.json here}",
   "files": []
 }
 ```
