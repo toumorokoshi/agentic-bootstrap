@@ -42,7 +42,9 @@ For each test found in evals, do the following:
 
 ### 2b run the eval test case
 
-In a general-purpose sub-agent, run the eval test case, using "prompt" field from `eval.json` as the prompt to run. Create a file `prompt-output.md` in the test directory with the output of the s
+In a general-purpose sub-agent, run the eval test case in the test case directory, using "prompt" field from `eval.json` as the prompt to run. Do \_not\* modify the prompt - use it as-is.
+
+Create a file `prompt-output.md` in the test directory with the output of the s
 
 ### 2c grade the results
 

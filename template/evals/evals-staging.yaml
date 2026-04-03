@@ -13,3 +13,4 @@ evals:
       1. the repository contains a justfile, with the following commands: lint, fix, and format.
       2. the repository does not print to stdout directly. Instead, it uses a logging library.
     files: []
+  # TODO: add one for a UI.
