@@ -1,6 +1,13 @@
 # agentic-bootstrap
 
-A set of files, curated by myself, to bootstrap and agentic workflow.
+This repository contains a toolkit for agentic development. Some of the "tools"
+contained inside this repository include:
+
+1. A template which can copy-pasted into a repository to bootstrap it for a
+   process where agents write most of the code.
+2. A set of experiments to validate hypothesis around agentic development (e.g.
+   what types of prompts yield better results).
+3. Conclusions around best practices (see [agentic-best-practices](docs/agentic-best-practices.md))
 
 ## Workflow Overview
 

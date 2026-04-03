@@ -1,6 +1,6 @@
 ---
 name: eval-and-improve
-description: Run evaluations iteratively and improve code within a directory. Use this skill whenever the user wants to take a specific directory, run the evals contained within it, and automatically modify files in that directory to fix eval failures. This skill repeats the eval-and-improvement loop until the user is satisfied.
+description: Run evaluations iteratively and improve code within a directory. This skill repeats the eval-and-improvement loop until the user is satisfied.
 ---
 
 # Eval and Improve
@@ -16,7 +16,7 @@ Before starting, ensure you have:
 2. Either an `evals/evals.json` file, or an `evals/evals.yaml` file in that directory.
 3. The ability to run subagents.
 
-## The Iteration Loop
+## Procedure
 
 ### 1: find the evals file
 
@@ -62,9 +62,11 @@ spawn a sub-agent with the following:
 {
     "grade": 5,
     "summary": "",
-    "improvements: "",
+    "improvements": "",
 }
 ```
+
+7. on completion, output the path to the `eval-results.json` file.
 
 ## 3 aggregate and group the results
 
@@ -79,8 +81,35 @@ Prompt the user to request next steps.
 
 ## 4 apply improvements
 
-Delete the eval directories created in step 2a.
-
 If the user requests it, apply the improvements to the original directory.
 
-If the user requested it, return back to 2 to perform the loop again.
+When improvements are applied:
+
+1. run linting and tests to ensure no regressions were introduced.
+2. delete the eval directories created in step 2a.
+
+If the user requested it, return back to Step 2 to perform the loop again.
+
+## Best Practices
+
+When running evaluations and improvements, keep these best practices in mind:
+
+- **Be very judgemental**: do not rate at a 10 easily. Grades should reflect the quality and completeness of the solution.
+- **Provide clear evidence**: always point to specific files or lines that justify the grade.
+- **Group similar improvements**: to reduce redundant work and make reviews easier for the user.
+- **Check for regressions**: always verify that improvements didn't break existing functionality by running tests (if available).
+- **Maintain isolation**: always work in separate directories for each test case to avoid side effects.
+- **Save results**: ensure the evaluation results are saved in a machine-readable format before proceeding to the next step.
+- **Iterate**: do not expect a perfect result on the first try. Use user feedback to refine the approach.
+
+### Agent Principles
+
+When modifying code to improve it, always adhere to the following principles:
+
+- **Prefer functional programming**: keep state separate from logic.
+- **Minimize comments**: only add them if the code is not self-explanatory.
+- **IO separation**: wrap IO in functions that work on pure data structures.
+- **Test data structures**: write unit tests for logic directly, not through IO layers.
+- **Composition over inheritance**: build complex behavior by combining simpler parts.
+- **Use constants**: avoid hard-coded values for directories or configuration.
+- **Minimal logic in helpers**: keeps functions small and easy to test.

@@ -1,7 +1,7 @@
 evals:
   - id: "1"
     prompt: >
-      test
+      create a command-line tool that greps a repositorry
     expected_output: >
       test
     files: []
