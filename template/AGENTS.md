@@ -1,13 +1,19 @@
 ## ALWAYS RUN
 
-- study the README.md
-- as needed later in the task, read the appropriate specification from the
-  `specs/` directory.
-- if there is an follow-up or todo item, create an issue for it as described in
-  [Issue Management](#issue-management).
-- grep `design/` for any relevant keywords to the task you are implementing.
-  Study the matching files and adhere to the best practices described.
-- Always run linting and formatting before committing.
+Important: this list is separate from any others in the prompt. Follow this
+order of operations.
+
+1. study the README.md
+2. grep `specs/` for any relevant keywords to the task you are implementing.
+3. study the relevant specs.
+4. grep `design/` for any relevant keywords to the task you are implementing.
+5. study the relevant documents.
+6. implement the change requested in the prompt.
+7. run linting and formatting before committing.
+8. Identify any remaining issues or features that need to be implemented
+   1. file them as bd issues (see [Issue Management](#issue-management)).
+   2. include them in GAPS.md
+9. commit and push the change.
 
 ## Branch cleanup
 

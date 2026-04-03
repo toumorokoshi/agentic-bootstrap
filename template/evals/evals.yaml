@@ -1,0 +1,7 @@
+evals:
+  - id: "1"
+    prompt: >
+      test
+    expected_output: >
+      test
+    files: []
