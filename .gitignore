@@ -3,3 +3,4 @@
 .dolt/
 *.db
 template/eval_results/**
+eval_results/**

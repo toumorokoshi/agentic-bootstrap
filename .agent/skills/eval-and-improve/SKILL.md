@@ -61,6 +61,8 @@ spawn a general-purpose sub-agent with the following prompt. Do _not_ use plan m
     - If the expected output is looking for output in the files, check the files in the directory.
 4. Consider and suggest to the *original* directory that would have improved the agent's behavior, since are evaluating the original directory's prompts and code to ensure better generated code. keep a running list of the suggestions to write later.
 5. on a scale of 1-10, grade the results and how well it matches the expected output. a 1 implies that the output did not match the desird outcome. a 10 implies a perfect match.
+  - only grade the results based on the expected output. Do not grade it based on any other aspect.
+  - for each expected output, include a description of whether it was met or not in the summary.
   - be very judgemental and do not rate at a 10 easily.
 6. produce a summary of the final results in a file, `eval-results.json`, in the test directory. The eval-results should use the following format:
 
