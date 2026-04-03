@@ -24,6 +24,9 @@ Find either the `evals/evals.json` file, or the `evals/evals.yaml` file. Read th
 
 ### 2: Start the test loop
 
+Create a sibling directory, `eval_results` to the target directory. All copied
+and generated files will be within that directory.
+
 For each test found in evals, do the following:
 
 #### 2a. create the evals directory and write an eval.json file
