@@ -2,6 +2,10 @@
 
 If this repository is for a video game, it uses [Godot](https://godotengine.org/).
 
+## Godot MCP server
+
+You **must** use the Godot MCP server to interact with the Godot editor.
+
 ## Core Requirements
 
 1. **Godot 4.x (.NET)**: Use the latest version of Godot 4 with C# (.NET) support.
