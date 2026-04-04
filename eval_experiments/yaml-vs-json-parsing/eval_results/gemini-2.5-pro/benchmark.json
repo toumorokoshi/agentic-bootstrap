@@ -1,0 +1,157 @@
+{
+  "metadata": {
+    "skill_name": "yaml-vs-json-parsing",
+    "skill_path": null,
+    "executor_model": "gemini-2.5-pro",
+    "analyzer_model": "programmatic grader (scripts/grade_openapi_evals.py)",
+    "timestamp": "2026-04-04T19:56:51Z",
+    "evals_run": [1, 2, 3],
+    "runs_per_configuration": 1,
+    "note": "with_skill = YAML, without_skill = JSON. Gemini 2.5 Pro via gemini CLI (-y -m gemini-2.5-pro). Six semantic checks per eval (see programmatic_grade_gemini-2.5-pro.json)."
+  },
+  "runs": [
+    {
+      "eval_id": 1,
+      "eval_name": "add-email-format-and-created-at (YAML)",
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.0,
+        "passed": 0,
+        "failed": 6,
+        "total": 6,
+        "time_seconds": 62.0,
+        "tokens": null,
+        "tool_calls": null,
+        "errors": 0
+      },
+      "expectations": [
+        {"text": "document parses (YAML)", "passed": false, "evidence": "Invalid YAML: CreateUserRequest.properties missing username key; orphaned maxLength/pattern/description"}
+      ],
+      "notes": ["Structural YAML error inherited from bad indentation pattern in scenario-yaml (same class as Flash eval-1-yaml failures)."]
+    },
+    {
+      "eval_id": 1,
+      "eval_name": "add-email-format-and-created-at (JSON)",
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 6,
+        "failed": 0,
+        "total": 6,
+        "time_seconds": 54.1,
+        "tokens": null,
+        "tool_calls": null,
+        "errors": 0
+      },
+      "expectations": [
+        {"text": "all six semantic checks", "passed": true, "evidence": "See programmatic_grade_gemini-2.5-pro.json"}
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 2,
+      "eval_name": "order-status-enum-and-deprecated-removal (YAML)",
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 6,
+        "failed": 0,
+        "total": 6,
+        "time_seconds": 50.2,
+        "tokens": null,
+        "tool_calls": null,
+        "errors": 0
+      },
+      "expectations": [
+        {"text": "all six semantic checks", "passed": true, "evidence": "programmatic_grade"}
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 2,
+      "eval_name": "order-status-enum-and-deprecated-removal (JSON)",
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 6,
+        "failed": 0,
+        "total": 6,
+        "time_seconds": 148.9,
+        "tokens": null,
+        "tool_calls": null,
+        "errors": 0
+      },
+      "expectations": [
+        {"text": "all six semantic checks", "passed": true, "evidence": "programmatic_grade"}
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 3,
+      "eval_name": "title-version-username-length (YAML)",
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 6,
+        "failed": 0,
+        "total": 6,
+        "time_seconds": 40.3,
+        "tokens": null,
+        "tool_calls": null,
+        "errors": 0
+      },
+      "expectations": [
+        {"text": "all six semantic checks", "passed": true, "evidence": "programmatic_grade"}
+      ],
+      "notes": ["Pro correctly preserved CreateUserRequest.username block in this run (contrast with eval-1-yaml)."]
+    },
+    {
+      "eval_id": 3,
+      "eval_name": "title-version-username-length (JSON)",
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.0,
+        "passed": 0,
+        "failed": 6,
+        "total": 6,
+        "time_seconds": 88.1,
+        "tokens": null,
+        "tool_calls": null,
+        "errors": 0
+      },
+      "expectations": [
+        {"text": "document parses (JSON)", "passed": false, "evidence": "Invalid JSON at line ~575: \"format\": \"password\",. — stray period after comma"}
+      ],
+      "notes": ["Typo in password property line breaks entire file parse."]
+    }
+  ],
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {"mean": 0.667, "stddev": 0.471, "min": 0.0, "max": 1.0},
+      "time_seconds": {"mean": 50.8, "stddev": 11.0, "min": 40.3, "max": 62.0},
+      "tokens": {"mean": null, "stddev": null, "min": null, "max": null}
+    },
+    "without_skill": {
+      "pass_rate": {"mean": 0.667, "stddev": 0.471, "min": 0.0, "max": 1.0},
+      "time_seconds": {"mean": 97.0, "stddev": 47.4, "min": 54.1, "max": 148.9},
+      "tokens": {"mean": null, "stddev": null, "min": null, "max": null}
+    },
+    "delta": {
+      "pass_rate": "+0.00",
+      "time_seconds": "-46.2",
+      "tokens": "N/A"
+    }
+  },
+  "notes": [
+    "Programmatic checks: 24/36 passed (66.7%) — YAML 12/18, JSON 12/18; symmetric failure counts, different failing evals.",
+    "Eval 1 YAML: invalid YAML (CreateUserRequest). Eval 3 JSON: invalid JSON (typo).",
+    "Wall time: YAML mean 50.8s vs JSON mean 97.0s (~48% faster YAML) for this run.",
+    "Token usage not reported by gemini CLI in headless mode."
+  ]
+}

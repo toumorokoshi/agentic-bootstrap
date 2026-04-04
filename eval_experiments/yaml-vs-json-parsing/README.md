@@ -58,17 +58,46 @@ When agents need to read, mutate, and write structured data (e.g., OpenAPI specs
 
 ---
 
+## Results: Gemini 2.5 Pro
+
+**Model**: gemini-2.5-pro (via Gemini CLI: `gemini -y -m gemini-2.5-pro`)
+
+**Grading**: Same six semantic checks per eval as `scripts/grade_openapi_evals.py` (24 checks total across YAML+JSON; see `eval_results/programmatic_grade_gemini-2.5-pro.json`).
+
+| Metric | YAML | JSON | Delta |
+|--------|------|------|-------|
+| Pass rate (6-check) | 66.7% (12/18) | 66.7% (12/18) | 0 (tie) |
+| Time (mean) | 50.8s | 97.0s | −46.2s (YAML ~48% faster) |
+| Tokens | N/A | N/A | N/A (CLI) |
+
+### Per-Eval Breakdown
+
+| Eval | YAML checks | JSON checks | YAML time | JSON time |
+|------|-------------|-------------|-----------|-----------|
+| 1: email format + createdAt | 0/6 (invalid YAML) | 6/6 | 62.0s | 54.1s |
+| 2: order status enum + deprecated | 6/6 | 6/6 | 50.2s | 148.9s |
+| 3: title/version + username length | 6/6 | 0/6 (invalid JSON) | 40.3s | 88.1s |
+
+### Gemini 2.5 Pro failure details
+
+- **Eval 1 YAML**: **Invalid YAML** — under `CreateUserRequest.properties`, the `username` key was omitted; `maxLength` / `pattern` / `description` were left at the wrong indentation (same structural pattern as a bad region in `scenario-yaml/openapi.yaml`). PyYAML cannot parse the file.
+- **Eval 3 JSON**: **Invalid JSON** — typo on the `password` field: `"format": "password",.` (stray `.` after the comma), so the whole document fails `json.loads`.
+
+---
+
 ## Cross-Model Comparison
 
-| | Claude Sonnet 4.6 | Gemini 2.5 Flash |
-|---|---|---|
-| **YAML accuracy** | 100% (21/21) | 90.5% (19/21) |
-| **JSON accuracy** | 100% (21/21) | 95.2% (20/21) |
-| **YAML mean time** | 59.4s | 122.4s |
-| **JSON mean time** | 77.1s | 129.0s |
-| **YAML tokens** | 19,981 | N/A |
-| **JSON tokens** | 24,347 | N/A |
-| **Failure mode** | None | YAML: structural corruption; JSON: string precision |
+| | Claude Sonnet 4.6 | Gemini 2.5 Flash | Gemini 2.5 Pro |
+|---|---|---|---|
+| **YAML accuracy** | 100% (21/21) | 90.5% (19/21) | 66.7% (12/18)\* |
+| **JSON accuracy** | 100% (21/21) | 95.2% (20/21) | 66.7% (12/18)\* |
+| **YAML mean time** | 59.4s | 122.4s | 50.8s |
+| **JSON mean time** | 77.1s | 129.0s | 97.0s |
+| **YAML tokens** | 19,981 | N/A | N/A |
+| **JSON tokens** | 24,347 | N/A | N/A |
+| **Failure mode** | None | YAML: structural corruption; JSON: string precision | YAML: invalid file (eval 1); JSON: invalid file (eval 3) |
+
+\*Pro figures use the six-check programmatic grader; Flash/Claude rows use the original 7-assertion human/subagent rubric for comparability with earlier runs.
 
 ---
 
@@ -83,6 +112,8 @@ When agents need to read, mutate, and write structured data (e.g., OpenAPI specs
 4. **YAML uses fewer tokens (Claude data).** 18% fewer tokens for YAML vs JSON, driven by format verbosity differences. This was remarkably consistent across all evals (stddev < 35 tokens).
 
 5. **YAML's indentation sensitivity is a risk for weaker models.** Gemini's structural YAML failure (dropping a property key) is the kind of error that can't happen in JSON — JSON's explicit delimiters make structure unambiguous. For models that struggle with whitespace-significant formats, JSON may be safer despite being more verbose.
+
+6. **Gemini 2.5 Pro (six-check rerun) tied YAML vs JSON on pass rate but failed on different evals.** Eval 1 produced unparseable YAML; eval 3 produced unparseable JSON — so neither format was universally safer; the dominant failure was **syntax corruption** in one run each, not systematic preference for YAML or JSON.
 
 ## Recommendation
 
