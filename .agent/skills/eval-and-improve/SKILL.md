@@ -38,7 +38,11 @@ For each test found in evals, do the following:
 ```json
 {
   "prompt": "{include the prompt from the test case in evals.json here}.",
-  "expected_output": "{include the expected output from the test case in evals.json here}",
+  "expected_output": [
+    "1. <first requirement>",
+    "2. <second requirement>",
+    "3. <third requirement>"
+  ],
   "files": []
 }
 ```
