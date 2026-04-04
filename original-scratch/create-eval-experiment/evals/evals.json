@@ -1,0 +1,12 @@
+{
+  "evals": [
+    {
+      "id": "1",
+      "prompt": "I would like to see if yaml or json is a better format for an agent to interpret and parse structured objects. The test should be a very complicated data structure, such as an openapi json description. The eval prompt should be to read those values and transform them via modifying values within the content, such as changing the description of a field, or changing the type of a field.",
+      "expected_outputs": [
+        "two directories should be created, one for json and one for yaml",
+        "there should be at least one test case in eval/evals.json, which contains a prompt and multiple expected outputs. The expected output should ensure that the data is consistent between the source and modified file"
+      ]
+    }
+  ]
+}
