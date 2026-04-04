@@ -1,8 +1,8 @@
 openapi: "3.0.3"
 info:
-  title: "Acme Commerce Platform API"
+  title: "Acme API"
   description: "A comprehensive REST API for the Acme platform, providing access to users, products, and orders."
-  version: "2.0.0"
+  version: "1.0.0"
   contact:
     name: "Acme API Support"
     email: "api-support@acme.example.com"
@@ -144,7 +144,6 @@ paths:
       summary: "Delete a user"
       description: "Permanently removes a user from the system. This action cannot be undone."
       tags: ["users"]
-      x-internal: true
       responses:
         "204":
           description: "User deleted successfully."
@@ -197,7 +196,7 @@ paths:
       parameters:
         - name: "productId"
           in: "path"
-          description: "The globally unique identifier of the product."
+          description: "The unique ID of the product."
           required: true
           schema:
             type: "string"
@@ -217,6 +216,7 @@ paths:
       operationId: "listLegacyProducts"
       summary: "List legacy products"
       description: "Returns legacy product data. Use /products instead."
+      deprecated: true
       tags: ["products"]
       responses:
         "200":
@@ -251,7 +251,7 @@ paths:
                 $ref: "#/components/schemas/OrderListResponse"
     post:
       operationId: "createOrder"
-      summary: "Submit a new customer order."
+      summary: "Place a new order"
       description: "Creates a new order for the authenticated user."
       tags: ["orders"]
       requestBody:
@@ -302,7 +302,6 @@ components:
         middleName:
           type: "string"
           description: "The user's middle name, if any."
-          nullable: true
         lastName:
           type: "string"
           description: "The user's last name."
@@ -316,6 +315,10 @@ components:
           description: "The user's role in the system."
           enum: ["admin", "moderator", "user", "guest"]
           default: "user"
+        createdAt:
+          type: "string"
+          format: "date-time"
+          description: "The date and time the user was created."
         preferences:
           $ref: "#/components/schemas/UserPreferences"
         metadata:
@@ -323,10 +326,6 @@ components:
           description: "Arbitrary key-value metadata attached to the user."
           additionalProperties:
             type: "string"
-        createdAt:
-          type: "string"
-          format: "date-time"
-          description: "The date and time the user was created."
 
     UserPreferences:
       type: "object"
@@ -356,7 +355,10 @@ components:
       type: "object"
       required: ["username", "email", "password"]
       properties:
-          maxLength: 32
+        username:
+          type: "string"
+          minLength: 3
+          maxLength: 20
           pattern: "^[a-zA-Z0-9_-]+$"
           description: "Desired username. Must be alphanumeric with underscores or hyphens."
         email:
@@ -492,7 +494,7 @@ components:
         status:
           type: "string"
           description: "Current status of the order."
-          enum: ["pending", "confirmed", "in_transit", "fulfilled", "cancelled"]
+          enum: ["pending", "processing", "shipped", "delivered"]
         total:
           type: "number"
           format: "double"
@@ -514,9 +516,9 @@ components:
           format: "uuid"
           description: "The ID of the product ordered."
         quantity:
-          type: "number"
+          type: "integer"
           description: "Number of units ordered."
-          minimum: 0.1
+          minimum: 1
         unitPrice:
           type: "number"
           format: "double"

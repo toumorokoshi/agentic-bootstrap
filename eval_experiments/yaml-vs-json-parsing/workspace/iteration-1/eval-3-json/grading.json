@@ -1,0 +1,39 @@
+{
+  "expectations": [
+    {
+      "text": "output file exists",
+      "passed": true,
+      "evidence": "/home/yusuke/workspace/agentic-bootstrap/eval_experiments/yaml-vs-json-parsing/workspace/iteration-1/eval-3-json/outputs/output.json"
+    },
+    {
+      "text": "API title correct",
+      "passed": true,
+      "evidence": "found: 'Acme Commerce Platform API'"
+    },
+    {
+      "text": "API version is 2.0.0",
+      "passed": true,
+      "evidence": "found: '2.0.0'"
+    },
+    {
+      "text": "productId description correct",
+      "passed": true,
+      "evidence": "found: 'The globally unique identifier of the product.'"
+    },
+    {
+      "text": "username minLength is 5",
+      "passed": true,
+      "evidence": "minLength: 5"
+    },
+    {
+      "text": "username maxLength is 32",
+      "passed": true,
+      "evidence": "maxLength: 32"
+    },
+    {
+      "text": "middleName has nullable: true",
+      "passed": true,
+      "evidence": "{'type': 'string', 'description': \"The user's middle name, if any.\", 'nullable': True}"
+    }
+  ]
+}

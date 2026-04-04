@@ -1,0 +1,48 @@
+{
+  "expectations": [
+    {
+      "text": "output file exists",
+      "passed": true,
+      "evidence": "output.json exists and contains valid JSON (971 lines, a complete OpenAPI 3.0.3 specification)"
+    },
+    {
+      "text": "POST /orders summary is exactly: 'Submit a new customer order.'",
+      "passed": false,
+      "evidence": "POST /orders summary is \"Submit a new customer order\" (missing trailing period). Expected \"Submit a new customer order.\""
+    },
+    {
+      "text": "quantity field in OrderItem has type: number (not integer)",
+      "passed": true,
+      "evidence": "OrderItem schema quantity field has \"type\": \"number\" (line 797)"
+    },
+    {
+      "text": "quantity field in OrderItem has minimum: 0.1",
+      "passed": true,
+      "evidence": "OrderItem schema quantity field has \"minimum\": 0.1 (line 799)"
+    },
+    {
+      "text": "GET /products/legacy endpoint does not contain deprecated key at all",
+      "passed": true,
+      "evidence": "GET /products/legacy endpoint (lines 332-356) contains no 'deprecated' key"
+    },
+    {
+      "text": "Order status enum contains exactly: pending, confirmed, in_transit, fulfilled, cancelled",
+      "passed": true,
+      "evidence": "Order schema status enum is [\"pending\", \"confirmed\", \"in_transit\", \"fulfilled\", \"cancelled\"] (lines 760-766)"
+    },
+    {
+      "text": "DELETE /users/{userId} endpoint has x-internal: true extension",
+      "passed": true,
+      "evidence": "DELETE /users/{userId} has \"x-internal\": true (line 226)"
+    }
+  ],
+  "summary": {
+    "passed": 6,
+    "failed": 1,
+    "total": 7,
+    "pass_rate": 0.857
+  },
+  "timing": {
+    "executor_duration_seconds": 105.1
+  }
+}

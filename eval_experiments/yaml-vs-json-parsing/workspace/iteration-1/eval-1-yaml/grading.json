@@ -1,0 +1,39 @@
+{
+  "expectations": [
+    {
+      "text": "output file exists",
+      "passed": true,
+      "evidence": "/home/yusuke/workspace/agentic-bootstrap/eval_experiments/yaml-vs-json-parsing/workspace/iteration-1/eval-1-yaml/outputs/output.yaml"
+    },
+    {
+      "text": "GET /users/{userId} description correct",
+      "passed": true,
+      "evidence": "found: 'Retrieves a single user by their unique identifier.'"
+    },
+    {
+      "text": "email field has format: email",
+      "passed": true,
+      "evidence": "{'type': 'string', 'description': \"The user's email address.\", 'format': 'email'}"
+    },
+    {
+      "text": "age field type is number (not integer)",
+      "passed": true,
+      "evidence": "type: number"
+    },
+    {
+      "text": "createdAt field exists with type string and format date-time",
+      "passed": true,
+      "evidence": "{'type': 'string', 'format': 'date-time', 'description': 'The timestamp when the user was created.', 'readOnly': True}"
+    },
+    {
+      "text": "createdAt in User required array",
+      "passed": true,
+      "evidence": "['id', 'username', 'email', 'age', 'role', 'createdAt']"
+    },
+    {
+      "text": "limit description correct",
+      "passed": true,
+      "evidence": "found: 'Maximum number of users to return per page.'"
+    }
+  ]
+}

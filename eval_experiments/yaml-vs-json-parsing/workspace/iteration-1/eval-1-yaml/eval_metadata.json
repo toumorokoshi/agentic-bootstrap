@@ -1,0 +1,35 @@
+{
+  "eval_id": 1,
+  "eval_name": "add-email-format-and-created-at-yaml",
+  "prompt": "You are given an OpenAPI specification file in this directory called `openapi.yaml`. Read it carefully, then make the following mutations and write the result to `output.yaml`:\n\n1. Change the description of the `GET /users/{userId}` endpoint to: \"Retrieves a single user by their unique identifier.\"\n2. Change the type of the `email` field in the `User` schema from `string` to `string` with format `email`.\n3. Change the type of the `age` field in the `User` schema from `integer` to `number`.\n4. Add a new required field `createdAt` of type `string` with format `date-time` to the `User` schema.\n5. Change the `GET /users` endpoint's `limit` query parameter description to: \"Maximum number of users to return per page.\"",
+  "assertions": [
+    {
+      "id": "output-file-exists",
+      "description": "output.yaml file exists in outputs directory"
+    },
+    {
+      "id": "get-user-description",
+      "description": "GET /users/{userId} description is exactly: 'Retrieves a single user by their unique identifier.'"
+    },
+    {
+      "id": "email-format",
+      "description": "email field in User schema has format: email"
+    },
+    {
+      "id": "age-type-number",
+      "description": "age field in User schema has type: number (not integer)"
+    },
+    {
+      "id": "created-at-field",
+      "description": "createdAt field exists in User schema with type string and format date-time"
+    },
+    {
+      "id": "created-at-required",
+      "description": "createdAt is listed in the required array of User schema"
+    },
+    {
+      "id": "limit-description",
+      "description": "limit query parameter description on GET /users is exactly: 'Maximum number of users to return per page.'"
+    }
+  ]
+}

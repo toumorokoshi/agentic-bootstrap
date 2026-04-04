@@ -1,9 +1,9 @@
 {
   "openapi": "3.0.3",
   "info": {
-    "title": "Acme Commerce Platform API",
+    "title": "Acme API",
     "description": "A comprehensive REST API for the Acme platform, providing access to users, products, and orders.",
-    "version": "2.0.0",
+    "version": "1.0.0",
     "contact": {
       "name": "Acme API Support",
       "email": "api-support@acme.example.com",
@@ -223,7 +223,6 @@
         "operationId": "deleteUser",
         "summary": "Delete a user",
         "description": "Permanently removes a user from the system. This action cannot be undone.",
-        "x-internal": true,
         "tags": [
           "users"
         ],
@@ -304,7 +303,7 @@
           {
             "name": "productId",
             "in": "path",
-            "description": "The globally unique identifier of the product.",
+            "description": "The unique ID of the product.",
             "required": true,
             "schema": {
               "type": "string",
@@ -334,6 +333,7 @@
         "operationId": "listLegacyProducts",
         "summary": "List legacy products",
         "description": "Returns legacy product data. Use /products instead.",
+        "deprecated": true,
         "tags": [
           "products"
         ],
@@ -394,7 +394,7 @@
       },
       "post": {
         "operationId": "createOrder",
-        "summary": "Submit a new customer order",
+        "summary": "Place a new order",
         "description": "Creates a new order for the authenticated user.",
         "tags": [
           "orders"
@@ -473,8 +473,7 @@
           },
           "middleName": {
             "type": "string",
-            "description": "The user's middle name, if any.",
-            "nullable": true
+            "description": "The user's middle name, if any."
           },
           "lastName": {
             "type": "string",
@@ -497,6 +496,10 @@
             ],
             "default": "user"
           },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
           "preferences": {
             "$ref": "#/components/schemas/UserPreferences"
           },
@@ -506,11 +509,6 @@
             "additionalProperties": {
               "type": "string"
             }
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time",
-            "description": "The date and time the user was created."
           }
         }
       },
@@ -560,8 +558,8 @@
         "properties": {
           "username": {
             "type": "string",
-            "minLength": 5,
-            "maxLength": 32,
+            "minLength": 3,
+            "maxLength": 20,
             "pattern": "^[a-zA-Z0-9_-]+$",
             "description": "Desired username. Must be alphanumeric with underscores or hyphens."
           },
@@ -761,10 +759,9 @@
             "description": "Current status of the order.",
             "enum": [
               "pending",
-              "confirmed",
-              "in_transit",
-              "fulfilled",
-              "cancelled"
+              "processing",
+              "shipped",
+              "delivered"
             ]
           },
           "total": {
@@ -796,9 +793,9 @@
             "description": "The ID of the product ordered."
           },
           "quantity": {
-            "type": "number",
+            "type": "integer",
             "description": "Number of units ordered.",
-            "minimum": 0.1
+            "minimum": 1
           },
           "unitPrice": {
             "type": "number",

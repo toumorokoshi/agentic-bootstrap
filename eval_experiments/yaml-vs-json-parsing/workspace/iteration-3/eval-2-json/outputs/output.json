@@ -473,8 +473,7 @@
           },
           "middleName": {
             "type": "string",
-            "description": "The user's middle name, if any.",
-            "nullable": true
+            "description": "The user's middle name, if any."
           },
           "lastName": {
             "type": "string",
@@ -560,8 +559,8 @@
         "properties": {
           "username": {
             "type": "string",
-            "minLength": 5,
-            "maxLength": 32,
+            "minLength": 3,
+            "maxLength": 20,
             "pattern": "^[a-zA-Z0-9_-]+$",
             "description": "Desired username. Must be alphanumeric with underscores or hyphens."
           },
@@ -619,8 +618,7 @@
             }
           },
           "total": {
-            "type": "integer",
-            "description": "Total number of users matching the query."
+            "type": "integer"
           },
           "limit": {
             "type": "integer"

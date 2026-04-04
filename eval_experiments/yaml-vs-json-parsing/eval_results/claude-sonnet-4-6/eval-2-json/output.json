@@ -1,9 +1,9 @@
 {
   "openapi": "3.0.3",
   "info": {
-    "title": "Acme Commerce Platform API",
+    "title": "Acme API",
     "description": "A comprehensive REST API for the Acme platform, providing access to users, products, and orders.",
-    "version": "2.0.0",
+    "version": "1.0.0",
     "contact": {
       "name": "Acme API Support",
       "email": "api-support@acme.example.com",
@@ -51,7 +51,7 @@
           {
             "name": "limit",
             "in": "query",
-            "description": "Maximum number of users to return per page.",
+            "description": "Number of users to return.",
             "required": false,
             "schema": {
               "type": "integer",
@@ -166,7 +166,7 @@
       "get": {
         "operationId": "getUser",
         "summary": "Get a user by ID",
-        "description": "Retrieves a single user by their unique identifier.",
+        "description": "Fetches a user record by their primary key.",
         "tags": [
           "users"
         ],
@@ -223,10 +223,10 @@
         "operationId": "deleteUser",
         "summary": "Delete a user",
         "description": "Permanently removes a user from the system. This action cannot be undone.",
-        "x-internal": true,
         "tags": [
           "users"
         ],
+        "x-internal": true,
         "responses": {
           "204": {
             "description": "User deleted successfully."
@@ -304,7 +304,7 @@
           {
             "name": "productId",
             "in": "path",
-            "description": "The globally unique identifier of the product.",
+            "description": "The unique ID of the product.",
             "required": true,
             "schema": {
               "type": "string",
@@ -394,7 +394,7 @@
       },
       "post": {
         "operationId": "createOrder",
-        "summary": "Submit a new customer order",
+        "summary": "Submit a new customer order.",
         "description": "Creates a new order for the authenticated user.",
         "tags": [
           "orders"
@@ -446,8 +446,7 @@
           "username",
           "email",
           "age",
-          "role",
-          "createdAt"
+          "role"
         ],
         "properties": {
           "id": {
@@ -464,7 +463,6 @@
           },
           "email": {
             "type": "string",
-            "format": "email",
             "description": "The user's email address."
           },
           "firstName": {
@@ -473,15 +471,14 @@
           },
           "middleName": {
             "type": "string",
-            "description": "The user's middle name, if any.",
-            "nullable": true
+            "description": "The user's middle name, if any."
           },
           "lastName": {
             "type": "string",
             "description": "The user's last name."
           },
           "age": {
-            "type": "number",
+            "type": "integer",
             "description": "The user's age in years.",
             "minimum": 0,
             "maximum": 150
@@ -506,11 +503,6 @@
             "additionalProperties": {
               "type": "string"
             }
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time",
-            "description": "The date and time the user was created."
           }
         }
       },
@@ -560,8 +552,8 @@
         "properties": {
           "username": {
             "type": "string",
-            "minLength": 5,
-            "maxLength": 32,
+            "minLength": 3,
+            "maxLength": 20,
             "pattern": "^[a-zA-Z0-9_-]+$",
             "description": "Desired username. Must be alphanumeric with underscores or hyphens."
           },

@@ -302,7 +302,6 @@ components:
         middleName:
           type: "string"
           description: "The user's middle name, if any."
-          nullable: true
         lastName:
           type: "string"
           description: "The user's last name."

@@ -1,0 +1,48 @@
+{
+  "expectations": [
+    {
+      "text": "output file exists",
+      "passed": true,
+      "evidence": "output.yaml was successfully read from the expected path"
+    },
+    {
+      "text": "API title in info block is exactly: 'Acme Commerce Platform API'",
+      "passed": true,
+      "evidence": "info.title is \"Acme Commerce Platform API\" (line 3)"
+    },
+    {
+      "text": "API version in info block is exactly: '2.0.0'",
+      "passed": true,
+      "evidence": "info.version is \"2.0.0\" (line 5)"
+    },
+    {
+      "text": "productId path parameter description on GET /products/{productId} is exactly: 'The globally unique identifier of the product.'",
+      "passed": true,
+      "evidence": "productId parameter under /products/{productId} has description: \"The globally unique identifier of the product.\" (line 199)"
+    },
+    {
+      "text": "username field in CreateUserRequest has minLength: 5",
+      "passed": true,
+      "evidence": "CreateUserRequest.properties.username.minLength is 5 (line 356)"
+    },
+    {
+      "text": "username field in CreateUserRequest has maxLength: 32",
+      "passed": true,
+      "evidence": "CreateUserRequest.properties.username.maxLength is 32 (line 357)"
+    },
+    {
+      "text": "middleName field in User schema has nullable: true",
+      "passed": true,
+      "evidence": "User.properties.middleName.nullable is true (line 304)"
+    }
+  ],
+  "summary": {
+    "passed": 7,
+    "failed": 0,
+    "total": 7,
+    "pass_rate": 1.0
+  },
+  "timing": {
+    "executor_duration_seconds": 58.4
+  }
+}

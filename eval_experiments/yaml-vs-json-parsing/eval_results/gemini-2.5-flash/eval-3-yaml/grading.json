@@ -1,0 +1,48 @@
+{
+  "expectations": [
+    {
+      "text": "output file exists",
+      "passed": true,
+      "evidence": "The file output.yaml exists and contains 628 lines of valid YAML content."
+    },
+    {
+      "text": "API title in info block is exactly: 'Acme Commerce Platform API'",
+      "passed": true,
+      "evidence": "Line 3: title: \"Acme Commerce Platform API\""
+    },
+    {
+      "text": "API version in info block is exactly: '2.0.0'",
+      "passed": true,
+      "evidence": "Line 5: version: \"2.0.0\""
+    },
+    {
+      "text": "productId path parameter description on GET /products/{productId} is exactly: 'The globally unique identifier of the product.'",
+      "passed": true,
+      "evidence": "Line 200: description: \"The globally unique identifier of the product.\""
+    },
+    {
+      "text": "username field in CreateUserRequest has minLength: 5",
+      "passed": false,
+      "evidence": "The CreateUserRequest properties block (lines 358-376) is malformed. The username property key, type, and minLength are all missing. Lines 359-361 contain orphaned maxLength/pattern/description values with no parent username key or minLength constraint."
+    },
+    {
+      "text": "username field in CreateUserRequest has maxLength: 32",
+      "passed": false,
+      "evidence": "While maxLength: 32 appears on line 359, the YAML structure is broken. The username property key and type are missing, making this an invalid/orphaned value not properly associated with a username field."
+    },
+    {
+      "text": "middleName field in User schema has nullable: true",
+      "passed": true,
+      "evidence": "Lines 303-305 in User schema: middleName has nullable: true"
+    }
+  ],
+  "summary": {
+    "passed": 5,
+    "failed": 2,
+    "total": 7,
+    "pass_rate": 0.714
+  },
+  "timing": {
+    "executor_duration_seconds": 130.7
+  }
+}

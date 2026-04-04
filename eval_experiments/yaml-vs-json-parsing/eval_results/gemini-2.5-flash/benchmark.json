@@ -1,0 +1,198 @@
+{
+  "metadata": {
+    "skill_name": "yaml-vs-json-parsing",
+    "skill_path": null,
+    "executor_model": "gemini-2.5-flash",
+    "analyzer_model": "claude-sonnet-4-6",
+    "timestamp": "2026-04-04T18:00:00Z",
+    "evals_run": [1, 2, 3],
+    "runs_per_configuration": 1,
+    "note": "Configuration 'with_skill' = YAML format, 'without_skill' = JSON format. Gemini 2.5 Flash via gemini CLI."
+  },
+  "runs": [
+    {
+      "eval_id": 1,
+      "eval_name": "add-email-format-and-created-at (YAML)",
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 7,
+        "failed": 0,
+        "total": 7,
+        "time_seconds": 113.8,
+        "tokens": null,
+        "tool_calls": null,
+        "errors": 0
+      },
+      "expectations": [
+        {"text": "output file exists", "passed": true, "evidence": "output.yaml exists"},
+        {"text": "GET /users/{userId} description correct", "passed": true, "evidence": "matches exactly"},
+        {"text": "email field has format: email", "passed": true, "evidence": "format: email present"},
+        {"text": "age field type is number", "passed": true, "evidence": "type: number"},
+        {"text": "createdAt field exists with type string and format date-time", "passed": true, "evidence": "type: string, format: date-time"},
+        {"text": "createdAt in User required array", "passed": true, "evidence": "createdAt in required"},
+        {"text": "limit description correct", "passed": true, "evidence": "matches exactly"}
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 1,
+      "eval_name": "add-email-format-and-created-at (JSON)",
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 7,
+        "failed": 0,
+        "total": 7,
+        "time_seconds": 107.3,
+        "tokens": null,
+        "tool_calls": null,
+        "errors": 0
+      },
+      "expectations": [
+        {"text": "output file exists", "passed": true, "evidence": "output.json exists"},
+        {"text": "GET /users/{userId} description correct", "passed": true, "evidence": "matches exactly"},
+        {"text": "email field has format: email", "passed": true, "evidence": "format: email present"},
+        {"text": "age field type is number", "passed": true, "evidence": "type: number"},
+        {"text": "createdAt field exists with type string and format date-time", "passed": true, "evidence": "type: string, format: date-time"},
+        {"text": "createdAt in User required array", "passed": true, "evidence": "createdAt in required"},
+        {"text": "limit description correct", "passed": true, "evidence": "matches exactly"}
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 2,
+      "eval_name": "order-status-enum-and-deprecated-removal (YAML)",
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 7,
+        "failed": 0,
+        "total": 7,
+        "time_seconds": 122.8,
+        "tokens": null,
+        "tool_calls": null,
+        "errors": 0
+      },
+      "expectations": [
+        {"text": "output file exists", "passed": true, "evidence": "output.yaml exists"},
+        {"text": "POST /orders summary correct", "passed": true, "evidence": "matches exactly"},
+        {"text": "quantity type is number", "passed": true, "evidence": "type: number"},
+        {"text": "quantity minimum is 0.1", "passed": true, "evidence": "minimum: 0.1"},
+        {"text": "deprecated removed from GET /products/legacy", "passed": true, "evidence": "no deprecated key"},
+        {"text": "Order status enum correct", "passed": true, "evidence": "5 correct values"},
+        {"text": "DELETE /users/{userId} has x-internal: true", "passed": true, "evidence": "x-internal: true present"}
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 2,
+      "eval_name": "order-status-enum-and-deprecated-removal (JSON)",
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.857,
+        "passed": 6,
+        "failed": 1,
+        "total": 7,
+        "time_seconds": 105.1,
+        "tokens": null,
+        "tool_calls": null,
+        "errors": 0
+      },
+      "expectations": [
+        {"text": "output file exists", "passed": true, "evidence": "output.json exists"},
+        {"text": "POST /orders summary correct", "passed": false, "evidence": "FAILED: actual value is 'Submit a new customer order' (missing trailing period), expected 'Submit a new customer order.'"},
+        {"text": "quantity type is number", "passed": true, "evidence": "type: number"},
+        {"text": "quantity minimum is 0.1", "passed": true, "evidence": "minimum: 0.1"},
+        {"text": "deprecated removed from GET /products/legacy", "passed": true, "evidence": "no deprecated key"},
+        {"text": "Order status enum correct", "passed": true, "evidence": "5 correct values"},
+        {"text": "DELETE /users/{userId} has x-internal: true", "passed": true, "evidence": "x-internal: true present"}
+      ],
+      "notes": ["Gemini dropped the trailing period from the POST /orders summary string"]
+    },
+    {
+      "eval_id": 3,
+      "eval_name": "title-version-username-length (YAML)",
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.714,
+        "passed": 5,
+        "failed": 2,
+        "total": 7,
+        "time_seconds": 130.7,
+        "tokens": null,
+        "tool_calls": null,
+        "errors": 0
+      },
+      "expectations": [
+        {"text": "output file exists", "passed": true, "evidence": "output.yaml exists"},
+        {"text": "API title correct", "passed": true, "evidence": "Acme Commerce Platform API"},
+        {"text": "API version is 2.0.0", "passed": true, "evidence": "2.0.0"},
+        {"text": "productId description correct", "passed": true, "evidence": "matches exactly"},
+        {"text": "username minLength is 5", "passed": false, "evidence": "FAILED: Gemini produced malformed YAML — username property key and type were dropped entirely, minLength not found"},
+        {"text": "username maxLength is 32", "passed": false, "evidence": "FAILED: Gemini produced malformed YAML — only orphaned maxLength: 32, pattern, and description remain with no parent key"},
+        {"text": "middleName has nullable: true", "passed": true, "evidence": "nullable: true present"}
+      ],
+      "notes": ["Gemini 2.5 Flash produced structurally broken YAML for the CreateUserRequest username field — the property key was dropped"]
+    },
+    {
+      "eval_id": 3,
+      "eval_name": "title-version-username-length (JSON)",
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 7,
+        "failed": 0,
+        "total": 7,
+        "time_seconds": 174.6,
+        "tokens": null,
+        "tool_calls": null,
+        "errors": 0
+      },
+      "expectations": [
+        {"text": "output file exists", "passed": true, "evidence": "output.json exists"},
+        {"text": "API title correct", "passed": true, "evidence": "Acme Commerce Platform API"},
+        {"text": "API version is 2.0.0", "passed": true, "evidence": "2.0.0"},
+        {"text": "productId description correct", "passed": true, "evidence": "matches exactly"},
+        {"text": "username minLength is 5", "passed": true, "evidence": "minLength: 5"},
+        {"text": "username maxLength is 32", "passed": true, "evidence": "maxLength: 32"},
+        {"text": "middleName has nullable: true", "passed": true, "evidence": "nullable: true"}
+      ],
+      "notes": []
+    }
+  ],
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {"mean": 0.905, "stddev": 0.165, "min": 0.714, "max": 1.0},
+      "time_seconds": {"mean": 122.4, "stddev": 8.5, "min": 113.8, "max": 130.7},
+      "tokens": {"mean": null, "stddev": null, "min": null, "max": null}
+    },
+    "without_skill": {
+      "pass_rate": {"mean": 0.952, "stddev": 0.082, "min": 0.857, "max": 1.0},
+      "time_seconds": {"mean": 129.0, "stddev": 39.8, "min": 105.1, "max": 174.6},
+      "tokens": {"mean": null, "stddev": null, "min": null, "max": null}
+    },
+    "delta": {
+      "pass_rate": "-0.05",
+      "time_seconds": "-6.6",
+      "tokens": "N/A"
+    }
+  },
+  "notes": [
+    "NOTE: 'with_skill' = YAML format | 'without_skill' = JSON format",
+    "Model: Gemini 2.5 Flash via gemini CLI",
+    "YAML pass rate: 90.5% (19/21) — JSON pass rate: 95.2% (20/21)",
+    "YAML had a structural failure: Gemini produced malformed YAML in eval-3, dropping the username property key entirely (2 assertions failed)",
+    "JSON had a precision failure: Gemini dropped a trailing period from a string in eval-2 (1 assertion failed)",
+    "The YAML structural failure is more severe — it corrupted the document structure, not just a string value",
+    "Timing is noisy due to rate limit retries (some runs hit 'exhausted capacity' errors with 5s retry delays)",
+    "Token data unavailable — gemini CLI does not report token usage in headless mode",
+    "Compared to Claude Sonnet 4.6: Claude achieved 100% on both formats; Gemini had errors on both but the YAML error was structurally worse"
+  ]
+}
