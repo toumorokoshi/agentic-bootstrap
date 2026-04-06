@@ -1,0 +1,11 @@
+{
+  "duration_ms": 213130,
+  "total_duration_seconds": 213.13,
+  "is_error": false,
+  "tokens": {
+    "input": 26861,
+    "output": 1648,
+    "total": 57719,
+    "cached": 18808
+  }
+}
