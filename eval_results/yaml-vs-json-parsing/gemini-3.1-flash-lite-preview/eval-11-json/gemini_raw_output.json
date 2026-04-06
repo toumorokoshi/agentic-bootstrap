@@ -1,0 +1,94 @@
+{
+  "session_id": "c57796dd-8df5-4c5c-9456-944e2fa5e200",
+  "response": "The OpenAPI specification has been processed, and all object keys have been sorted alphabetically at every nesting level. The output is saved in `/tmp/yaml-vs-json-eval-gemini/eval-11-json/output`.",
+  "stats": {
+    "models": {
+      "gemini-3.1-flash-lite-preview": {
+        "api": {
+          "totalRequests": 5,
+          "totalErrors": 0,
+          "totalLatencyMs": 4871
+        },
+        "tokens": {
+          "input": 24072,
+          "prompt": 74520,
+          "candidates": 440,
+          "total": 74960,
+          "cached": 50448,
+          "thoughts": 0,
+          "tool": 0
+        },
+        "roles": {
+          "main": {
+            "totalRequests": 5,
+            "totalErrors": 0,
+            "totalLatencyMs": 4871,
+            "tokens": {
+              "input": 24072,
+              "prompt": 74520,
+              "candidates": 440,
+              "total": 74960,
+              "cached": 50448,
+              "thoughts": 0,
+              "tool": 0
+            }
+          }
+        }
+      }
+    },
+    "tools": {
+      "totalCalls": 4,
+      "totalSuccess": 4,
+      "totalFail": 0,
+      "totalDurationMs": 79,
+      "totalDecisions": {
+        "accept": 4,
+        "reject": 0,
+        "modify": 0,
+        "auto_accept": 0
+      },
+      "byName": {
+        "read_file": {
+          "count": 2,
+          "success": 2,
+          "fail": 0,
+          "durationMs": 13,
+          "decisions": {
+            "accept": 2,
+            "reject": 0,
+            "modify": 0,
+            "auto_accept": 0
+          }
+        },
+        "write_file": {
+          "count": 1,
+          "success": 1,
+          "fail": 0,
+          "durationMs": 3,
+          "decisions": {
+            "accept": 1,
+            "reject": 0,
+            "modify": 0,
+            "auto_accept": 0
+          }
+        },
+        "run_shell_command": {
+          "count": 1,
+          "success": 1,
+          "fail": 0,
+          "durationMs": 63,
+          "decisions": {
+            "accept": 1,
+            "reject": 0,
+            "modify": 0,
+            "auto_accept": 0
+          }
+        }
+      }
+    },
+    "files": {
+      "totalLinesAdded": 19,
+      "totalLinesRemoved": 0
+    }
+  }
+}

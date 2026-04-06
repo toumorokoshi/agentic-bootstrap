@@ -1,0 +1,40 @@
+{
+  "expectations": [
+    {
+      "text": "POST /orders summary exact",
+      "passed": false,
+      "evidence": "got 'Submit a new customer order' expected 'Submit a new customer order.'"
+    },
+    {
+      "text": "OrderItem.quantity type number",
+      "passed": true,
+      "evidence": "type='number'"
+    },
+    {
+      "text": "OrderItem.quantity minimum 0.1",
+      "passed": true,
+      "evidence": "minimum=0.1"
+    },
+    {
+      "text": "GET /products/legacy no deprecated",
+      "passed": true,
+      "evidence": "ok"
+    },
+    {
+      "text": "Order.status enum exact",
+      "passed": true,
+      "evidence": "got ['pending', 'confirmed', 'in_transit', 'fulfilled', 'cancelled']"
+    },
+    {
+      "text": "DELETE /users/{userId} x-internal",
+      "passed": true,
+      "evidence": "x-internal=True"
+    }
+  ],
+  "summary": {
+    "passed": 5,
+    "failed": 1,
+    "total": 6,
+    "pass_rate": 0.8333333333333334
+  }
+}

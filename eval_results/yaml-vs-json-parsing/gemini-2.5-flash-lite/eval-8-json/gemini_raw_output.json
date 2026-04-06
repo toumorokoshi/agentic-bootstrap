@@ -1,0 +1,82 @@
+{
+  "session_id": "94eda44b-689c-40a1-94b9-3dbb3d03d8f8",
+  "response": "The OpenAPI specification has been successfully inlined, resolving all `$ref` references and writing the complete version to `/tmp/yaml-vs-json-eval-gemini/eval-8-json/output`.",
+  "stats": {
+    "models": {
+      "gemini-2.5-flash-lite": {
+        "api": {
+          "totalRequests": 9,
+          "totalErrors": 0,
+          "totalLatencyMs": 94563
+        },
+        "tokens": {
+          "input": 17102,
+          "prompt": 108248,
+          "candidates": 8123,
+          "total": 131428,
+          "cached": 91146,
+          "thoughts": 15057,
+          "tool": 0
+        },
+        "roles": {
+          "main": {
+            "totalRequests": 9,
+            "totalErrors": 0,
+            "totalLatencyMs": 94563,
+            "tokens": {
+              "input": 17102,
+              "prompt": 108248,
+              "candidates": 8123,
+              "total": 131428,
+              "cached": 91146,
+              "thoughts": 15057,
+              "tool": 0
+            }
+          }
+        }
+      }
+    },
+    "tools": {
+      "totalCalls": 8,
+      "totalSuccess": 8,
+      "totalFail": 0,
+      "totalDurationMs": 477,
+      "totalDecisions": {
+        "accept": 8,
+        "reject": 0,
+        "modify": 0,
+        "auto_accept": 0
+      },
+      "byName": {
+        "run_shell_command": {
+          "count": 6,
+          "success": 6,
+          "fail": 0,
+          "durationMs": 467,
+          "decisions": {
+            "accept": 6,
+            "reject": 0,
+            "modify": 0,
+            "auto_accept": 0
+          }
+        },
+        "write_file": {
+          "count": 2,
+          "success": 2,
+          "fail": 0,
+          "durationMs": 10,
+          "decisions": {
+            "accept": 2,
+            "reject": 0,
+            "modify": 0,
+            "auto_accept": 0
+          }
+        }
+      }
+    },
+    "files": {
+      "totalLinesAdded": 71,
+      "totalLinesRemoved": 10
+    }
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "session_id": "1fa4c105-98b1-4fab-a781-5bc4d562a6f1",
+  "response": "The OpenAPI specification file `openapi.json` has been successfully mutated, and the result has been written to the `output` file in the `/tmp/yaml-vs-json-eval-gemini/eval-10-json` directory. The mutations include:\n1.  Changed `CreateOrderRequest.items.items.properties.quantity.minimum` from `1` to `2`.\n2.  Added `maxLength: 36` to `CreateOrderRequest.items.items.properties.productId`.\n3.  Added `inApp: { \"type\": \"boolean\", \"default\": true, \"description\": \"In-app notification preference.\" }` to `UserPreferences.notifications.properties`.\n4.  Added `code: { \"type\": \"string\", \"description\": \"Machine-readable detail code.\" }` to `ErrorResponse.details.items.properties`.\n5.  Appended `\"returned\"` to the `enum` array for the `GET /orders` endpoint's `status` query parameter.\n6.  Added `x-rate-limit: 100` to the `GET /users` endpoint's `200` response object.",
+  "stats": {
+    "models": {
+      "gemini-2.5-flash-lite": {
+        "api": {
+          "totalRequests": 6,
+          "totalErrors": 0,
+          "totalLatencyMs": 43685
+        },
+        "tokens": {
+          "input": 23597,
+          "prompt": 58102,
+          "candidates": 1402,
+          "total": 65714,
+          "cached": 34505,
+          "thoughts": 6210,
+          "tool": 0
+        },
+        "roles": {
+          "main": {
+            "totalRequests": 3,
+            "totalErrors": 0,
+            "totalLatencyMs": 29681,
+            "tokens": {
+              "input": 12692,
+              "prompt": 34594,
+              "candidates": 1043,
+              "total": 40863,
+              "cached": 21902,
+              "thoughts": 5226,
+              "tool": 0
+            }
+          },
+          "subagent": {
+            "totalRequests": 3,
+            "totalErrors": 0,
+            "totalLatencyMs": 14004,
+            "tokens": {
+              "input": 10905,
+              "prompt": 23508,
+              "candidates": 359,
+              "total": 24851,
+              "cached": 12603,
+              "thoughts": 984,
+              "tool": 0
+            }
+          }
+        }
+      }
+    },
+    "tools": {
+      "totalCalls": 3,
+      "totalSuccess": 3,
+      "totalFail": 0,
+      "totalDurationMs": 14670,
+      "totalDecisions": {
+        "accept": 3,
+        "reject": 0,
+        "modify": 0,
+        "auto_accept": 0
+      },
+      "byName": {
+        "run_shell_command": {
+          "count": 2,
+          "success": 2,
+          "fail": 0,
+          "durationMs": 96,
+          "decisions": {
+            "accept": 2,
+            "reject": 0,
+            "modify": 0,
+            "auto_accept": 0
+          }
+        },
+        "generalist": {
+          "count": 1,
+          "success": 1,
+          "fail": 0,
+          "durationMs": 14574,
+          "decisions": {
+            "accept": 1,
+            "reject": 0,
+            "modify": 0,
+            "auto_accept": 0
+          }
+        }
+      }
+    },
+    "files": {
+      "totalLinesAdded": 0,
+      "totalLinesRemoved": 0
+    }
+  }
+}

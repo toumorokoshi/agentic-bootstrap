@@ -1,0 +1,94 @@
+{
+  "session_id": "03582603-8408-42e2-b479-e1845a3dc758",
+  "response": "The `output.yaml` file has been created in the `/tmp/yaml-vs-json-eval-gemini/eval-9-yaml/` directory, alongside the original `openapi.yaml` file.",
+  "stats": {
+    "models": {
+      "gemini-2.5-flash-lite": {
+        "api": {
+          "totalRequests": 8,
+          "totalErrors": 1,
+          "totalLatencyMs": 62706
+        },
+        "tokens": {
+          "input": 25205,
+          "prompt": 152846,
+          "candidates": 11384,
+          "total": 175034,
+          "cached": 127641,
+          "thoughts": 10804,
+          "tool": 0
+        },
+        "roles": {
+          "main": {
+            "totalRequests": 8,
+            "totalErrors": 1,
+            "totalLatencyMs": 62706,
+            "tokens": {
+              "input": 25205,
+              "prompt": 152846,
+              "candidates": 11384,
+              "total": 175034,
+              "cached": 127641,
+              "thoughts": 10804,
+              "tool": 0
+            }
+          }
+        }
+      }
+    },
+    "tools": {
+      "totalCalls": 3,
+      "totalSuccess": 3,
+      "totalFail": 0,
+      "totalDurationMs": 29,
+      "totalDecisions": {
+        "accept": 3,
+        "reject": 0,
+        "modify": 0,
+        "auto_accept": 0
+      },
+      "byName": {
+        "read_file": {
+          "count": 1,
+          "success": 1,
+          "fail": 0,
+          "durationMs": 10,
+          "decisions": {
+            "accept": 1,
+            "reject": 0,
+            "modify": 0,
+            "auto_accept": 0
+          }
+        },
+        "write_file": {
+          "count": 1,
+          "success": 1,
+          "fail": 0,
+          "durationMs": 13,
+          "decisions": {
+            "accept": 1,
+            "reject": 0,
+            "modify": 0,
+            "auto_accept": 0
+          }
+        },
+        "list_directory": {
+          "count": 1,
+          "success": 1,
+          "fail": 0,
+          "durationMs": 6,
+          "decisions": {
+            "accept": 1,
+            "reject": 0,
+            "modify": 0,
+            "auto_accept": 0
+          }
+        }
+      }
+    },
+    "files": {
+      "totalLinesAdded": 784,
+      "totalLinesRemoved": 0
+    }
+  }
+}

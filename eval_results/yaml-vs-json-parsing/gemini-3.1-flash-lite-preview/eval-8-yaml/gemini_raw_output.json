@@ -1,0 +1,82 @@
+{
+  "session_id": "d6dfafde-8012-4c2d-9144-32288ee2dda4",
+  "response": "The fully inlined OpenAPI specification has been created and saved to `/tmp/yaml-vs-json-eval-gemini/eval-8-yaml/output`. All `$ref` references have been resolved, and the document structure preserves the requested components sections.",
+  "stats": {
+    "models": {
+      "gemini-3.1-flash-lite-preview": {
+        "api": {
+          "totalRequests": 3,
+          "totalErrors": 0,
+          "totalLatencyMs": 33222
+        },
+        "tokens": {
+          "input": 39488,
+          "prompt": 59254,
+          "candidates": 12904,
+          "total": 72158,
+          "cached": 19766,
+          "thoughts": 0,
+          "tool": 0
+        },
+        "roles": {
+          "main": {
+            "totalRequests": 3,
+            "totalErrors": 0,
+            "totalLatencyMs": 33222,
+            "tokens": {
+              "input": 39488,
+              "prompt": 59254,
+              "candidates": 12904,
+              "total": 72158,
+              "cached": 19766,
+              "thoughts": 0,
+              "tool": 0
+            }
+          }
+        }
+      }
+    },
+    "tools": {
+      "totalCalls": 2,
+      "totalSuccess": 2,
+      "totalFail": 0,
+      "totalDurationMs": 21,
+      "totalDecisions": {
+        "accept": 2,
+        "reject": 0,
+        "modify": 0,
+        "auto_accept": 0
+      },
+      "byName": {
+        "read_file": {
+          "count": 1,
+          "success": 1,
+          "fail": 0,
+          "durationMs": 6,
+          "decisions": {
+            "accept": 1,
+            "reject": 0,
+            "modify": 0,
+            "auto_accept": 0
+          }
+        },
+        "write_file": {
+          "count": 1,
+          "success": 1,
+          "fail": 0,
+          "durationMs": 15,
+          "decisions": {
+            "accept": 1,
+            "reject": 0,
+            "modify": 0,
+            "auto_accept": 0
+          }
+        }
+      }
+    },
+    "files": {
+      "totalLinesAdded": 1840,
+      "totalLinesRemoved": 0
+    }
+  }
+}

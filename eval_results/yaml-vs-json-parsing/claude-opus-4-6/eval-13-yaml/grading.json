@@ -1,0 +1,60 @@
+{
+  "expectations": [
+    {
+      "text": "Comment # --- User Management --- before /users",
+      "passed": true,
+      "evidence": "found"
+    },
+    {
+      "text": "Comment # --- Product Catalog --- before /products",
+      "passed": true,
+      "evidence": "found"
+    },
+    {
+      "text": "Comment # --- Order Processing --- before /orders",
+      "passed": true,
+      "evidence": "found"
+    },
+    {
+      "text": "Comment # === Schema Definitions === before schemas",
+      "passed": true,
+      "evidence": "found"
+    },
+    {
+      "text": "GET /users x-stability stable",
+      "passed": true,
+      "evidence": "x-stability=stable"
+    },
+    {
+      "text": "GET /users/{userId} x-stability stable",
+      "passed": true,
+      "evidence": "x-stability=stable"
+    },
+    {
+      "text": "GET /products x-stability stable",
+      "passed": true,
+      "evidence": "x-stability=stable"
+    },
+    {
+      "text": "GET /products/{productId} x-stability stable",
+      "passed": true,
+      "evidence": "x-stability=stable"
+    },
+    {
+      "text": "GET /products/legacy x-stability stable",
+      "passed": true,
+      "evidence": "x-stability=stable"
+    },
+    {
+      "text": "GET /orders x-stability stable",
+      "passed": true,
+      "evidence": "x-stability=stable"
+    }
+  ],
+  "summary": {
+    "passed": 10,
+    "failed": 0,
+    "total": 10,
+    "pass_rate": 1.0
+  }
+}

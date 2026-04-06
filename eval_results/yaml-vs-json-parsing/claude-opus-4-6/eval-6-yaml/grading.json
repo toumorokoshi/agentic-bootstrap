@@ -1,0 +1,65 @@
+{
+  "expectations": [
+    {
+      "text": "info.title",
+      "passed": true,
+      "evidence": "got 'City Library API'"
+    },
+    {
+      "text": "info.version",
+      "passed": true,
+      "evidence": "got '1.0.0'"
+    },
+    {
+      "text": "info.description",
+      "passed": true,
+      "evidence": "got 'API for managing library books and borrowing.'"
+    },
+    {
+      "text": "server url",
+      "passed": true,
+      "evidence": "servers=[{'url': 'https://api.citylibrary.example.com/v1', 'description': 'Production'}]"
+    },
+    {
+      "text": "Book schema has all 7 fields",
+      "passed": true,
+      "evidence": "fields=['id', 'isbn', 'title', 'author', 'genre', 'availableCopies', 'totalCopies']"
+    },
+    {
+      "text": "Book required fields",
+      "passed": true,
+      "evidence": "required=['id', 'isbn', 'title', 'author', 'genre', 'totalCopies', 'availableCopies']"
+    },
+    {
+      "text": "BorrowRecord.returnDate nullable true",
+      "passed": true,
+      "evidence": "returnDate={'type': 'string', 'format': 'date', 'nullable': True}"
+    },
+    {
+      "text": "BorrowRecord required fields",
+      "passed": true,
+      "evidence": "required=['id', 'bookId', 'borrowerName', 'borrowDate', 'dueDate']"
+    },
+    {
+      "text": "GET /books operationId listBooks",
+      "passed": true,
+      "evidence": "operationId=listBooks"
+    },
+    {
+      "text": "POST /books/{bookId}/borrow operationId borrowBook",
+      "passed": true,
+      "evidence": "operationId=borrowBook"
+    },
+    {
+      "text": "POST borrow requestBody borrowerName required",
+      "passed": true,
+      "evidence": "required=['borrowerName']"
+    }
+  ],
+  "summary": {
+    "passed": 11,
+    "failed": 0,
+    "total": 11,
+    "pass_rate": 1.0
+  }
+}

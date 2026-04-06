@@ -1,0 +1,45 @@
+{
+  "expectations": [
+    {
+      "text": "Output is valid yaml",
+      "passed": true,
+      "evidence": "parsed successfully"
+    },
+    {
+      "text": "info.title matches",
+      "passed": true,
+      "evidence": "got 'Acme Commerce Platform API'"
+    },
+    {
+      "text": "info.version matches",
+      "passed": true,
+      "evidence": "got '2.0.0'"
+    },
+    {
+      "text": "All paths present",
+      "passed": true,
+      "evidence": "paths=['/users', '/users/{userId}', '/products', '/products/{productId}', '/products/legacy', '/orders']"
+    },
+    {
+      "text": "All schemas present",
+      "passed": true,
+      "evidence": "schemas=['User', 'UserPreferences', 'CreateUserRequest', 'UpdateUserRequest', 'UserListResponse', 'Product', 'Dimensions', 'ProductListResponse', 'Order', 'OrderItem', 'Address', 'CreateOrderRequest', 'OrderListResponse', 'ErrorResponse']"
+    },
+    {
+      "text": "User schema has same properties",
+      "passed": true,
+      "evidence": "props=['id', 'username', 'email', 'firstName', 'middleName', 'lastName', 'age', 'role', 'preferences', 'metadata', 'createdAt']"
+    },
+    {
+      "text": "Order.status enum identical",
+      "passed": true,
+      "evidence": "enum=['pending', 'confirmed', 'in_transit', 'fulfilled', 'cancelled']"
+    }
+  ],
+  "summary": {
+    "passed": 7,
+    "failed": 0,
+    "total": 7,
+    "pass_rate": 1.0
+  }
+}

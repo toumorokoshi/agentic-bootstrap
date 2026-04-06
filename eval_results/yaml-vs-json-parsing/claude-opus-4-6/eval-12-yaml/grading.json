@@ -1,0 +1,55 @@
+{
+  "expectations": [
+    {
+      "text": "Dimensions schema deleted",
+      "passed": true,
+      "evidence": "ok"
+    },
+    {
+      "text": "Product.dimensions has inline properties",
+      "passed": true,
+      "evidence": "dims keys=['width', 'height', 'depth', 'weight']"
+    },
+    {
+      "text": "Address schema deleted",
+      "passed": true,
+      "evidence": "ok"
+    },
+    {
+      "text": "Order.shippingAddress has inline properties",
+      "passed": true,
+      "evidence": "addr keys=['street', 'city', 'state', 'postalCode', 'country']"
+    },
+    {
+      "text": "CreateOrderRequest.shippingAddress has inline properties",
+      "passed": true,
+      "evidence": "addr keys=['street', 'city', 'state', 'postalCode', 'country']"
+    },
+    {
+      "text": "UserPreferences schema deleted",
+      "passed": true,
+      "evidence": "ok"
+    },
+    {
+      "text": "User.preferences has inline properties",
+      "passed": true,
+      "evidence": "prefs keys=['theme', 'language', 'notifications']"
+    },
+    {
+      "text": "UpdateUserRequest.preferences has inline properties",
+      "passed": true,
+      "evidence": "prefs keys=['theme', 'language', 'notifications']"
+    },
+    {
+      "text": "No dangling $ref to deleted schemas",
+      "passed": true,
+      "evidence": "ok"
+    }
+  ],
+  "summary": {
+    "passed": 9,
+    "failed": 0,
+    "total": 9,
+    "pass_rate": 1.0
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "eval_id": 8,
+  "eval_name": "eval-8-yaml",
+  "format": "yaml",
+  "prompt": "You are given an OpenAPI specification file in this directory called `openapi`. Read it carefully, then create a FULLY INLINED version where every `$ref` reference is resolved and replaced with the actual content it points to. This includes:\n\n- Schema references like `$ref: \"#/components/schemas/User\"` must be replaced with the full User schema object.\n- Response references like `$ref: \"#/components/responses/NotFound\"` must be replaced with the full response object.\n- References within schemas "
+}

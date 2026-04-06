@@ -1,0 +1,6 @@
+{
+  "eval_id": 7,
+  "eval_name": "eval-7-yaml",
+  "format": "yaml",
+  "model": "gemini-2.5-flash-lite"
+}

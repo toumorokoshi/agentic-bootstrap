@@ -1,0 +1,1595 @@
+exit=0
+--- stdout ---
+I will now read the `openapi.json` file, apply the specified structural mutations to the `Product`, `Order`, `UserListResponse`, and `User` schemas, and then write the modified OpenAPI specification to a new file named `output`.
+I will now proceed with the following steps:
+
+1.  Parse the `openapi.json` content into a Python dictionary.
+2.  Modify the `Product` schema by replacing the `tags` field with `tagMap`.
+3.  Modify the `Order` schema by replacing the `items` field with `lineItems`, updating the `required` array, and removing `minItems`.
+4.  Modify the `UserListResponse` schema by replacing the `data` field with `users` and updating the `required` array.
+5.  Modify the `User` schema's `role` field by converting its `enum` to `oneOf`.
+6.  Convert the modified Python dictionary back into a JSON string, preserving formatting.
+7.  Write the resulting JSON string to a new file named `output`.
+The previous attempt to run the Python script failed due to a bash syntax error related to multi-line string handling. I will rectify this by writing the Python script to a temporary file and then executing that file. This approach avoids shell escaping issues. I'll now create and execute the Python script.
+`modify_openapi.py` is ready. Executing it now.
+Python script executed, `output` file should be updated. Deleting script. Verifying changes by reading `output` file.
+Temporary script gone. Now reading `output` to verify.
+I've verified the `output` file. All requested structural mutations are correctly applied: `Product`'s `tags` replaced by `tagMap`, `Order`'s `items` replaced by `lineItems` (with updated `required` array and removed `minItems`), `UserListResponse`'s `data` replaced by `users` (with updated `required` array), and `User`'s `role` `enum` converted to `oneOf` while preserving other attributes. Task complete.
+My apologies; `modify_openapi.py` was already deleted. The task is complete; `openapi.json` modifications are in `output` and verified.
+`ls` confirms `openapi.json` and `output` exist. `output` is verified. Task complete.
+
+--- stderr ---
+YOLO mode is enabled. All tool calls will be automatically approved.
+Loaded cached credentials.
+YOLO mode is enabled. All tool calls will be automatically approved.
+Skill "skill-creator" from "/home/yusuke/.gemini/skills/skill-creator/SKILL.md" is overriding the built-in skill.
+Skill conflict detected: "Execute Plan and Commit" from "/home/yusuke/.agents/skills/execute_plan/SKILL.md" is overriding the same skill from "/home/yusuke/.gemini/skills/execute_plan/SKILL.md".Bash command parsing error detected for command: python3 -c '
+import json
+
+openapi_content = """
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Acme Commerce Platform API",
+    "description": "A comprehensive REST API for the Acme platform, providing access to users, products, and orders.",
+    "version": "2.0.0",
+    "contact": {
+      "name": "Acme API Support",
+      "email": "api-support@acme.example.com",
+      "url": "https://acme.example.com/support"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "https://www.apache.org/licenses/LICENSE-2.0"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.acme.example.com/v1",
+      "description": "Production"
+    },
+    {
+      "url": "https://staging-api.acme.example.com/v1",
+      "description": "Staging"
+    }
+  ],
+  "tags": [
+    {
+      "name": "users",
+      "description": "User management operations"
+    },
+    {
+      "name": "products",
+      "description": "Product catalog operations"
+    },
+    {
+      "name": "orders",
+      "description": "Order processing operations"
+    }
+  ],
+  "paths": {
+    "/users": {
+      "get": {
+        "operationId": "listUsers",
+        "summary": "List all users",
+        "description": "Returns a paginated list of all users in the system.",
+        "tags": [
+          "users"
+        ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of users to return per page.",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 20
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "Number of users to skip before returning results.",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "default": 0
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "Field to sort results by.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "createdAt",
+                "username",
+                "email"
+              ],
+              "default": "createdAt"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A paginated list of users.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserListResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        }
+      },
+      "post": {
+        "operationId": "createUser",
+        "summary": "Create a new user",
+        "description": "Creates a new user account in the system.",
+        "tags": [
+          "users"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateUserRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "User created successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "409": {
+            "description": "A user with this email or username already exists.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/{userId}": {
+      "parameters": [
+        {
+          "name": "userId",
+          "in": "path",
+          "description": "The unique identifier of the user.",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "format": "uuid"
+          }
+        }
+      ],
+      "get": {
+        "operationId": "getUser",
+        "summary": "Get a user by ID",
+        "description": "Retrieves a single user by their unique identifier.",
+        "tags": [
+          "users"
+        ],
+        "responses": {
+          "200": {
+            "description": "The requested user.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      },
+      "put": {
+        "operationId": "updateUser",
+        "summary": "Update a user",
+        "description": "Replaces all mutable fields of a user record.",
+        "tags": [
+          "users"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUserRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The updated user.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteUser",
+        "summary": "Delete a user",
+        "description": "Permanently removes a user from the system. This action cannot be undone.",
+        "x-internal": true,
+        "tags": [
+          "users"
+        ],
+        "responses": {
+          "204": {
+            "description": "User deleted successfully."
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/products": {
+      "get": {
+        "operationId": "listProducts",
+        "summary": "List all products",
+        "description": "Returns a paginated list of all products in the catalog.",
+        "tags": [
+          "products"
+        ],
+        "parameters": [
+          {
+            "name": "category",
+            "in": "query",
+            "description": "Filter by product category.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "minPrice",
+            "in": "query",
+            "description": "Filter to products at or above this price.",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "format": "double",
+              "minimum": 0
+            }
+          },
+          {
+            "name": "maxPrice",
+            "in": "query",
+            "description": "Filter to products at or below this price.",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "format": "double",
+              "minimum": 0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of products.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductListResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/products/{productId}": {
+      "get": {
+        "operationId": "getProduct",
+        "summary": "Get a product by ID",
+        "description": "Fetches a product by its unique ID.",
+        "tags": [
+          "products"
+        ],
+        "parameters": [
+          {
+            "name": "productId",
+            "in": "path",
+            "description": "The globally unique identifier of the product.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The requested product.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Product"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/products/legacy": {
+      "get": {
+        "operationId": "listLegacyProducts",
+        "summary": "List legacy products",
+        "description": "Returns legacy product data. Use /products instead.",
+        "tags": [
+          "products"
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of legacy products.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Product"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/orders": {
+      "get": {
+        "operationId": "listOrders",
+        "summary": "List all orders",
+        "description": "Returns a paginated list of all orders.",
+        "tags": [
+          "orders"
+        ],
+        "parameters": [
+          {
+            "name": "status",
+            "in": "query",
+            "description": "Filter orders by status.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "pending",
+                "processing",
+                "shipped",
+                "delivered"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of orders.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderListResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createOrder",
+        "summary": "Submit a new customer order",
+        "description": "Creates a new order for the authenticated user.",
+        "tags": [
+          "orders"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrderRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Order created successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Order"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "422": {
+            "description": "One or more products are out of stock.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "User": {
+        "type": "object",
+        "required": [
+          "id",
+          "username",
+          "email",
+          "age",
+          "role",
+          "createdAt"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "The unique identifier of the user.",
+            "readOnly": true
+          },
+          "username": {
+            "type": "string",
+            "description": "The user's chosen display name.",
+            "minLength": 3,
+            "maxLength": 20
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "description": "The user's email address."
+          },
+          "firstName": {
+            "type": "string",
+            "description": "The user\'s first name."
+          },
+          "middleName": {
+            "type": "string",
+            "description": "The user\'s middle name, if any.",
+            "nullable": true
+          },
+          "lastName": {
+            "type": "string",
+            "description": "The user\'s last name."
+          },
+          "age": {
+            "type": "number",
+            "description": "The user\'s age in years.",
+            "minimum": 0,
+            "maximum": 150
+          },
+          "role": {
+            "type": "string",
+            "description": "The user\'s role in the system.",
+            "enum": [
+              "admin",
+              "moderator",
+              "user",
+              "guest"
+            ],
+            "default": "user"
+          },
+          "preferences": {
+            "$ref": "#/components/schemas/UserPreferences"
+          },
+          "metadata": {
+            "type": "object",
+            "description": "Arbitrary key-value metadata attached to the user.",
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time the user was created."
+          }
+        }
+      },
+      "UserPreferences": {
+        "type": "object",
+        "properties": {
+          "theme": {
+            "type": "string",
+            "enum": [
+              "light",
+              "dark",
+              "system"
+            ],
+            "default": "system"
+          },
+          "language": {
+            "type": "string",
+            "description": "IETF BCP 47 language tag.",
+            "example": "en-US"
+          },
+          "notifications": {
+            "type": "object",
+            "properties": {
+              "email": {
+                "type": "boolean",
+                "default": true
+              },
+              "sms": {
+                "type": "boolean",
+                "default": false
+              },
+              "push": {
+                "type": "boolean",
+                "default": true
+              }
+            }
+          }
+        }
+      },
+      "CreateUserRequest": {
+        "type": "object",
+        "required": [
+          "username",
+          "email",
+          "password"
+        ],
+        "properties": {
+          "username": {
+            "type": "string",
+            "minLength": 5,
+            "maxLength": 32,
+            "pattern": "^[a-zA-Z0-9_-]+$",
+            "description": "Desired username. Must be alphanumeric with underscores or hyphens."
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "description": "The user\'s email address. Must be unique."
+          },
+          "password": {
+            "type": "string",
+            "format": "password",
+            "minLength": 8,
+            "description": "The user\'s password. Must be at least 8 characters."
+          },
+          "firstName": {
+            "type": "string",
+            "description": "Optional first name."
+          },
+          "lastName": {
+            "type": "string",
+            "description": "Optional last name."
+          }
+        }
+      },
+      "UpdateUserRequest": {
+        "type": "object",
+        "properties": {
+          "firstName": {
+            "type": "string"
+          },
+          "middleName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "preferences": {
+            "$ref": "#/components/schemas/UserPreferences"
+          }
+        }
+      },
+      "UserListResponse": {
+        "type": "object",
+        "required": [
+          "data",
+          "total",
+          "limit",
+          "offset"
+        ],
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/User"
+            }
+          },
+          "total": {
+            "type": "integer",
+            "description": "Total number of users matching the query."
+          },
+          "limit": {
+            "type": "integer"
+          },
+          "offset": {
+            "type": "integer"
+          }
+        }
+      },
+      "Product": {
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "price",
+          "category",
+          "stock"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "description": "Display name of the product.",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "description": {
+            "type": "string",
+            "description": "Detailed product description."
+          },
+          "price": {
+            "type": "number",
+            "format": "double",
+            "description": "Unit price in USD.",
+            "minimum": 0
+          },
+          "category": {
+            "type": "string",
+            "description": "The product category."
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Searchable tags associated with the product."
+          },
+          "stock": {
+            "type": "integer",
+            "description": "Number of units currently in stock.",
+            "minimum": 0
+          },
+          "dimensions": {
+            "$ref": "#/components/schemas/Dimensions"
+          },
+          "images": {
+            "type": "array",
+            "description": "Product image URLs.",
+            "items": {
+              "type": "string",
+              "format": "uri"
+            }
+          }
+        }
+      },
+      "Dimensions": {
+        "type": "object",
+        "properties": {
+          "width": {
+            "type": "number",
+            "description": "Width in centimeters."
+          },
+          "height": {
+            "type": "number",
+            "description": "Height in centimeters."
+          },
+          "depth": {
+            "type": "number",
+            "description": "Depth in centimeters."
+          },
+          "weight": {
+            "type": "number",
+            "description": "Weight in kilograms."
+          }
+        }
+      },
+      "ProductListResponse": {
+        "type": "object",
+        "required": [
+          "data",
+          "total"
+        ],
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Product"
+            }
+          },
+          "total": {
+            "type": "integer"
+          }
+        }
+      },
+      "Order": {
+        "type": "object",
+        "required": [
+          "id",
+          "userId",
+          "items",
+          "status",
+          "total"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "readOnly": true
+          },
+          "userId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "The ID of the user who placed the order."
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OrderItem"
+            },
+            "minItems": 1
+          },
+          "status": {
+            "type": "string",
+            "description": "Current status of the order.",
+            "enum": [
+              "pending",
+              "confirmed",
+              "in_transit",
+              "fulfilled",
+              "cancelled"
+            ]
+          },
+          "total": {
+            "type": "number",
+            "format": "double",
+            "description": "Total cost of the order in USD.",
+            "readOnly": true
+          },
+          "shippingAddress": {
+            "$ref": "#/components/schemas/Address"
+          },
+          "notes": {
+            "type": "string",
+            "description": "Optional notes from the customer.",
+            "maxLength": 500
+          }
+        }
+      },
+      "OrderItem": {
+        "type": "object",
+        "required": [
+          "productId",
+          "quantity"
+        ],
+        "properties": {
+          "productId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "The ID of the product ordered."
+          },
+          "quantity": {
+            "type": "number",
+            "description": "Number of units ordered.",
+            "minimum": 0.1
+          },
+          "unitPrice": {
+            "type": "number",
+            "format": "double",
+            "description": "Price per unit at time of order.",
+            "readOnly": true
+          }
+        }
+      },
+      "Address": {
+        "type": "object",
+        "required": [
+          "street",
+          "city",
+          "country"
+        ],
+        "properties": {
+          "street": {
+            "type": "string",
+            "description": "Street address including number."
+          },
+          "city": {
+            "type": "string"
+          },
+          "state": {
+            "type": "string",
+            "description": "State or province."
+          },
+          "postalCode": {
+            "type": "string"
+          },
+          "country": {
+            "type": "string",
+            "description": "ISO 3166-1 alpha-2 country code.",
+            "minLength": 2,
+            "maxLength": 2
+          }
+        }
+      },
+      "CreateOrderRequest": {
+        "type": "object",
+        "required": [
+          "items",
+          "shippingAddress"
+        ],
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "productId",
+                "quantity"
+              ],
+              "properties": {
+                "productId": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "quantity": {
+                  "type": "integer",
+                  "minimum": 1
+                }
+              }
+            },
+            "minItems": 1
+          },
+          "shippingAddress": {
+            "$ref": "#/components/schemas/Address"
+          },
+          "notes": {
+            "type": "string",
+            "maxLength": 500
+          }
+        }
+      },
+      "OrderListResponse": {
+        "type": "object",
+        "required": [
+          "data",
+          "total"
+        ],
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Order"
+            }
+          },
+          "total": {
+            "type": "integer"
+          }
+        }
+      },
+      "ErrorResponse": {
+        "type": "object",
+        "required": [
+          "code",
+          "message"
+        ],
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Machine-readable error code."
+          },
+          "message": {
+            "type": "string",
+            "description": "Human-readable error description."
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "field": {
+                  "type": "string"
+                },
+                "issue": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "responses": {
+      "BadRequest": {
+        "description": "The request was malformed or missing required fields.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        }
+      },
+      "Unauthorized": {
+        "description": "Authentication credentials were missing or invalid.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        }
+      },
+      "NotFound": {
+        "description": "The requested resource was not found.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "BearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  "security": [
+    {
+      "BearerAuth": []
+    }
+  ]
+}
+"""
+
+openapi_spec = json.loads(openapi_content)
+
+# 1. Product schema: replace tags with tagMap
+product_schema = openapi_spec["components"]["schemas"]["Product"]
+if "tags" in product_schema["properties"]:
+    del product_schema["properties"]["tags"]
+product_schema["properties"]["tagMap"] = {
+    "type": "object",
+    "description": "Key-value pairs of tag categories to tag values.",
+    "additionalProperties": {
+        "type": "string"
+    }
+}
+# 'tags' is not in the required array for Product, so no need to update it.
+
+# 2. Order schema: replace items with lineItems
+order_schema = openapi_spec["components"]["schemas"]["Order"]
+if "items" in order_schema["properties"]:
+    del order_schema["properties"]["items"]
+order_schema["properties"]["lineItems"] = {
+    "type": "object",
+    "description": "Map of product IDs to order line items.",
+    "additionalProperties": {
+        "$ref": "#/components/schemas/OrderItem"
+    }
+}
+# Update required array
+if "required" in order_schema:
+    if "items" in order_schema["required"]:
+        order_schema["required"].remove("items")
+    if "lineItems" not in order_schema["required"]:
+        order_schema["required"].append("lineItems")
+
+# 3. UserListResponse schema: replace data with users
+user_list_response_schema = openapi_spec["components"]["schemas"]["UserListResponse"]
+if "data" in user_list_response_schema["properties"]:
+    del user_list_response_schema["properties"]["data"]
+user_list_response_schema["properties"]["users"] = {
+    "type": "object",
+    "description": "Map of user IDs to user objects.",
+    "additionalProperties": {
+        "$ref": "#/components/schemas/User"
+    }
+}
+# Update required array
+if "required" in user_list_response_schema:
+    if "data" in user_list_response_schema["required"]:
+        user_list_response_schema["required"].remove("data")
+    if "users" not in user_list_response_schema["required"]:
+        user_list_response_schema["required"].append("users")
+
+# 4. User schema: convert role from enum to oneOf
+user_schema = openapi_spec["components"]["schemas"]["User"]
+if "role" in user_schema["properties"]:
+    role_property = user_schema["properties"]["role"]
+    if "enum" in role_property:
+        enum_values = role_property["enum"]
+        one_of_array = []
+        for value in enum_values:
+            one_of_array.append({
+                "const": value,
+                "title": value.capitalize()
+            })
+        
+        # Preserve existing fields and add oneOf
+        new_role_property = {
+            "type": role_property.get("type"),
+            "description": role_property.get("description"),
+            "default": role_property.get("default"),
+            "oneOf": one_of_array
+        }
+        user_schema["properties"]["role"] = new_role_property
+
+modified_openapi_content = json.dumps(openapi_spec, indent=2)
+
+with open("output", "w") as f:
+    f.write(modified_openapi_content)
+' Syntax Errors: [
+  `Error node: "python3 -c '\n` +
+    'import json\n' +
+    '\n' +
+    'openapi_content = """\n' +
+    '{\n' +
+    '  "openapi": "3.0.3",\n' +
+    '  "info": {\n' +
+    '    "title": "Acme Commerce Platform API",\n' +
+    '    "description": "A comprehensive REST API for the Acme platform, providing access to users, products, and orders.",\n' +
+    '    "version": "2.0.0",\n' +
+    '    "contact": {\n' +
+    '      "name": "Acme API Support",\n' +
+    '      "email": "api-support@acme.example.com",\n' +
+    '      "url": "https://acme.example.com/support"\n' +
+    '    },\n' +
+    '    "license": {\n' +
+    '      "name": "Apache 2.0",\n' +
+    '      "url": "https://www.apache.org/licenses/LICENSE-2.0"\n' +
+    '    }\n' +
+    '  },\n' +
+    '  "servers": [\n' +
+    '    {\n' +
+    '      "url": "https://api.acme.example.com/v1",\n' +
+    '      "description": "Production"\n' +
+    '    },\n' +
+    '    {\n' +
+    '      "url": "https://staging-api.acme.example.com/v1",\n' +
+    '      "description": "Staging"\n' +
+    '    }\n' +
+    '  ],\n' +
+    '  "tags": [\n' +
+    '    {\n' +
+    '      "name": "users",\n' +
+    '      "description": "User management operations"\n' +
+    '    },\n' +
+    '    {\n' +
+    '      "name": "products",\n' +
+    '      "description": "Product catalog operations"\n' +
+    '    },\n' +
+    '    {\n' +
+    '      "name": "orders",\n' +
+    '      "description": "Order processing operations"\n' +
+    '    }\n' +
+    '  ],\n' +
+    '  "paths": {\n' +
+    '    "/users": {\n' +
+    '      "get": {\n' +
+    '        "operationId": "listUsers",\n' +
+    '        "summary": "List all users",\n' +
+    '        "description": "Returns a paginated list of all users in the system.",\n' +
+    '        "tags": [\n' +
+    '          "users"\n' +
+    '        ],\n' +
+    '        "parameters": [\n' +
+    '          {\n' +
+    '            "name": "limit",\n' +
+    '            "in": "query",\n' +
+    '            "description": "Maximum number of users to return per page.",\n' +
+    '            "required": false,\n' +
+    '            "schema": {\n' +
+    '              "type": "integer",\n' +
+    '              "minimum": 1,\n' +
+    '              "maximum": 100,\n' +
+    '              "default": 20\n' +
+    '            }\n' +
+    '          },\n' +
+    '          {\n' +
+    '            "name": "offset",\n' +
+    '            "in": "query",\n' +
+    '            "description": "Number of users to skip before returning results.",\n' +
+    '            "required": false,\n' +
+    '            "schema": {\n' +
+    '              "type": "integer",\n' +
+    '              "minimum": 0,\n' +
+    '              "default": 0\n' +
+    '            }\n' +
+    '          },\n' +
+    '          {\n' +
+    '            "name": "sort",\n' +
+    '            "in": "query",\n' +
+    '            "description": "Field to sort results by.",\n' +
+    '            "required": false,\n' +
+    '            "schema": {\n' +
+    '              "type": "string",\n' +
+    '              "enum": [\n' +
+    '                "createdAt",\n' +
+    '                "username",\n' +
+    '                "email"\n' +
+    '              ],\n' +
+    '              "default": "createdAt"\n' +
+    '            }\n' +
+    '          }\n' +
+    '        ],\n' +
+    '        "responses": {\n' +
+    '          "200": {\n' +
+    '            "description": "A paginated list of users.",\n' +
+    '            "content": {\n' +
+    '              "application/json": {\n' +
+    '                "schema": {\n' +
+    '                  "$ref": "#/components/schemas/UserListResponse"\n' +
+    '                }\n' +
+    '              }\n' +
+    '            }\n' +
+    '          },\n' +
+    '          "400": {\n' +
+    '            "$ref": "#/components/responses/BadRequest"\n' +
+    '          },\n' +
+    '          "401": {\n' +
+    '            "$ref": "#/components/responses/Unauthorized"\n' +
+    '          }\n' +
+    '        }\n' +
+    '      },\n' +
+    '      "post": {\n' +
+    '        "operationId": "createUser",\n' +
+    '        "summary": "Create a new user",\n' +
+    '        "description": "Creates a new user account in the system.",\n' +
+    '        "tags": [\n' +
+    '          "users"\n' +
+    '        ],\n' +
+    '        "requestBody": {\n' +
+    '          "required": true,\n' +
+    '          "content": {\n' +
+    '            "application/json": {\n' +
+    '              "schema": {\n' +
+    '                "$ref": "#/components/schemas/CreateUserRequest"\n' +
+    '              }\n' +
+    '            }\n' +
+    '          }\n' +
+    '        },\n' +
+    '        "responses": {\n' +
+    '          "201": {\n' +
+    '            "description": "User created successfully.",\n' +
+    '            "content": {\n' +
+    '              "application/json": {\n' +
+    '                "schema": {\n' +
+    '                  "$ref": "#/components/schemas/User"\n' +
+    '                }\n' +
+    '              }\n' +
+    '            }\n' +
+    '          },\n' +
+    '          "400": {\n' +
+    '            "$ref": "#/components/responses/BadRequest"\n' +
+    '          },\n' +
+    '          "409": {\n' +
+    '            "description": "A user with this email or username already exists.",\n' +
+    '            "content": {\n' +
+    '              "application/json": {\n' +
+    '                "schema": {\n' +
+    '                  "$ref": "#/components/schemas/ErrorResponse"\n' +
+    '                }\n' +
+    '              }\n' +
+    '            }\n' +
+    '          }\n' +
+    '        }\n' +
+    '      }\n' +
+    '    },\n' +
+    '    "/users/{userId}": {\n' +
+    '      "parameters": [\n' +
+    '        {\n' +
+    '          "name": "userId",\n' +
+    '          "in": "path",\n' +
+    '          "description": "The unique identifier of the user.",\n' +
+    '          "required": true,\n' +
+    '          "schema": {\n' +
+    '            "type": "string",\n' +
+    '            "format": "uuid"\n' +
+    '          }\n' +
+    '        }\n' +
+    '      ],\n' +
+    '      "get": {\n' +
+    '        "operationId": "getUser",\n' +
+    '        "summary": "Get a user by ID",\n' +
+    '        "description": "Retrieves a single user by their unique identifier.",\n' +
+    '        "tags": [\n' +
+    '          "users"\n' +
+    '        ],\n' +
+    '        "responses": {\n' +
+    '          "200": {\n' +
+    '            "description": "The requested user.",\n' +
+    '            "content": {\n' +
+    '              "application/json": {\n' +
+    '                "schema": {\n' +
+    '                  "$ref": "#/components/schemas/User"\n' +
+    '                }\n' +
+    '              }\n' +
+    '            }\n' +
+    '          },\n' +
+    '          "404": {\n' +
+    '            "$ref": "#/components/responses/NotFound"\n' +
+    '          }\n' +
+    '        }\n' +
+    '      },\n' +
+    '      "put": {\n' +
+    '        "operationId": "updateUser",\n' +
+    '        "summary": "Update a user",\n' +
+    '        "description": "Replaces all mutable fields of a user record.",\n' +
+    '        "tags": [\n' +
+    '          "users"\n' +
+    '        ],\n' +
+    '        "requestBody": {\n' +
+    '          "required": true,\n' +
+    '          "content": {\n' +
+    '            "application/json": {\n' +
+    '              "schema": {\n' +
+    '                "$ref": "#/components/schemas/UpdateUserRequest"\n' +
+    '              }\n' +
+    '            }\n' +
+    '          }\n' +
+    '        },\n' +
+    '        "responses": {\n' +
+    '          "200": {\n' +
+    '            "description": "The updated user.",\n' +
+    '            "content": {\n' +
+    '              "application/json": {\n' +
+    '                "schema": {\n' +
+    '                  "$ref": "#/components/schemas/User"\n' +
+    '                }\n' +
+    '              }\n' +
+    '            }\n' +
+    '          },\n' +
+    '          "404": {\n' +
+    '            "$ref": "#/components/responses/NotFound"\n' +
+    '          }\n' +
+    '        }\n' +
+    '      },\n' +
+    '      "delete": {\n' +
+    '        "operationId": "deleteUser",\n' +
+    '        "summary": "Delete a user",\n' +
+    '        "description": "Permanently removes a user from the system. This action cannot be undone.",\n' +
+    '        "x-internal": true,\n' +
+    '        "tags": [\n' +
+    '          "users"\n' +
+    '        ],\n' +
+    '        "responses": {\n' +
+    '          "204": {\n' +
+    '            "description": "User deleted successfully."\n' +
+    '          },\n' +
+    '          "404": {\n' +
+    '            "$ref": "#/components/responses/NotFound"\n' +
+    '          }\n' +
+    '        }\n' +
+    '      }\n' +
+    '    },\n' +
+    '    "/products": {\n' +
+    '      "get": {\n' +
+    '        "operationId": "listProducts",\n' +
+    '        "summary": "List all products",\n' +
+    '        "description": "Returns a paginated list of all products in the catalog.",\n' +
+    '        "tags": [\n' +
+    '          "products"\n' +
+    '        ],\n' +
+    '        "parameters": [\n' +
+    '          {\n' +
+    '            "name": "category",\n' +
+    '            "in": "query",\n' +
+    '            "description": "Filter by product category.",\n' +
+    '            "required": false,\n' +
+    '            "schema": {\n' +
+    '              "type": "string"\n' +
+    '            }\n' +
+    '          },\n' +
+    '          {\n' +
+    '            "name": "minPrice",\n' +
+    '            "in": "query",\n' +
+    '            "description": "Filter to products at or above this price.",\n' +
+    '            "required": false,\n' +
+    '            "schema": {\n' +
+    '              "type": "number",\n' +
+    '              "format": "double",\n' +
+    '              "minimum": 0\n' +
+    '            }\n' +
+    '          },\n' +
+    '          {\n' +
+    '            "name": "maxPrice",\n' +
+    '            "in": "query",\n' +
+    '            "description": "Filter to products at or below this price.",\n' +
+    '            "required": false,\n' +
+    '            "schema": {\n' +
+    '              "type": "number",\n' +
+    '              "format": "double",\n' +
+    '              "minimum": 0\n' +
+    '            }\n' +
+    '          }\n' +
+    '        ],\n' +
+    '        "responses": {\n' +
+    '          "200": {\n' +
+    '            "description": "A list of products.",\n' +
+    '            "content": {\n' +
+    '              "application/json": {\n' +
+    '                "schema": {\n' +
+    '                  "$ref": "#/components/schemas/ProductListResponse"\n' +
+    '                }\n' +
+    '              }\n' +
+    '            }\n' +
+    '          }\n' +
+    '        }\n' +
+    '      }\n' +
+    '    },\n' +
+    '    "/products/{productId}": {\n' +
+    '      "get": {\n' +
+    '        "operationId": "getProduct",\n' +
+    '        "summary": "Get a product by ID",\n' +
+    '        "description": "Fetches a product by its unique ID.",\n' +
+    '        "tags": [\n' +
+    '          "products"\n' +
+    '        ],\n' +
+    '        "parameters": [\n' +
+    '          {\n' +
+    '            "name": "productId",\n' +
+    '            "in": "path",\n' +
+    '            "description": "The globally unique identifier of the product.",\n' +
+    '            "required": true,\n' +
+    '            "schema": {\n' +
+    '              "type": "string",\n' +
+    '              "format": "uuid"\n' +
+    '            }\n' +
+    '          }\n' +
+    '        ],\n' +
+    '        "responses": {\n' +
+    '          "200": {\n' +
+    '            "description": "The requested product.",\n' +
+    '            "content": {\n' +
+    '              "application/json": {\n' +
+    '                "schema": {\n' +
+    '                  "$ref": "#/components/schemas/Product"\n' +
+    '                }\n' +
+    '              }\n' +
+    '            }\n' +
+    '          },\n' +
+    '          "404": {\n' +
+    '            "$ref": "#/components/responses/NotFound"\n' +
+    '          }\n' +
+    '        }\n' +
+    '      }\n' +
+    '    },\n' +
+    '    "/products/legacy": {\n' +
+    '      "get": {\n' +
+    '        "operationId": "listLegacyProducts",\n' +
+    '        "summary": "List legacy products",\n' +
+    '        "description": "Returns legacy product data. Use /products instead.",\n' +
+    '        "tags": [\n' +
+    '          "products"\n' +
+    '        ],\n' +
+    '        "responses": {\n' +
+    '          "200": {\n' +
+    '            "description": "A list of legacy products.",\n' +
+    '            "content": {\n' +
+    '              "application/json": {\n' +
+    '                "schema": {\n' +
+    '                  "type": "array",\n' +
+    '                  "items": {\n' +
+    '                    "$ref": "#/components/schemas/Product"\n' +
+    '                  }\n' +
+    '                }\n' +
+    '              }\n' +
+    '            }\n' +
+    '          }\n' +
+    '        }\n' +
+    '      }\n' +
+    '    },\n' +
+    '    "/orders": {\n' +
+    '      "get": {\n' +
+    '        "operationId": "listOrders",\n' +
+    '        "summary": "List all orders",\n' +
+    '        "description": "Returns a paginated list of all orders.",\n' +
+    '        "tags": [\n' +
+    '          "orders"\n' +
+    '        ],\n' +
+    '        "parameters": [\n' +
+    '          {\n' +
+    '            "name": "status",\n' +
+    '            "in": "query",\n' +
+    '            "description": "Filter orders by status.",\n' +
+    '            "required": false,\n' +
+    '            "schema": {\n' +
+    '              "type": "string",\n' +
+    '              "enum": [\n' +
+    '                "pending",'... 18156 more characters,
+  'Missing node: "" at 979:25',
+  'Error node: "product_schema["properties"][" at 985:0',
+  'Error node: "order_schema["properties"][" at 998:0',
+  'Error node: "order_schema["required"]" at 1008:8',
+  'Error node: "order_schema["required"]" at 1010:8',
+  'Error node: "user_list_response_schema["properties"][" at 1016:0',
+  'Error node: "user_list_response_schema["required"]" at 1026:8',
+  'Error node: "user_list_response_schema["required"]" at 1028:8',
+  'Error node: "\n' +
+    '            one_of_array.append({\n' +
+    '                "const": value,\n' +
+    '                "title": value.capitalize()\n' +
+    '            })\n' +
+    '        \n' +
+    '        #" at 1037:33',
+  'Error node: "\n" at 1043:48',
+  'Error node: "\n            "" at 1044:29'
+]
+missing pgrep output
+Attempt 1 failed with status 429. Retrying with backoff... GaxiosError: [{
+  "error": {
+    "code": 429,
+    "message": "No capacity available for model gemini-2.5-flash on the server",
+    "errors": [
+      {
+        "message": "No capacity available for model gemini-2.5-flash on the server",
+        "domain": "global",
+        "reason": "rateLimitExceeded"
+      }
+    ],
+    "status": "RESOURCE_EXHAUSTED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+        "reason": "MODEL_CAPACITY_EXHAUSTED",
+        "domain": "cloudcode-pa.googleapis.com",
+        "metadata": {
+          "model": "gemini-2.5-flash"
+        }
+      }
+    ]
+  }
+}
+]
+    at Gaxios._request (/usr/local/lib/node_modules/@google/gemini-cli/node_modules/gaxios/build/src/gaxios.js:142:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async OAuth2Client.requestAsync (/usr/local/lib/node_modules/@google/gemini-cli/node_modules/google-auth-library/build/src/auth/oauth2client.js:429:18)
+    at async CodeAssistServer.requestStreamingPost (file:///usr/local/lib/node_modules/@google/gemini-cli/node_modules/@google/gemini-cli-core/dist/src/code_assist/server.js:262:21)
+    at async CodeAssistServer.generateContentStream (file:///usr/local/lib/node_modules/@google/gemini-cli/node_modules/@google/gemini-cli-core/dist/src/code_assist/server.js:54:27)
+    at async file:///usr/local/lib/node_modules/@google/gemini-cli/node_modules/@google/gemini-cli-core/dist/src/core/loggingContentGenerator.js:285:26
+    at async file:///usr/local/lib/node_modules/@google/gemini-cli/node_modules/@google/gemini-cli-core/dist/src/telemetry/trace.js:81:20
+    at async retryWithBackoff (file:///usr/local/lib/node_modules/@google/gemini-cli/node_modules/@google/gemini-cli-core/dist/src/utils/retry.js:130:28)
+    at async GeminiChat.makeApiCallAndProcessStream (file:///usr/local/lib/node_modules/@google/gemini-cli/node_modules/@google/gemini-cli-core/dist/src/core/geminiChat.js:440:32)
+    at async GeminiChat.streamWithRetries (file:///usr/local/lib/node_modules/@google/gemini-cli/node_modules/@google/gemini-cli-core/dist/src/core/geminiChat.js:266:40) {
+  config: {
+    url: 'https://cloudcode-pa.googleapis.com/v1internal:streamGenerateContent?alt=sse',
+    method: 'POST',
+    params: { alt: 'sse' },
+    headers: {
+      'Content-Type': 'application/json',
+      'User-Agent': 'GeminiCLI/0.34.0/gemini-2.5-flash (linux; x64) google-api-nodejs-client/9.15.1',
+      Authorization: '<<REDACTED> - See `errorRedactor` option in `gaxios` for configuration>.',
+      'x-goog-api-client': 'gl-node/20.19.4'
+    },
+    responseType: 'stream',
+    body: '<<REDACTED> - See `errorRedactor` option in `gaxios` for configuration>.',
+    signal: AbortSignal { aborted: false },
+    retry: false,
+    paramsSerializer: [Function: paramsSerializer],
+    validateStatus: [Function: validateStatus],
+    errorRedactor: [Function: defaultErrorRedactor]
+  },
+  response: {
+    config: {
+      url: 'https://cloudcode-pa.googleapis.com/v1internal:streamGenerateContent?alt=sse',
+      method: 'POST',
+      params: [Object],
+      headers: [Object],
+      responseType: 'stream',
+      body: '<<REDACTED> - See `errorRedactor` option in `gaxios` for configuration>.',
+      signal: [AbortSignal],
+      retry: false,
+      paramsSerializer: [Function: paramsSerializer],
+      validateStatus: [Function: validateStatus],
+      errorRedactor: [Function: defaultErrorRedactor]
+    },
+    data: '[{\n' +
+      '  "error": {\n' +
+      '    "code": 429,\n' +
+      '    "message": "No capacity available for model gemini-2.5-flash on the server",\n' +
+      '    "errors": [\n' +
+      '      {\n' +
+      '        "message": "No capacity available for model gemini-2.5-flash on the server",\n' +
+      '        "domain": "global",\n' +
+      '        "reason": "rateLimitExceeded"\n' +
+      '      }\n' +
+      '    ],\n' +
+      '    "status": "RESOURCE_EXHAUSTED",\n' +
+      '    "details": [\n' +
+      '      {\n' +
+      '        "@type": "type.googleapis.com/google.rpc.ErrorInfo",\n' +
+      '        "reason": "MODEL_CAPACITY_EXHAUSTED",\n' +
+      '        "domain": "cloudcode-pa.googleapis.com",\n' +
+      '        "metadata": {\n' +
+      '          "model": "gemini-2.5-flash"\n' +
+      '        }\n' +
+      '      }\n' +
+      '    ]\n' +
+      '  }\n' +
+      '}\n' +
+      ']',
+    headers: {
+      'alt-svc': 'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000',
+      'content-length': '612',
+      'content-type': 'application/json; charset=UTF-8',
+      date: 'Mon, 06 Apr 2026 17:48:26 GMT',
+      server: 'ESF',
+      'server-timing': 'gfet4t7; dur=445',
+      vary: 'Origin, X-Origin, Referer',
+      'x-cloudaicompanion-trace-id': '9ad3b30bdcc06061',
+      'x-content-type-options': 'nosniff',
+      'x-frame-options': 'SAMEORIGIN',
+      'x-xss-protection': '0'
+    },
+    status: 429,
+    statusText: 'Too Many Requests',
+    request: {
+      responseURL: 'https://cloudcode-pa.googleapis.com/v1internal:streamGenerateContent?alt=sse'
+    }
+  },
+  error: undefined,
+  status: 429,
+  [Symbol(gaxios-gaxios-error)]: '6.7.1'
+}
+

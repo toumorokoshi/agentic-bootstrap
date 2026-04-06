@@ -1,0 +1,6 @@
+{
+  "eval_id": 7,
+  "eval_name": "eval-7-yaml",
+  "format": "yaml",
+  "prompt": "You are given an OpenAPI specification file in this directory called `openapi`. Read it carefully, then extract documentation for every schema defined under `components/schemas` and write it to a file called `output.md`.\n\nThe markdown file MUST follow this exact format for each schema, with schemas in alphabetical order:\n\n```\n## SchemaName\n\n{description from the schema level, or \"No description.\" if none exists}\n\n| Field | Type | Required | Description |\n|-------|------|----------|-------------|"
+}

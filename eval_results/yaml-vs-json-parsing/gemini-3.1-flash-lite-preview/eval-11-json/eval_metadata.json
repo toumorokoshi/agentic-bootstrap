@@ -1,0 +1,6 @@
+{
+  "eval_id": 11,
+  "eval_name": "eval-11-json",
+  "format": "json",
+  "model": "gemini-3.1-flash-lite-preview"
+}

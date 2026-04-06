@@ -1,0 +1,6 @@
+{
+  "eval_id": 11,
+  "eval_name": "eval-11-yaml",
+  "format": "yaml",
+  "prompt": "You are given an OpenAPI specification file in this directory called `openapi`. Read it carefully, then write a version where ALL object keys at EVERY nesting level are sorted in alphabetical (lexicographic) order. This includes:\n\n- Top-level keys (components, info, openapi, paths, security, servers, tags)\n- Keys within each path object (/orders, /products, /products/{productId}, /products/legacy, /users, /users/{userId})\n- Keys within each operation (delete, description, get, operationId, param"
+}

@@ -1,0 +1,6 @@
+{
+  "eval_id": 9,
+  "eval_name": "eval-9-yaml",
+  "format": "yaml",
+  "prompt": "You are given an OpenAPI specification file in this directory called `openapi`. Read it carefully, then MERGE the following Payments API specification into it. The merged result should contain all endpoints and schemas from both the original spec and the Payments API below.\n\nPayments API to merge in:\n\nSchema `Payment` (add under components/schemas):\n  - `id`: type string, format uuid, readOnly true\n  - `orderId`: type string, format uuid\n  - `amount`: type number, format double, minimum 0\n  - `c"
+}

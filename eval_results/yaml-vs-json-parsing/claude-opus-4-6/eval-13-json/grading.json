@@ -1,0 +1,60 @@
+{
+  "expectations": [
+    {
+      "text": "/users x-section-doc User Management",
+      "passed": true,
+      "evidence": "got 'User Management'"
+    },
+    {
+      "text": "/products x-section-doc Product Catalog",
+      "passed": true,
+      "evidence": "got 'Product Catalog'"
+    },
+    {
+      "text": "/orders x-section-doc Order Processing",
+      "passed": true,
+      "evidence": "got 'Order Processing'"
+    },
+    {
+      "text": "components x-section-doc Schema Definitions",
+      "passed": true,
+      "evidence": "got 'Schema Definitions'"
+    },
+    {
+      "text": "GET /users x-stability stable",
+      "passed": true,
+      "evidence": "x-stability=stable"
+    },
+    {
+      "text": "GET /users/{userId} x-stability stable",
+      "passed": true,
+      "evidence": "x-stability=stable"
+    },
+    {
+      "text": "GET /products x-stability stable",
+      "passed": true,
+      "evidence": "x-stability=stable"
+    },
+    {
+      "text": "GET /products/{productId} x-stability stable",
+      "passed": true,
+      "evidence": "x-stability=stable"
+    },
+    {
+      "text": "GET /products/legacy x-stability stable",
+      "passed": true,
+      "evidence": "x-stability=stable"
+    },
+    {
+      "text": "GET /orders x-stability stable",
+      "passed": true,
+      "evidence": "x-stability=stable"
+    }
+  ],
+  "summary": {
+    "passed": 10,
+    "failed": 0,
+    "total": 10,
+    "pass_rate": 1.0
+  }
+}

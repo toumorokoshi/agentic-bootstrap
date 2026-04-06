@@ -1,0 +1,6 @@
+{
+  "eval_id": 10,
+  "eval_name": "eval-10-yaml",
+  "format": "yaml",
+  "prompt": "You are given an OpenAPI specification file in this directory called `openapi`. Read it carefully, then make the following mutations to DEEPLY NESTED values and write the result to `output`:\n\n1. In the `CreateOrderRequest` schema, the `items` field is an array whose `items` is an inline object. Inside that inline object's `properties`, change the `quantity` field's `minimum` from `1` to `2`.\n2. In that same inline object inside `CreateOrderRequest.items.items.properties`, add `maxLength: 36` to "
+}

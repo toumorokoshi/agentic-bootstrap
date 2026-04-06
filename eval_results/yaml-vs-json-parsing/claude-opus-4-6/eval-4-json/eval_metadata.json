@@ -1,0 +1,6 @@
+{
+  "eval_id": 4,
+  "eval_name": "eval-4-json",
+  "format": "json",
+  "prompt": "You are given an OpenAPI specification file in this directory called `openapi`. Read it carefully, then make the following STRUCTURAL mutations and write the result to `output`:\n\n1. In the `Product` schema, replace the `tags` field (which is an array of strings) with a new field called `tagMap`. `tagMap` should be `type: object` with `additionalProperties` of `type: string`. The description should be: \"Key-value pairs of tag categories to tag values.\" Remove the old `tags` field entirely.\n2. In "
+}

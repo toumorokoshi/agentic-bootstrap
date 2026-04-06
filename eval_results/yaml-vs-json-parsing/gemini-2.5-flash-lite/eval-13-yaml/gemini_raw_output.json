@@ -1,0 +1,82 @@
+{
+  "session_id": "ecf20e41-b6e5-42ef-a03a-bcd85ad107d5",
+  "response": "The OpenAPI specification file has been updated with the requested documentation annotations and structural changes, and saved to the `output` file.",
+  "stats": {
+    "models": {
+      "gemini-2.5-flash-lite": {
+        "api": {
+          "totalRequests": 5,
+          "totalErrors": 0,
+          "totalLatencyMs": 15573
+        },
+        "tokens": {
+          "input": 14561,
+          "prompt": 84079,
+          "candidates": 4635,
+          "total": 89323,
+          "cached": 69518,
+          "thoughts": 609,
+          "tool": 0
+        },
+        "roles": {
+          "main": {
+            "totalRequests": 5,
+            "totalErrors": 0,
+            "totalLatencyMs": 15573,
+            "tokens": {
+              "input": 14561,
+              "prompt": 84079,
+              "candidates": 4635,
+              "total": 89323,
+              "cached": 69518,
+              "thoughts": 609,
+              "tool": 0
+            }
+          }
+        }
+      }
+    },
+    "tools": {
+      "totalCalls": 2,
+      "totalSuccess": 2,
+      "totalFail": 0,
+      "totalDurationMs": 19,
+      "totalDecisions": {
+        "accept": 2,
+        "reject": 0,
+        "modify": 0,
+        "auto_accept": 0
+      },
+      "byName": {
+        "read_file": {
+          "count": 1,
+          "success": 1,
+          "fail": 0,
+          "durationMs": 5,
+          "decisions": {
+            "accept": 1,
+            "reject": 0,
+            "modify": 0,
+            "auto_accept": 0
+          }
+        },
+        "write_file": {
+          "count": 1,
+          "success": 1,
+          "fail": 0,
+          "durationMs": 14,
+          "decisions": {
+            "accept": 1,
+            "reject": 0,
+            "modify": 0,
+            "auto_accept": 0
+          }
+        }
+      }
+    },
+    "files": {
+      "totalLinesAdded": 640,
+      "totalLinesRemoved": 0
+    }
+  }
+}

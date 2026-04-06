@@ -1,0 +1,45 @@
+{
+  "expectations": [
+    {
+      "text": "All 14 schemas present",
+      "passed": true,
+      "evidence": "found 14 schemas: ['Address', 'CreateOrderRequest', 'CreateUserRequest', 'Dimensions', 'ErrorResponse', 'Order', 'OrderItem', 'OrderListResponse', 'Product', 'ProductListResponse', 'UpdateUserRequest', 'User', 'UserListResponse', 'UserPreferences']"
+    },
+    {
+      "text": "Schemas in alphabetical order",
+      "passed": true,
+      "evidence": "order=correct"
+    },
+    {
+      "text": "First schema is Address",
+      "passed": true,
+      "evidence": "first=Address"
+    },
+    {
+      "text": "User schema fields alphabetical",
+      "passed": true,
+      "evidence": "fields=['age', 'createdAt', 'email', 'firstName', 'id', 'lastName', 'metadata', 'middleName', 'preferences', 'role', 'username']"
+    },
+    {
+      "text": "$ref types show schema name",
+      "passed": true,
+      "evidence": "UserPreferences found"
+    },
+    {
+      "text": "Required Yes/No present",
+      "passed": true,
+      "evidence": "both Yes and No found"
+    },
+    {
+      "text": "Array types formatted correctly",
+      "passed": true,
+      "evidence": "array of type found"
+    }
+  ],
+  "summary": {
+    "passed": 7,
+    "failed": 0,
+    "total": 7,
+    "pass_rate": 1.0
+  }
+}

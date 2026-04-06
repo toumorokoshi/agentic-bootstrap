@@ -1,0 +1,626 @@
+{
+  "root": "/home/yusuke/workspace/agentic-bootstrap/eval_results/yaml-vs-json-parsing/gemini-3.1-flash-lite-preview",
+  "assertions_passed": 34,
+  "assertions_total": 57,
+  "overall_pass_rate": 0.5964912280701754,
+  "yaml_mean_pass_rate": 0.14285714285714285,
+  "json_mean_pass_rate": 0.21428571428571427,
+  "runs": [
+    {
+      "path": "eval_results/yaml-vs-json-parsing/gemini-3.1-flash-lite-preview/eval-1-json",
+      "eval_id": 1,
+      "error": "No output file found",
+      "passed": 0,
+      "failed": 1,
+      "total": 1,
+      "pass_rate": 0.0,
+      "checks": [
+        {
+          "name": "output file exists",
+          "passed": false,
+          "detail": "No output file found"
+        }
+      ],
+      "format": "json"
+    },
+    {
+      "path": "eval_results/yaml-vs-json-parsing/gemini-3.1-flash-lite-preview/eval-1-yaml",
+      "eval_id": 1,
+      "error": "No output file found",
+      "passed": 0,
+      "failed": 1,
+      "total": 1,
+      "pass_rate": 0.0,
+      "checks": [
+        {
+          "name": "output file exists",
+          "passed": false,
+          "detail": "No output file found"
+        }
+      ],
+      "format": "yaml"
+    },
+    {
+      "path": "eval_results/yaml-vs-json-parsing/gemini-3.1-flash-lite-preview/eval-10-json",
+      "eval_id": 10,
+      "error": "No output file found",
+      "passed": 0,
+      "failed": 1,
+      "total": 1,
+      "pass_rate": 0.0,
+      "checks": [
+        {
+          "name": "output file exists",
+          "passed": false,
+          "detail": "No output file found"
+        }
+      ],
+      "format": "json"
+    },
+    {
+      "path": "eval_results/yaml-vs-json-parsing/gemini-3.1-flash-lite-preview/eval-10-yaml/output",
+      "eval_id": 10,
+      "passed": 6,
+      "failed": 0,
+      "total": 6,
+      "pass_rate": 1.0,
+      "checks": [
+        {
+          "name": "CreateOrderRequest quantity minimum 2",
+          "passed": true,
+          "detail": "minimum=2"
+        },
+        {
+          "name": "CreateOrderRequest productId maxLength 36",
+          "passed": true,
+          "detail": "maxLength=36"
+        },
+        {
+          "name": "UserPreferences.notifications.inApp boolean default true",
+          "passed": true,
+          "detail": "inApp={'type': 'boolean', 'default': True, 'description': 'In-app notification preference.'}"
+        },
+        {
+          "name": "ErrorResponse.details.items.properties.code string",
+          "passed": true,
+          "detail": "code={'type': 'string', 'description': 'Machine-readable detail code.'}"
+        },
+        {
+          "name": "GET /orders status enum has returned",
+          "passed": true,
+          "detail": "enum=['pending', 'processing', 'shipped', 'delivered', 'returned']"
+        },
+        {
+          "name": "GET /users 200 x-rate-limit 100",
+          "passed": true,
+          "detail": "x-rate-limit=100"
+        }
+      ],
+      "format": "yaml"
+    },
+    {
+      "path": "eval_results/yaml-vs-json-parsing/gemini-3.1-flash-lite-preview/eval-11-json/output",
+      "eval_id": 11,
+      "passed": 7,
+      "failed": 0,
+      "total": 7,
+      "pass_rate": 1.0,
+      "checks": [
+        {
+          "name": "Top-level keys sorted",
+          "passed": true,
+          "detail": "keys=['components', 'info', 'openapi', 'paths', 'security', 'servers', 'tags']"
+        },
+        {
+          "name": "info keys sorted",
+          "passed": true,
+          "detail": "keys=['contact', 'description', 'license', 'title', 'version']"
+        },
+        {
+          "name": "path keys sorted",
+          "passed": true,
+          "detail": "keys=['/orders', '/products', '/products/legacy', '/products/{productId}', '/users', '/users/{userId}']"
+        },
+        {
+          "name": "User schema keys sorted",
+          "passed": true,
+          "detail": "keys=['properties', 'required', 'type']"
+        },
+        {
+          "name": "User properties keys sorted",
+          "passed": true,
+          "detail": "keys=['age', 'createdAt', 'email', 'firstName', 'id', 'lastName', 'metadata', 'middleName', 'preferences', 'role', 'username']"
+        },
+        {
+          "name": "All original schemas present (semantic equiv)",
+          "passed": true,
+          "detail": "schemas=['Address', 'CreateOrderRequest', 'CreateUserRequest', 'Dimensions', 'ErrorResponse', 'Order', 'OrderItem', 'OrderListResponse', 'Product', 'ProductListResponse', 'UpdateUserRequest', 'User', 'UserListResponse', 'UserPreferences']"
+        },
+        {
+          "name": "All original paths present",
+          "passed": true,
+          "detail": "paths=['/orders', '/products', '/products/legacy', '/products/{productId}', '/users', '/users/{userId}']"
+        }
+      ],
+      "format": "json"
+    },
+    {
+      "path": "eval_results/yaml-vs-json-parsing/gemini-3.1-flash-lite-preview/eval-11-yaml",
+      "eval_id": 11,
+      "error": "No output file found",
+      "passed": 0,
+      "failed": 1,
+      "total": 1,
+      "pass_rate": 0.0,
+      "checks": [
+        {
+          "name": "output file exists",
+          "passed": false,
+          "detail": "No output file found"
+        }
+      ],
+      "format": "yaml"
+    },
+    {
+      "path": "eval_results/yaml-vs-json-parsing/gemini-3.1-flash-lite-preview/eval-12-json/output",
+      "eval_id": 12,
+      "passed": 9,
+      "failed": 0,
+      "total": 9,
+      "pass_rate": 1.0,
+      "checks": [
+        {
+          "name": "Dimensions schema deleted",
+          "passed": true,
+          "detail": "ok"
+        },
+        {
+          "name": "Product.dimensions has inline properties",
+          "passed": true,
+          "detail": "dims keys=['width', 'height', 'depth', 'weight']"
+        },
+        {
+          "name": "Address schema deleted",
+          "passed": true,
+          "detail": "ok"
+        },
+        {
+          "name": "Order.shippingAddress has inline properties",
+          "passed": true,
+          "detail": "addr keys=['street', 'city', 'state', 'postalCode', 'country']"
+        },
+        {
+          "name": "CreateOrderRequest.shippingAddress has inline properties",
+          "passed": true,
+          "detail": "addr keys=['street', 'city', 'state', 'postalCode', 'country']"
+        },
+        {
+          "name": "UserPreferences schema deleted",
+          "passed": true,
+          "detail": "ok"
+        },
+        {
+          "name": "User.preferences has inline properties",
+          "passed": true,
+          "detail": "prefs keys=['theme', 'language', 'notifications']"
+        },
+        {
+          "name": "UpdateUserRequest.preferences has inline properties",
+          "passed": true,
+          "detail": "prefs keys=['theme', 'language', 'notifications']"
+        },
+        {
+          "name": "No dangling $ref to deleted schemas",
+          "passed": true,
+          "detail": "ok"
+        }
+      ],
+      "format": "json"
+    },
+    {
+      "path": "eval_results/yaml-vs-json-parsing/gemini-3.1-flash-lite-preview/eval-12-yaml",
+      "eval_id": 12,
+      "error": "No output file found",
+      "passed": 0,
+      "failed": 1,
+      "total": 1,
+      "pass_rate": 0.0,
+      "checks": [
+        {
+          "name": "output file exists",
+          "passed": false,
+          "detail": "No output file found"
+        }
+      ],
+      "format": "yaml"
+    },
+    {
+      "path": "eval_results/yaml-vs-json-parsing/gemini-3.1-flash-lite-preview/eval-13-json",
+      "eval_id": 13,
+      "error": "No output file found",
+      "passed": 0,
+      "failed": 1,
+      "total": 1,
+      "pass_rate": 0.0,
+      "checks": [
+        {
+          "name": "output file exists",
+          "passed": false,
+          "detail": "No output file found"
+        }
+      ],
+      "format": "json"
+    },
+    {
+      "path": "eval_results/yaml-vs-json-parsing/gemini-3.1-flash-lite-preview/eval-13-yaml",
+      "eval_id": 13,
+      "error": "No output file found",
+      "passed": 0,
+      "failed": 1,
+      "total": 1,
+      "pass_rate": 0.0,
+      "checks": [
+        {
+          "name": "output file exists",
+          "passed": false,
+          "detail": "No output file found"
+        }
+      ],
+      "format": "yaml"
+    },
+    {
+      "path": "eval_results/yaml-vs-json-parsing/gemini-3.1-flash-lite-preview/eval-14-json",
+      "eval_id": 14,
+      "error": "No output file found",
+      "passed": 0,
+      "failed": 1,
+      "total": 1,
+      "pass_rate": 0.0,
+      "checks": [
+        {
+          "name": "output file exists",
+          "passed": false,
+          "detail": "No output file found"
+        }
+      ],
+      "format": "json"
+    },
+    {
+      "path": "eval_results/yaml-vs-json-parsing/gemini-3.1-flash-lite-preview/eval-14-yaml",
+      "eval_id": 14,
+      "error": "No output file found",
+      "passed": 0,
+      "failed": 1,
+      "total": 1,
+      "pass_rate": 0.0,
+      "checks": [
+        {
+          "name": "output file exists",
+          "passed": false,
+          "detail": "No output file found"
+        }
+      ],
+      "format": "yaml"
+    },
+    {
+      "path": "eval_results/yaml-vs-json-parsing/gemini-3.1-flash-lite-preview/eval-2-json/output",
+      "eval_id": 2,
+      "passed": 6,
+      "failed": 0,
+      "total": 6,
+      "pass_rate": 1.0,
+      "checks": [
+        {
+          "name": "POST /orders summary exact",
+          "passed": true,
+          "detail": "got 'Submit a new customer order.' expected 'Submit a new customer order.'"
+        },
+        {
+          "name": "OrderItem.quantity type number",
+          "passed": true,
+          "detail": "type='number'"
+        },
+        {
+          "name": "OrderItem.quantity minimum 0.1",
+          "passed": true,
+          "detail": "minimum=0.1"
+        },
+        {
+          "name": "GET /products/legacy no deprecated",
+          "passed": true,
+          "detail": "ok"
+        },
+        {
+          "name": "Order.status enum exact",
+          "passed": true,
+          "detail": "got ['pending', 'confirmed', 'in_transit', 'fulfilled', 'cancelled']"
+        },
+        {
+          "name": "DELETE /users/{userId} x-internal",
+          "passed": true,
+          "detail": "x-internal=True"
+        }
+      ],
+      "format": "json"
+    },
+    {
+      "path": "eval_results/yaml-vs-json-parsing/gemini-3.1-flash-lite-preview/eval-2-yaml",
+      "eval_id": 2,
+      "error": "No output file found",
+      "passed": 0,
+      "failed": 1,
+      "total": 1,
+      "pass_rate": 0.0,
+      "checks": [
+        {
+          "name": "output file exists",
+          "passed": false,
+          "detail": "No output file found"
+        }
+      ],
+      "format": "yaml"
+    },
+    {
+      "path": "eval_results/yaml-vs-json-parsing/gemini-3.1-flash-lite-preview/eval-3-json",
+      "eval_id": 3,
+      "error": "No output file found",
+      "passed": 0,
+      "failed": 1,
+      "total": 1,
+      "pass_rate": 0.0,
+      "checks": [
+        {
+          "name": "output file exists",
+          "passed": false,
+          "detail": "No output file found"
+        }
+      ],
+      "format": "json"
+    },
+    {
+      "path": "eval_results/yaml-vs-json-parsing/gemini-3.1-flash-lite-preview/eval-3-yaml",
+      "eval_id": 3,
+      "error": "No output file found",
+      "passed": 0,
+      "failed": 1,
+      "total": 1,
+      "pass_rate": 0.0,
+      "checks": [
+        {
+          "name": "output file exists",
+          "passed": false,
+          "detail": "No output file found"
+        }
+      ],
+      "format": "yaml"
+    },
+    {
+      "path": "eval_results/yaml-vs-json-parsing/gemini-3.1-flash-lite-preview/eval-4-json",
+      "eval_id": 4,
+      "error": "No output file found",
+      "passed": 0,
+      "failed": 1,
+      "total": 1,
+      "pass_rate": 0.0,
+      "checks": [
+        {
+          "name": "output file exists",
+          "passed": false,
+          "detail": "No output file found"
+        }
+      ],
+      "format": "json"
+    },
+    {
+      "path": "eval_results/yaml-vs-json-parsing/gemini-3.1-flash-lite-preview/eval-4-yaml",
+      "eval_id": 4,
+      "error": "No output file found",
+      "passed": 0,
+      "failed": 1,
+      "total": 1,
+      "pass_rate": 0.0,
+      "checks": [
+        {
+          "name": "output file exists",
+          "passed": false,
+          "detail": "No output file found"
+        }
+      ],
+      "format": "yaml"
+    },
+    {
+      "path": "eval_results/yaml-vs-json-parsing/gemini-3.1-flash-lite-preview/eval-5-json",
+      "eval_id": 5,
+      "error": "No output file found",
+      "passed": 0,
+      "failed": 1,
+      "total": 1,
+      "pass_rate": 0.0,
+      "checks": [
+        {
+          "name": "output file exists",
+          "passed": false,
+          "detail": "No output file found"
+        }
+      ],
+      "format": "json"
+    },
+    {
+      "path": "eval_results/yaml-vs-json-parsing/gemini-3.1-flash-lite-preview/eval-5-yaml",
+      "eval_id": 5,
+      "error": "No output file found",
+      "passed": 0,
+      "failed": 1,
+      "total": 1,
+      "pass_rate": 0.0,
+      "checks": [
+        {
+          "name": "output file exists",
+          "passed": false,
+          "detail": "No output file found"
+        }
+      ],
+      "format": "yaml"
+    },
+    {
+      "path": "eval_results/yaml-vs-json-parsing/gemini-3.1-flash-lite-preview/eval-6-json",
+      "eval_id": 6,
+      "error": "No output file found",
+      "passed": 0,
+      "failed": 1,
+      "total": 1,
+      "pass_rate": 0.0,
+      "checks": [
+        {
+          "name": "output file exists",
+          "passed": false,
+          "detail": "No output file found"
+        }
+      ],
+      "format": "json"
+    },
+    {
+      "path": "eval_results/yaml-vs-json-parsing/gemini-3.1-flash-lite-preview/eval-6-yaml",
+      "eval_id": 6,
+      "error": "No output file found",
+      "passed": 0,
+      "failed": 1,
+      "total": 1,
+      "pass_rate": 0.0,
+      "checks": [
+        {
+          "name": "output file exists",
+          "passed": false,
+          "detail": "No output file found"
+        }
+      ],
+      "format": "yaml"
+    },
+    {
+      "path": "eval_results/yaml-vs-json-parsing/gemini-3.1-flash-lite-preview/eval-7-json",
+      "eval_id": 7,
+      "error": "No output file found",
+      "passed": 0,
+      "failed": 1,
+      "total": 1,
+      "pass_rate": 0.0,
+      "checks": [
+        {
+          "name": "output file exists",
+          "passed": false,
+          "detail": "No output file found"
+        }
+      ],
+      "format": "json"
+    },
+    {
+      "path": "eval_results/yaml-vs-json-parsing/gemini-3.1-flash-lite-preview/eval-7-yaml",
+      "eval_id": 7,
+      "error": "No output file found",
+      "passed": 0,
+      "failed": 1,
+      "total": 1,
+      "pass_rate": 0.0,
+      "checks": [
+        {
+          "name": "output file exists",
+          "passed": false,
+          "detail": "No output file found"
+        }
+      ],
+      "format": "yaml"
+    },
+    {
+      "path": "eval_results/yaml-vs-json-parsing/gemini-3.1-flash-lite-preview/eval-8-json",
+      "eval_id": 8,
+      "error": "No output file found",
+      "passed": 0,
+      "failed": 1,
+      "total": 1,
+      "pass_rate": 0.0,
+      "checks": [
+        {
+          "name": "output file exists",
+          "passed": false,
+          "detail": "No output file found"
+        }
+      ],
+      "format": "json"
+    },
+    {
+      "path": "eval_results/yaml-vs-json-parsing/gemini-3.1-flash-lite-preview/eval-8-yaml/output",
+      "eval_id": 8,
+      "passed": 6,
+      "failed": 0,
+      "total": 6,
+      "pass_rate": 1.0,
+      "checks": [
+        {
+          "name": "No $ref in document",
+          "passed": true,
+          "detail": "no $ref found"
+        },
+        {
+          "name": "UserListResponse.data.items has username inline",
+          "passed": true,
+          "detail": "items keys=['id', 'username', 'email', 'firstName', 'middleName']"
+        },
+        {
+          "name": "Order.items.items has productId inline",
+          "passed": true,
+          "detail": "items keys=['productId', 'quantity', 'unitPrice']"
+        },
+        {
+          "name": "Product.dimensions has width inline",
+          "passed": true,
+          "detail": "dims keys=['width', 'height', 'depth', 'weight']"
+        },
+        {
+          "name": "GET /users/{userId} 200 has User inline",
+          "passed": true,
+          "detail": "schema keys=['id', 'username', 'email', 'firstName', 'middleName']"
+        },
+        {
+          "name": "BadRequest response has ErrorResponse inline",
+          "passed": true,
+          "detail": "schema keys=['code', 'message', 'details']"
+        }
+      ],
+      "format": "yaml"
+    },
+    {
+      "path": "eval_results/yaml-vs-json-parsing/gemini-3.1-flash-lite-preview/eval-9-json",
+      "eval_id": 9,
+      "error": "No output file found",
+      "passed": 0,
+      "failed": 1,
+      "total": 1,
+      "pass_rate": 0.0,
+      "checks": [
+        {
+          "name": "output file exists",
+          "passed": false,
+          "detail": "No output file found"
+        }
+      ],
+      "format": "json"
+    },
+    {
+      "path": "eval_results/yaml-vs-json-parsing/gemini-3.1-flash-lite-preview/eval-9-yaml",
+      "eval_id": 9,
+      "error": "No output file found",
+      "passed": 0,
+      "failed": 1,
+      "total": 1,
+      "pass_rate": 0.0,
+      "checks": [
+        {
+          "name": "output file exists",
+          "passed": false,
+          "detail": "No output file found"
+        }
+      ],
+      "format": "yaml"
+    }
+  ]
+}

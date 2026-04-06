@@ -1,0 +1,6 @@
+{
+  "eval_id": 3,
+  "eval_name": "eval-3-json",
+  "format": "json",
+  "model": "gemini-2.5-flash-lite"
+}

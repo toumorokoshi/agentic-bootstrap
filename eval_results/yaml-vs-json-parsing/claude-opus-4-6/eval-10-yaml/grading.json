@@ -1,0 +1,40 @@
+{
+  "expectations": [
+    {
+      "text": "CreateOrderRequest quantity minimum 2",
+      "passed": true,
+      "evidence": "minimum=2"
+    },
+    {
+      "text": "CreateOrderRequest productId maxLength 36",
+      "passed": true,
+      "evidence": "maxLength=36"
+    },
+    {
+      "text": "UserPreferences.notifications.inApp boolean default true",
+      "passed": true,
+      "evidence": "inApp={'type': 'boolean', 'default': True, 'description': 'In-app notification preference.'}"
+    },
+    {
+      "text": "ErrorResponse.details.items.properties.code string",
+      "passed": true,
+      "evidence": "code={'type': 'string', 'description': 'Machine-readable detail code.'}"
+    },
+    {
+      "text": "GET /orders status enum has returned",
+      "passed": true,
+      "evidence": "enum=['pending', 'processing', 'shipped', 'delivered', 'returned']"
+    },
+    {
+      "text": "GET /users 200 x-rate-limit 100",
+      "passed": true,
+      "evidence": "x-rate-limit=100"
+    }
+  ],
+  "summary": {
+    "passed": 6,
+    "failed": 0,
+    "total": 6,
+    "pass_rate": 1.0
+  }
+}

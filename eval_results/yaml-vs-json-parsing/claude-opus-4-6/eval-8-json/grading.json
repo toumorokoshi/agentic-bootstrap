@@ -1,0 +1,40 @@
+{
+  "expectations": [
+    {
+      "text": "No $ref in document",
+      "passed": true,
+      "evidence": "no $ref found"
+    },
+    {
+      "text": "UserListResponse.data.items has username inline",
+      "passed": true,
+      "evidence": "items keys=['id', 'username', 'email', 'firstName', 'middleName']"
+    },
+    {
+      "text": "Order.items.items has productId inline",
+      "passed": true,
+      "evidence": "items keys=['productId', 'quantity', 'unitPrice']"
+    },
+    {
+      "text": "Product.dimensions has width inline",
+      "passed": true,
+      "evidence": "dims keys=['width', 'height', 'depth', 'weight']"
+    },
+    {
+      "text": "GET /users/{userId} 200 has User inline",
+      "passed": true,
+      "evidence": "schema keys=['id', 'username', 'email', 'firstName', 'middleName']"
+    },
+    {
+      "text": "BadRequest response has ErrorResponse inline",
+      "passed": true,
+      "evidence": "schema keys=['code', 'message', 'details']"
+    }
+  ],
+  "summary": {
+    "passed": 6,
+    "failed": 0,
+    "total": 6,
+    "pass_rate": 1.0
+  }
+}

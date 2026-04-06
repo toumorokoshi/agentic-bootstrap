@@ -1,0 +1,1408 @@
+{
+  "root": "/home/yusuke/workspace/agentic-bootstrap/eval_results/yaml-vs-json-parsing/claude-opus-4-6",
+  "assertions_passed": 217,
+  "assertions_total": 218,
+  "overall_pass_rate": 0.9954128440366973,
+  "yaml_mean_pass_rate": 1.0,
+  "json_mean_pass_rate": 0.9880952380952381,
+  "runs": [
+    {
+      "path": "eval_results/yaml-vs-json-parsing/claude-opus-4-6/eval-1-json/output",
+      "eval_id": 1,
+      "passed": 6,
+      "failed": 0,
+      "total": 6,
+      "pass_rate": 1.0,
+      "checks": [
+        {
+          "name": "GET /users/{userId} description",
+          "passed": true,
+          "detail": "got 'Retrieves a single user by their unique identifier.'"
+        },
+        {
+          "name": "User.email format email",
+          "passed": true,
+          "detail": "format='email'"
+        },
+        {
+          "name": "User.age type number",
+          "passed": true,
+          "detail": "type='number'"
+        },
+        {
+          "name": "createdAt type + date-time",
+          "passed": true,
+          "detail": "{'type': 'string', 'format': 'date-time', 'description': 'The date and time the user was created.'}"
+        },
+        {
+          "name": "createdAt in User.required",
+          "passed": true,
+          "detail": "required=['id', 'username', 'email', 'age', 'role', 'createdAt']"
+        },
+        {
+          "name": "GET /users limit description",
+          "passed": true,
+          "detail": "got 'Maximum number of users to return per page.'"
+        }
+      ],
+      "format": "json"
+    },
+    {
+      "path": "eval_results/yaml-vs-json-parsing/claude-opus-4-6/eval-1-yaml/output.yaml",
+      "eval_id": 1,
+      "passed": 6,
+      "failed": 0,
+      "total": 6,
+      "pass_rate": 1.0,
+      "checks": [
+        {
+          "name": "GET /users/{userId} description",
+          "passed": true,
+          "detail": "got 'Retrieves a single user by their unique identifier.'"
+        },
+        {
+          "name": "User.email format email",
+          "passed": true,
+          "detail": "format='email'"
+        },
+        {
+          "name": "User.age type number",
+          "passed": true,
+          "detail": "type='number'"
+        },
+        {
+          "name": "createdAt type + date-time",
+          "passed": true,
+          "detail": "{'type': 'string', 'format': 'date-time', 'description': 'The date and time the user was created.'}"
+        },
+        {
+          "name": "createdAt in User.required",
+          "passed": true,
+          "detail": "required=['id', 'username', 'email', 'age', 'role', 'createdAt']"
+        },
+        {
+          "name": "GET /users limit description",
+          "passed": true,
+          "detail": "got 'Maximum number of users to return per page.'"
+        }
+      ],
+      "format": "yaml"
+    },
+    {
+      "path": "eval_results/yaml-vs-json-parsing/claude-opus-4-6/eval-10-json/output.json",
+      "eval_id": 10,
+      "passed": 6,
+      "failed": 0,
+      "total": 6,
+      "pass_rate": 1.0,
+      "checks": [
+        {
+          "name": "CreateOrderRequest quantity minimum 2",
+          "passed": true,
+          "detail": "minimum=2"
+        },
+        {
+          "name": "CreateOrderRequest productId maxLength 36",
+          "passed": true,
+          "detail": "maxLength=36"
+        },
+        {
+          "name": "UserPreferences.notifications.inApp boolean default true",
+          "passed": true,
+          "detail": "inApp={'type': 'boolean', 'default': True, 'description': 'In-app notification preference.'}"
+        },
+        {
+          "name": "ErrorResponse.details.items.properties.code string",
+          "passed": true,
+          "detail": "code={'type': 'string', 'description': 'Machine-readable detail code.'}"
+        },
+        {
+          "name": "GET /orders status enum has returned",
+          "passed": true,
+          "detail": "enum=['pending', 'processing', 'shipped', 'delivered', 'returned']"
+        },
+        {
+          "name": "GET /users 200 x-rate-limit 100",
+          "passed": true,
+          "detail": "x-rate-limit=100"
+        }
+      ],
+      "format": "json"
+    },
+    {
+      "path": "eval_results/yaml-vs-json-parsing/claude-opus-4-6/eval-10-yaml/output",
+      "eval_id": 10,
+      "passed": 6,
+      "failed": 0,
+      "total": 6,
+      "pass_rate": 1.0,
+      "checks": [
+        {
+          "name": "CreateOrderRequest quantity minimum 2",
+          "passed": true,
+          "detail": "minimum=2"
+        },
+        {
+          "name": "CreateOrderRequest productId maxLength 36",
+          "passed": true,
+          "detail": "maxLength=36"
+        },
+        {
+          "name": "UserPreferences.notifications.inApp boolean default true",
+          "passed": true,
+          "detail": "inApp={'type': 'boolean', 'default': True, 'description': 'In-app notification preference.'}"
+        },
+        {
+          "name": "ErrorResponse.details.items.properties.code string",
+          "passed": true,
+          "detail": "code={'type': 'string', 'description': 'Machine-readable detail code.'}"
+        },
+        {
+          "name": "GET /orders status enum has returned",
+          "passed": true,
+          "detail": "enum=['pending', 'processing', 'shipped', 'delivered', 'returned']"
+        },
+        {
+          "name": "GET /users 200 x-rate-limit 100",
+          "passed": true,
+          "detail": "x-rate-limit=100"
+        }
+      ],
+      "format": "yaml"
+    },
+    {
+      "path": "eval_results/yaml-vs-json-parsing/claude-opus-4-6/eval-11-json/output.json",
+      "eval_id": 11,
+      "passed": 7,
+      "failed": 0,
+      "total": 7,
+      "pass_rate": 1.0,
+      "checks": [
+        {
+          "name": "Top-level keys sorted",
+          "passed": true,
+          "detail": "keys=['components', 'info', 'openapi', 'paths', 'security', 'servers', 'tags']"
+        },
+        {
+          "name": "info keys sorted",
+          "passed": true,
+          "detail": "keys=['contact', 'description', 'license', 'title', 'version']"
+        },
+        {
+          "name": "path keys sorted",
+          "passed": true,
+          "detail": "keys=['/orders', '/products', '/products/legacy', '/products/{productId}', '/users', '/users/{userId}']"
+        },
+        {
+          "name": "User schema keys sorted",
+          "passed": true,
+          "detail": "keys=['properties', 'required', 'type']"
+        },
+        {
+          "name": "User properties keys sorted",
+          "passed": true,
+          "detail": "keys=['age', 'createdAt', 'email', 'firstName', 'id', 'lastName', 'metadata', 'middleName', 'preferences', 'role', 'username']"
+        },
+        {
+          "name": "All original schemas present (semantic equiv)",
+          "passed": true,
+          "detail": "schemas=['Address', 'CreateOrderRequest', 'CreateUserRequest', 'Dimensions', 'ErrorResponse', 'Order', 'OrderItem', 'OrderListResponse', 'Product', 'ProductListResponse', 'UpdateUserRequest', 'User', 'UserListResponse', 'UserPreferences']"
+        },
+        {
+          "name": "All original paths present",
+          "passed": true,
+          "detail": "paths=['/orders', '/products', '/products/legacy', '/products/{productId}', '/users', '/users/{userId}']"
+        }
+      ],
+      "format": "json"
+    },
+    {
+      "path": "eval_results/yaml-vs-json-parsing/claude-opus-4-6/eval-11-yaml/output.yaml",
+      "eval_id": 11,
+      "passed": 7,
+      "failed": 0,
+      "total": 7,
+      "pass_rate": 1.0,
+      "checks": [
+        {
+          "name": "Top-level keys sorted",
+          "passed": true,
+          "detail": "keys=['components', 'info', 'openapi', 'paths', 'security', 'servers', 'tags']"
+        },
+        {
+          "name": "info keys sorted",
+          "passed": true,
+          "detail": "keys=['contact', 'description', 'license', 'title', 'version']"
+        },
+        {
+          "name": "path keys sorted",
+          "passed": true,
+          "detail": "keys=['/orders', '/products', '/products/legacy', '/products/{productId}', '/users', '/users/{userId}']"
+        },
+        {
+          "name": "User schema keys sorted",
+          "passed": true,
+          "detail": "keys=['properties', 'required', 'type']"
+        },
+        {
+          "name": "User properties keys sorted",
+          "passed": true,
+          "detail": "keys=['age', 'createdAt', 'email', 'firstName', 'id', 'lastName', 'metadata', 'middleName', 'preferences', 'role', 'username']"
+        },
+        {
+          "name": "All original schemas present (semantic equiv)",
+          "passed": true,
+          "detail": "schemas=['Address', 'CreateOrderRequest', 'CreateUserRequest', 'Dimensions', 'ErrorResponse', 'Order', 'OrderItem', 'OrderListResponse', 'Product', 'ProductListResponse', 'UpdateUserRequest', 'User', 'UserListResponse', 'UserPreferences']"
+        },
+        {
+          "name": "All original paths present",
+          "passed": true,
+          "detail": "paths=['/orders', '/products', '/products/legacy', '/products/{productId}', '/users', '/users/{userId}']"
+        }
+      ],
+      "format": "yaml"
+    },
+    {
+      "path": "eval_results/yaml-vs-json-parsing/claude-opus-4-6/eval-12-json/output",
+      "eval_id": 12,
+      "passed": 9,
+      "failed": 0,
+      "total": 9,
+      "pass_rate": 1.0,
+      "checks": [
+        {
+          "name": "Dimensions schema deleted",
+          "passed": true,
+          "detail": "ok"
+        },
+        {
+          "name": "Product.dimensions has inline properties",
+          "passed": true,
+          "detail": "dims keys=['width', 'height', 'depth', 'weight']"
+        },
+        {
+          "name": "Address schema deleted",
+          "passed": true,
+          "detail": "ok"
+        },
+        {
+          "name": "Order.shippingAddress has inline properties",
+          "passed": true,
+          "detail": "addr keys=['street', 'city', 'state', 'postalCode', 'country']"
+        },
+        {
+          "name": "CreateOrderRequest.shippingAddress has inline properties",
+          "passed": true,
+          "detail": "addr keys=['street', 'city', 'state', 'postalCode', 'country']"
+        },
+        {
+          "name": "UserPreferences schema deleted",
+          "passed": true,
+          "detail": "ok"
+        },
+        {
+          "name": "User.preferences has inline properties",
+          "passed": true,
+          "detail": "prefs keys=['theme', 'language', 'notifications']"
+        },
+        {
+          "name": "UpdateUserRequest.preferences has inline properties",
+          "passed": true,
+          "detail": "prefs keys=['theme', 'language', 'notifications']"
+        },
+        {
+          "name": "No dangling $ref to deleted schemas",
+          "passed": true,
+          "detail": "ok"
+        }
+      ],
+      "format": "json"
+    },
+    {
+      "path": "eval_results/yaml-vs-json-parsing/claude-opus-4-6/eval-12-yaml/output.yaml",
+      "eval_id": 12,
+      "passed": 9,
+      "failed": 0,
+      "total": 9,
+      "pass_rate": 1.0,
+      "checks": [
+        {
+          "name": "Dimensions schema deleted",
+          "passed": true,
+          "detail": "ok"
+        },
+        {
+          "name": "Product.dimensions has inline properties",
+          "passed": true,
+          "detail": "dims keys=['width', 'height', 'depth', 'weight']"
+        },
+        {
+          "name": "Address schema deleted",
+          "passed": true,
+          "detail": "ok"
+        },
+        {
+          "name": "Order.shippingAddress has inline properties",
+          "passed": true,
+          "detail": "addr keys=['street', 'city', 'state', 'postalCode', 'country']"
+        },
+        {
+          "name": "CreateOrderRequest.shippingAddress has inline properties",
+          "passed": true,
+          "detail": "addr keys=['street', 'city', 'state', 'postalCode', 'country']"
+        },
+        {
+          "name": "UserPreferences schema deleted",
+          "passed": true,
+          "detail": "ok"
+        },
+        {
+          "name": "User.preferences has inline properties",
+          "passed": true,
+          "detail": "prefs keys=['theme', 'language', 'notifications']"
+        },
+        {
+          "name": "UpdateUserRequest.preferences has inline properties",
+          "passed": true,
+          "detail": "prefs keys=['theme', 'language', 'notifications']"
+        },
+        {
+          "name": "No dangling $ref to deleted schemas",
+          "passed": true,
+          "detail": "ok"
+        }
+      ],
+      "format": "yaml"
+    },
+    {
+      "path": "eval_results/yaml-vs-json-parsing/claude-opus-4-6/eval-13-json/output.json",
+      "eval_id": 13,
+      "passed": 10,
+      "failed": 0,
+      "total": 10,
+      "pass_rate": 1.0,
+      "checks": [
+        {
+          "name": "/users x-section-doc User Management",
+          "passed": true,
+          "detail": "got 'User Management'"
+        },
+        {
+          "name": "/products x-section-doc Product Catalog",
+          "passed": true,
+          "detail": "got 'Product Catalog'"
+        },
+        {
+          "name": "/orders x-section-doc Order Processing",
+          "passed": true,
+          "detail": "got 'Order Processing'"
+        },
+        {
+          "name": "components x-section-doc Schema Definitions",
+          "passed": true,
+          "detail": "got 'Schema Definitions'"
+        },
+        {
+          "name": "GET /users x-stability stable",
+          "passed": true,
+          "detail": "x-stability=stable"
+        },
+        {
+          "name": "GET /users/{userId} x-stability stable",
+          "passed": true,
+          "detail": "x-stability=stable"
+        },
+        {
+          "name": "GET /products x-stability stable",
+          "passed": true,
+          "detail": "x-stability=stable"
+        },
+        {
+          "name": "GET /products/{productId} x-stability stable",
+          "passed": true,
+          "detail": "x-stability=stable"
+        },
+        {
+          "name": "GET /products/legacy x-stability stable",
+          "passed": true,
+          "detail": "x-stability=stable"
+        },
+        {
+          "name": "GET /orders x-stability stable",
+          "passed": true,
+          "detail": "x-stability=stable"
+        }
+      ],
+      "format": "json"
+    },
+    {
+      "path": "eval_results/yaml-vs-json-parsing/claude-opus-4-6/eval-13-yaml/output.yaml",
+      "eval_id": 13,
+      "passed": 10,
+      "failed": 0,
+      "total": 10,
+      "pass_rate": 1.0,
+      "checks": [
+        {
+          "name": "Comment # --- User Management --- before /users",
+          "passed": true,
+          "detail": "found"
+        },
+        {
+          "name": "Comment # --- Product Catalog --- before /products",
+          "passed": true,
+          "detail": "found"
+        },
+        {
+          "name": "Comment # --- Order Processing --- before /orders",
+          "passed": true,
+          "detail": "found"
+        },
+        {
+          "name": "Comment # === Schema Definitions === before schemas",
+          "passed": true,
+          "detail": "found"
+        },
+        {
+          "name": "GET /users x-stability stable",
+          "passed": true,
+          "detail": "x-stability=stable"
+        },
+        {
+          "name": "GET /users/{userId} x-stability stable",
+          "passed": true,
+          "detail": "x-stability=stable"
+        },
+        {
+          "name": "GET /products x-stability stable",
+          "passed": true,
+          "detail": "x-stability=stable"
+        },
+        {
+          "name": "GET /products/{productId} x-stability stable",
+          "passed": true,
+          "detail": "x-stability=stable"
+        },
+        {
+          "name": "GET /products/legacy x-stability stable",
+          "passed": true,
+          "detail": "x-stability=stable"
+        },
+        {
+          "name": "GET /orders x-stability stable",
+          "passed": true,
+          "detail": "x-stability=stable"
+        }
+      ],
+      "format": "yaml"
+    },
+    {
+      "path": "eval_results/yaml-vs-json-parsing/claude-opus-4-6/eval-14-json",
+      "eval_id": 14,
+      "passed": 7,
+      "failed": 0,
+      "total": 7,
+      "pass_rate": 1.0,
+      "checks": [
+        {
+          "name": "Output is valid yaml",
+          "passed": true,
+          "detail": "parsed successfully"
+        },
+        {
+          "name": "info.title matches",
+          "passed": true,
+          "detail": "got 'Acme Commerce Platform API'"
+        },
+        {
+          "name": "info.version matches",
+          "passed": true,
+          "detail": "got '2.0.0'"
+        },
+        {
+          "name": "All paths present",
+          "passed": true,
+          "detail": "paths=['/users', '/users/{userId}', '/products', '/products/{productId}', '/products/legacy', '/orders']"
+        },
+        {
+          "name": "All schemas present",
+          "passed": true,
+          "detail": "schemas=['User', 'UserPreferences', 'CreateUserRequest', 'UpdateUserRequest', 'UserListResponse', 'Product', 'Dimensions', 'ProductListResponse', 'Order', 'OrderItem', 'Address', 'CreateOrderRequest', 'OrderListResponse', 'ErrorResponse']"
+        },
+        {
+          "name": "User schema has same properties",
+          "passed": true,
+          "detail": "props=['id', 'username', 'email', 'firstName', 'middleName', 'lastName', 'age', 'role', 'preferences', 'metadata', 'createdAt']"
+        },
+        {
+          "name": "Order.status enum identical",
+          "passed": true,
+          "detail": "enum=['pending', 'confirmed', 'in_transit', 'fulfilled', 'cancelled']"
+        }
+      ],
+      "format": "json"
+    },
+    {
+      "path": "eval_results/yaml-vs-json-parsing/claude-opus-4-6/eval-14-yaml",
+      "eval_id": 14,
+      "passed": 7,
+      "failed": 0,
+      "total": 7,
+      "pass_rate": 1.0,
+      "checks": [
+        {
+          "name": "Output is valid json",
+          "passed": true,
+          "detail": "parsed successfully"
+        },
+        {
+          "name": "info.title matches",
+          "passed": true,
+          "detail": "got 'Acme Commerce Platform API'"
+        },
+        {
+          "name": "info.version matches",
+          "passed": true,
+          "detail": "got '2.0.0'"
+        },
+        {
+          "name": "All paths present",
+          "passed": true,
+          "detail": "paths=['/users', '/users/{userId}', '/products', '/products/{productId}', '/products/legacy', '/orders']"
+        },
+        {
+          "name": "All schemas present",
+          "passed": true,
+          "detail": "schemas=['User', 'UserPreferences', 'CreateUserRequest', 'UpdateUserRequest', 'UserListResponse', 'Product', 'Dimensions', 'ProductListResponse', 'Order', 'OrderItem', 'Address', 'CreateOrderRequest', 'OrderListResponse', 'ErrorResponse']"
+        },
+        {
+          "name": "User schema has same properties",
+          "passed": true,
+          "detail": "props=['id', 'username', 'email', 'firstName', 'middleName', 'lastName', 'age', 'role', 'preferences', 'metadata', 'createdAt']"
+        },
+        {
+          "name": "Order.status enum identical",
+          "passed": true,
+          "detail": "enum=['pending', 'confirmed', 'in_transit', 'fulfilled', 'cancelled']"
+        }
+      ],
+      "format": "yaml"
+    },
+    {
+      "path": "eval_results/yaml-vs-json-parsing/claude-opus-4-6/eval-2-json/output",
+      "eval_id": 2,
+      "passed": 5,
+      "failed": 1,
+      "total": 6,
+      "pass_rate": 0.8333333333333334,
+      "checks": [
+        {
+          "name": "POST /orders summary exact",
+          "passed": false,
+          "detail": "got 'Submit a new customer order' expected 'Submit a new customer order.'"
+        },
+        {
+          "name": "OrderItem.quantity type number",
+          "passed": true,
+          "detail": "type='number'"
+        },
+        {
+          "name": "OrderItem.quantity minimum 0.1",
+          "passed": true,
+          "detail": "minimum=0.1"
+        },
+        {
+          "name": "GET /products/legacy no deprecated",
+          "passed": true,
+          "detail": "ok"
+        },
+        {
+          "name": "Order.status enum exact",
+          "passed": true,
+          "detail": "got ['pending', 'confirmed', 'in_transit', 'fulfilled', 'cancelled']"
+        },
+        {
+          "name": "DELETE /users/{userId} x-internal",
+          "passed": true,
+          "detail": "x-internal=True"
+        }
+      ],
+      "format": "json"
+    },
+    {
+      "path": "eval_results/yaml-vs-json-parsing/claude-opus-4-6/eval-2-yaml/output.yaml",
+      "eval_id": 2,
+      "passed": 6,
+      "failed": 0,
+      "total": 6,
+      "pass_rate": 1.0,
+      "checks": [
+        {
+          "name": "POST /orders summary exact",
+          "passed": true,
+          "detail": "got 'Submit a new customer order.' expected 'Submit a new customer order.'"
+        },
+        {
+          "name": "OrderItem.quantity type number",
+          "passed": true,
+          "detail": "type='number'"
+        },
+        {
+          "name": "OrderItem.quantity minimum 0.1",
+          "passed": true,
+          "detail": "minimum=0.1"
+        },
+        {
+          "name": "GET /products/legacy no deprecated",
+          "passed": true,
+          "detail": "ok"
+        },
+        {
+          "name": "Order.status enum exact",
+          "passed": true,
+          "detail": "got ['pending', 'confirmed', 'in_transit', 'fulfilled', 'cancelled']"
+        },
+        {
+          "name": "DELETE /users/{userId} x-internal",
+          "passed": true,
+          "detail": "x-internal=True"
+        }
+      ],
+      "format": "yaml"
+    },
+    {
+      "path": "eval_results/yaml-vs-json-parsing/claude-opus-4-6/eval-3-json/output",
+      "eval_id": 3,
+      "passed": 6,
+      "failed": 0,
+      "total": 6,
+      "pass_rate": 1.0,
+      "checks": [
+        {
+          "name": "info.title",
+          "passed": true,
+          "detail": "got 'Acme Commerce Platform API'"
+        },
+        {
+          "name": "info.version",
+          "passed": true,
+          "detail": "got '2.0.0'"
+        },
+        {
+          "name": "productId parameter description",
+          "passed": true,
+          "detail": "got 'The globally unique identifier of the product.'"
+        },
+        {
+          "name": "CreateUserRequest.username minLength",
+          "passed": true,
+          "detail": "minLength=5"
+        },
+        {
+          "name": "CreateUserRequest.username maxLength",
+          "passed": true,
+          "detail": "maxLength=32"
+        },
+        {
+          "name": "User.middleName nullable true",
+          "passed": true,
+          "detail": "nullable=True"
+        }
+      ],
+      "format": "json"
+    },
+    {
+      "path": "eval_results/yaml-vs-json-parsing/claude-opus-4-6/eval-3-yaml/output.yaml",
+      "eval_id": 3,
+      "passed": 6,
+      "failed": 0,
+      "total": 6,
+      "pass_rate": 1.0,
+      "checks": [
+        {
+          "name": "info.title",
+          "passed": true,
+          "detail": "got 'Acme Commerce Platform API'"
+        },
+        {
+          "name": "info.version",
+          "passed": true,
+          "detail": "got '2.0.0'"
+        },
+        {
+          "name": "productId parameter description",
+          "passed": true,
+          "detail": "got 'The globally unique identifier of the product.'"
+        },
+        {
+          "name": "CreateUserRequest.username minLength",
+          "passed": true,
+          "detail": "minLength=5"
+        },
+        {
+          "name": "CreateUserRequest.username maxLength",
+          "passed": true,
+          "detail": "maxLength=32"
+        },
+        {
+          "name": "User.middleName nullable true",
+          "passed": true,
+          "detail": "nullable=True"
+        }
+      ],
+      "format": "yaml"
+    },
+    {
+      "path": "eval_results/yaml-vs-json-parsing/claude-opus-4-6/eval-4-json/output.json",
+      "eval_id": 4,
+      "passed": 10,
+      "failed": 0,
+      "total": 10,
+      "pass_rate": 1.0,
+      "checks": [
+        {
+          "name": "Product.tagMap type object with additionalProperties.type string",
+          "passed": true,
+          "detail": "tagMap={'type': 'object', 'additionalProperties': {'type': 'string'}, 'description': 'Key-value pairs of tag categories to tag values.'}"
+        },
+        {
+          "name": "Product no tags field",
+          "passed": true,
+          "detail": "ok"
+        },
+        {
+          "name": "Order.lineItems additionalProperties.$ref OrderItem",
+          "passed": true,
+          "detail": "lineItems={'type': 'object', 'additionalProperties': {'$ref': '#/components/schemas/OrderItem'}, 'description': 'Map of product IDs to order line items.'}"
+        },
+        {
+          "name": "Order no items field",
+          "passed": true,
+          "detail": "ok"
+        },
+        {
+          "name": "Order required has lineItems not items",
+          "passed": true,
+          "detail": "required=['id', 'userId', 'lineItems', 'status', 'total']"
+        },
+        {
+          "name": "UserListResponse.users additionalProperties.$ref User",
+          "passed": true,
+          "detail": "users={'type': 'object', 'additionalProperties': {'$ref': '#/components/schemas/User'}, 'description': 'Map of user IDs to user objects.'}"
+        },
+        {
+          "name": "UserListResponse no data field",
+          "passed": true,
+          "detail": "ok"
+        },
+        {
+          "name": "UserListResponse required has users not data",
+          "passed": true,
+          "detail": "required=['users', 'total', 'limit', 'offset']"
+        },
+        {
+          "name": "User.role oneOf with 4 entries",
+          "passed": true,
+          "detail": "oneOf=[{'const': 'admin', 'title': 'Admin'}, {'const': 'moderator', 'title': 'Moderator'}, {'const': 'user', 'title': 'User'}, {'const': 'guest', 'title': 'Guest'}]"
+        },
+        {
+          "name": "User.role no enum key",
+          "passed": true,
+          "detail": "ok"
+        }
+      ],
+      "format": "json"
+    },
+    {
+      "path": "eval_results/yaml-vs-json-parsing/claude-opus-4-6/eval-4-yaml/output",
+      "eval_id": 4,
+      "passed": 10,
+      "failed": 0,
+      "total": 10,
+      "pass_rate": 1.0,
+      "checks": [
+        {
+          "name": "Product.tagMap type object with additionalProperties.type string",
+          "passed": true,
+          "detail": "tagMap={'type': 'object', 'additionalProperties': {'type': 'string'}, 'description': 'Key-value pairs of tag categories to tag values.'}"
+        },
+        {
+          "name": "Product no tags field",
+          "passed": true,
+          "detail": "ok"
+        },
+        {
+          "name": "Order.lineItems additionalProperties.$ref OrderItem",
+          "passed": true,
+          "detail": "lineItems={'type': 'object', 'additionalProperties': {'$ref': '#/components/schemas/OrderItem'}, 'description': 'Map of product IDs to order line items.'}"
+        },
+        {
+          "name": "Order no items field",
+          "passed": true,
+          "detail": "ok"
+        },
+        {
+          "name": "Order required has lineItems not items",
+          "passed": true,
+          "detail": "required=['id', 'userId', 'lineItems', 'status', 'total']"
+        },
+        {
+          "name": "UserListResponse.users additionalProperties.$ref User",
+          "passed": true,
+          "detail": "users={'type': 'object', 'additionalProperties': {'$ref': '#/components/schemas/User'}, 'description': 'Map of user IDs to user objects.'}"
+        },
+        {
+          "name": "UserListResponse no data field",
+          "passed": true,
+          "detail": "ok"
+        },
+        {
+          "name": "UserListResponse required has users not data",
+          "passed": true,
+          "detail": "required=['users', 'total', 'limit', 'offset']"
+        },
+        {
+          "name": "User.role oneOf with 4 entries",
+          "passed": true,
+          "detail": "oneOf=[{'const': 'admin', 'title': 'Admin'}, {'const': 'moderator', 'title': 'Moderator'}, {'const': 'user', 'title': 'User'}, {'const': 'guest', 'title': 'Guest'}]"
+        },
+        {
+          "name": "User.role no enum key",
+          "passed": true,
+          "detail": "ok"
+        }
+      ],
+      "format": "yaml"
+    },
+    {
+      "path": "eval_results/yaml-vs-json-parsing/claude-opus-4-6/eval-5-json/output.json",
+      "eval_id": 5,
+      "passed": 8,
+      "failed": 0,
+      "total": 8,
+      "pass_rate": 1.0,
+      "checks": [
+        {
+          "name": "Review schema has all fields",
+          "passed": true,
+          "detail": "fields=['id', 'productId', 'userId', 'rating', 'title', 'body', 'verified', 'createdAt']"
+        },
+        {
+          "name": "Review required fields",
+          "passed": true,
+          "detail": "required=['id', 'productId', 'userId', 'rating', 'createdAt']"
+        },
+        {
+          "name": "Review.verified boolean default false",
+          "passed": true,
+          "detail": "verified={'type': 'boolean', 'default': False, 'description': 'Whether the reviewer has purchased the product.'}"
+        },
+        {
+          "name": "ReviewListResponse.averageRating min 1 max 5",
+          "passed": true,
+          "detail": "averageRating={'type': 'number', 'format': 'double', 'description': 'Average rating across all reviews.', 'minimum': 1, 'maximum': 5}"
+        },
+        {
+          "name": "GET /products/{productId}/reviews exists",
+          "passed": true,
+          "detail": "operationId=listProductReviews"
+        },
+        {
+          "name": "POST /products/{productId}/reviews exists",
+          "passed": true,
+          "detail": "operationId=createReview"
+        },
+        {
+          "name": "POST requestBody rating min 1 max 5",
+          "passed": true,
+          "detail": "rating={'type': 'integer', 'minimum': 1, 'maximum': 5}"
+        },
+        {
+          "name": "POST requestBody rating is required",
+          "passed": true,
+          "detail": "required=['rating']"
+        }
+      ],
+      "format": "json"
+    },
+    {
+      "path": "eval_results/yaml-vs-json-parsing/claude-opus-4-6/eval-5-yaml/output",
+      "eval_id": 5,
+      "passed": 8,
+      "failed": 0,
+      "total": 8,
+      "pass_rate": 1.0,
+      "checks": [
+        {
+          "name": "Review schema has all fields",
+          "passed": true,
+          "detail": "fields=['id', 'productId', 'userId', 'rating', 'title', 'body', 'verified', 'createdAt']"
+        },
+        {
+          "name": "Review required fields",
+          "passed": true,
+          "detail": "required=['id', 'productId', 'userId', 'rating', 'createdAt']"
+        },
+        {
+          "name": "Review.verified boolean default false",
+          "passed": true,
+          "detail": "verified={'type': 'boolean', 'default': False, 'description': 'Whether the reviewer has purchased the product.'}"
+        },
+        {
+          "name": "ReviewListResponse.averageRating min 1 max 5",
+          "passed": true,
+          "detail": "averageRating={'type': 'number', 'format': 'double', 'description': 'Average rating across all reviews.', 'minimum': 1, 'maximum': 5}"
+        },
+        {
+          "name": "GET /products/{productId}/reviews exists",
+          "passed": true,
+          "detail": "operationId=listProductReviews"
+        },
+        {
+          "name": "POST /products/{productId}/reviews exists",
+          "passed": true,
+          "detail": "operationId=createReview"
+        },
+        {
+          "name": "POST requestBody rating min 1 max 5",
+          "passed": true,
+          "detail": "rating={'type': 'integer', 'minimum': 1, 'maximum': 5}"
+        },
+        {
+          "name": "POST requestBody rating is required",
+          "passed": true,
+          "detail": "required=['rating']"
+        }
+      ],
+      "format": "yaml"
+    },
+    {
+      "path": "eval_results/yaml-vs-json-parsing/claude-opus-4-6/eval-6-json/output.json",
+      "eval_id": 6,
+      "passed": 11,
+      "failed": 0,
+      "total": 11,
+      "pass_rate": 1.0,
+      "checks": [
+        {
+          "name": "info.title",
+          "passed": true,
+          "detail": "got 'City Library API'"
+        },
+        {
+          "name": "info.version",
+          "passed": true,
+          "detail": "got '1.0.0'"
+        },
+        {
+          "name": "info.description",
+          "passed": true,
+          "detail": "got 'API for managing library books and borrowing.'"
+        },
+        {
+          "name": "server url",
+          "passed": true,
+          "detail": "servers=[{'url': 'https://api.citylibrary.example.com/v1', 'description': 'Production'}]"
+        },
+        {
+          "name": "Book schema has all 7 fields",
+          "passed": true,
+          "detail": "fields=['id', 'isbn', 'title', 'author', 'genre', 'availableCopies', 'totalCopies']"
+        },
+        {
+          "name": "Book required fields",
+          "passed": true,
+          "detail": "required=['id', 'isbn', 'title', 'author', 'genre', 'totalCopies', 'availableCopies']"
+        },
+        {
+          "name": "BorrowRecord.returnDate nullable true",
+          "passed": true,
+          "detail": "returnDate={'type': 'string', 'format': 'date', 'nullable': True}"
+        },
+        {
+          "name": "BorrowRecord required fields",
+          "passed": true,
+          "detail": "required=['id', 'bookId', 'borrowerName', 'borrowDate', 'dueDate']"
+        },
+        {
+          "name": "GET /books operationId listBooks",
+          "passed": true,
+          "detail": "operationId=listBooks"
+        },
+        {
+          "name": "POST /books/{bookId}/borrow operationId borrowBook",
+          "passed": true,
+          "detail": "operationId=borrowBook"
+        },
+        {
+          "name": "POST borrow requestBody borrowerName required",
+          "passed": true,
+          "detail": "required=['borrowerName']"
+        }
+      ],
+      "format": "json"
+    },
+    {
+      "path": "eval_results/yaml-vs-json-parsing/claude-opus-4-6/eval-6-yaml/output.yaml",
+      "eval_id": 6,
+      "passed": 11,
+      "failed": 0,
+      "total": 11,
+      "pass_rate": 1.0,
+      "checks": [
+        {
+          "name": "info.title",
+          "passed": true,
+          "detail": "got 'City Library API'"
+        },
+        {
+          "name": "info.version",
+          "passed": true,
+          "detail": "got '1.0.0'"
+        },
+        {
+          "name": "info.description",
+          "passed": true,
+          "detail": "got 'API for managing library books and borrowing.'"
+        },
+        {
+          "name": "server url",
+          "passed": true,
+          "detail": "servers=[{'url': 'https://api.citylibrary.example.com/v1', 'description': 'Production'}]"
+        },
+        {
+          "name": "Book schema has all 7 fields",
+          "passed": true,
+          "detail": "fields=['id', 'isbn', 'title', 'author', 'genre', 'availableCopies', 'totalCopies']"
+        },
+        {
+          "name": "Book required fields",
+          "passed": true,
+          "detail": "required=['id', 'isbn', 'title', 'author', 'genre', 'totalCopies', 'availableCopies']"
+        },
+        {
+          "name": "BorrowRecord.returnDate nullable true",
+          "passed": true,
+          "detail": "returnDate={'type': 'string', 'format': 'date', 'nullable': True}"
+        },
+        {
+          "name": "BorrowRecord required fields",
+          "passed": true,
+          "detail": "required=['id', 'bookId', 'borrowerName', 'borrowDate', 'dueDate']"
+        },
+        {
+          "name": "GET /books operationId listBooks",
+          "passed": true,
+          "detail": "operationId=listBooks"
+        },
+        {
+          "name": "POST /books/{bookId}/borrow operationId borrowBook",
+          "passed": true,
+          "detail": "operationId=borrowBook"
+        },
+        {
+          "name": "POST borrow requestBody borrowerName required",
+          "passed": true,
+          "detail": "required=['borrowerName']"
+        }
+      ],
+      "format": "yaml"
+    },
+    {
+      "path": "eval_results/yaml-vs-json-parsing/claude-opus-4-6/eval-7-json/output.md",
+      "eval_id": 7,
+      "passed": 7,
+      "failed": 0,
+      "total": 7,
+      "pass_rate": 1.0,
+      "checks": [
+        {
+          "name": "All 14 schemas present",
+          "passed": true,
+          "detail": "found 14 schemas: ['Address', 'CreateOrderRequest', 'CreateUserRequest', 'Dimensions', 'ErrorResponse', 'Order', 'OrderItem', 'OrderListResponse', 'Product', 'ProductListResponse', 'UpdateUserRequest', 'User', 'UserListResponse', 'UserPreferences']"
+        },
+        {
+          "name": "Schemas in alphabetical order",
+          "passed": true,
+          "detail": "order=correct"
+        },
+        {
+          "name": "First schema is Address",
+          "passed": true,
+          "detail": "first=Address"
+        },
+        {
+          "name": "User schema fields alphabetical",
+          "passed": true,
+          "detail": "fields=['age', 'createdAt', 'email', 'firstName', 'id', 'lastName', 'metadata', 'middleName', 'preferences', 'role', 'username']"
+        },
+        {
+          "name": "$ref types show schema name",
+          "passed": true,
+          "detail": "UserPreferences found"
+        },
+        {
+          "name": "Required Yes/No present",
+          "passed": true,
+          "detail": "both Yes and No found"
+        },
+        {
+          "name": "Array types formatted correctly",
+          "passed": true,
+          "detail": "array of type found"
+        }
+      ],
+      "format": "json"
+    },
+    {
+      "path": "eval_results/yaml-vs-json-parsing/claude-opus-4-6/eval-7-yaml/output.md",
+      "eval_id": 7,
+      "passed": 7,
+      "failed": 0,
+      "total": 7,
+      "pass_rate": 1.0,
+      "checks": [
+        {
+          "name": "All 14 schemas present",
+          "passed": true,
+          "detail": "found 14 schemas: ['Address', 'CreateOrderRequest', 'CreateUserRequest', 'Dimensions', 'ErrorResponse', 'Order', 'OrderItem', 'OrderListResponse', 'Product', 'ProductListResponse', 'UpdateUserRequest', 'User', 'UserListResponse', 'UserPreferences']"
+        },
+        {
+          "name": "Schemas in alphabetical order",
+          "passed": true,
+          "detail": "order=correct"
+        },
+        {
+          "name": "First schema is Address",
+          "passed": true,
+          "detail": "first=Address"
+        },
+        {
+          "name": "User schema fields alphabetical",
+          "passed": true,
+          "detail": "fields=['age', 'createdAt', 'email', 'firstName', 'id', 'lastName', 'metadata', 'middleName', 'preferences', 'role', 'username']"
+        },
+        {
+          "name": "$ref types show schema name",
+          "passed": true,
+          "detail": "UserPreferences found"
+        },
+        {
+          "name": "Required Yes/No present",
+          "passed": true,
+          "detail": "both Yes and No found"
+        },
+        {
+          "name": "Array types formatted correctly",
+          "passed": true,
+          "detail": "array of type found"
+        }
+      ],
+      "format": "yaml"
+    },
+    {
+      "path": "eval_results/yaml-vs-json-parsing/claude-opus-4-6/eval-8-json/output.json",
+      "eval_id": 8,
+      "passed": 6,
+      "failed": 0,
+      "total": 6,
+      "pass_rate": 1.0,
+      "checks": [
+        {
+          "name": "No $ref in document",
+          "passed": true,
+          "detail": "no $ref found"
+        },
+        {
+          "name": "UserListResponse.data.items has username inline",
+          "passed": true,
+          "detail": "items keys=['id', 'username', 'email', 'firstName', 'middleName']"
+        },
+        {
+          "name": "Order.items.items has productId inline",
+          "passed": true,
+          "detail": "items keys=['productId', 'quantity', 'unitPrice']"
+        },
+        {
+          "name": "Product.dimensions has width inline",
+          "passed": true,
+          "detail": "dims keys=['width', 'height', 'depth', 'weight']"
+        },
+        {
+          "name": "GET /users/{userId} 200 has User inline",
+          "passed": true,
+          "detail": "schema keys=['id', 'username', 'email', 'firstName', 'middleName']"
+        },
+        {
+          "name": "BadRequest response has ErrorResponse inline",
+          "passed": true,
+          "detail": "schema keys=['code', 'message', 'details']"
+        }
+      ],
+      "format": "json"
+    },
+    {
+      "path": "eval_results/yaml-vs-json-parsing/claude-opus-4-6/eval-8-yaml/output.yaml",
+      "eval_id": 8,
+      "passed": 6,
+      "failed": 0,
+      "total": 6,
+      "pass_rate": 1.0,
+      "checks": [
+        {
+          "name": "No $ref in document",
+          "passed": true,
+          "detail": "no $ref found"
+        },
+        {
+          "name": "UserListResponse.data.items has username inline",
+          "passed": true,
+          "detail": "items keys=['id', 'username', 'email', 'firstName', 'middleName']"
+        },
+        {
+          "name": "Order.items.items has productId inline",
+          "passed": true,
+          "detail": "items keys=['productId', 'quantity', 'unitPrice']"
+        },
+        {
+          "name": "Product.dimensions has width inline",
+          "passed": true,
+          "detail": "dims keys=['width', 'height', 'depth', 'weight']"
+        },
+        {
+          "name": "GET /users/{userId} 200 has User inline",
+          "passed": true,
+          "detail": "schema keys=['id', 'username', 'email', 'firstName', 'middleName']"
+        },
+        {
+          "name": "BadRequest response has ErrorResponse inline",
+          "passed": true,
+          "detail": "schema keys=['code', 'message', 'details']"
+        }
+      ],
+      "format": "yaml"
+    },
+    {
+      "path": "eval_results/yaml-vs-json-parsing/claude-opus-4-6/eval-9-json/output.json",
+      "eval_id": 9,
+      "passed": 10,
+      "failed": 0,
+      "total": 10,
+      "pass_rate": 1.0,
+      "checks": [
+        {
+          "name": "Payment schema has all 7 fields",
+          "passed": true,
+          "detail": "fields=['id', 'orderId', 'amount', 'currency', 'method', 'status', 'processedAt']"
+        },
+        {
+          "name": "Payment required fields",
+          "passed": true,
+          "detail": "required=['id', 'orderId', 'amount', 'currency', 'method', 'status']"
+        },
+        {
+          "name": "Refund schema has all 5 fields",
+          "passed": true,
+          "detail": "fields=['id', 'paymentId', 'amount', 'reason', 'createdAt']"
+        },
+        {
+          "name": "payments tag exists",
+          "passed": true,
+          "detail": "tags=['users', 'products', 'orders', 'payments']"
+        },
+        {
+          "name": "POST /orders/{orderId}/payments createPayment",
+          "passed": true,
+          "detail": "operationId=createPayment"
+        },
+        {
+          "name": "GET /orders/{orderId}/payments listOrderPayments",
+          "passed": true,
+          "detail": "operationId=listOrderPayments"
+        },
+        {
+          "name": "POST /payments/{paymentId}/refund refundPayment",
+          "passed": true,
+          "detail": "operationId=refundPayment"
+        },
+        {
+          "name": "All original endpoints preserved",
+          "passed": true,
+          "detail": "paths=['/users', '/users/{userId}', '/products', '/products/{productId}', '/products/legacy', '/orders', '/orders/{orderId}/payments', '/payments/{paymentId}/refund']"
+        },
+        {
+          "name": "All original schemas preserved",
+          "passed": true,
+          "detail": "schemas=['User', 'UserPreferences', 'CreateUserRequest', 'UpdateUserRequest', 'UserListResponse', 'Product', 'Dimensions', 'ProductListResponse', 'Order', 'OrderItem', 'Address', 'CreateOrderRequest', 'OrderListResponse', 'ErrorResponse', 'Payment', 'Refund']"
+        },
+        {
+          "name": "createPayment requestBody amount+method required",
+          "passed": true,
+          "detail": "required=['amount', 'method']"
+        }
+      ],
+      "format": "json"
+    },
+    {
+      "path": "eval_results/yaml-vs-json-parsing/claude-opus-4-6/eval-9-yaml/output.yaml",
+      "eval_id": 9,
+      "passed": 10,
+      "failed": 0,
+      "total": 10,
+      "pass_rate": 1.0,
+      "checks": [
+        {
+          "name": "Payment schema has all 7 fields",
+          "passed": true,
+          "detail": "fields=['id', 'orderId', 'amount', 'currency', 'method', 'status', 'processedAt']"
+        },
+        {
+          "name": "Payment required fields",
+          "passed": true,
+          "detail": "required=['id', 'orderId', 'amount', 'currency', 'method', 'status']"
+        },
+        {
+          "name": "Refund schema has all 5 fields",
+          "passed": true,
+          "detail": "fields=['id', 'paymentId', 'amount', 'reason', 'createdAt']"
+        },
+        {
+          "name": "payments tag exists",
+          "passed": true,
+          "detail": "tags=['users', 'products', 'orders', 'payments']"
+        },
+        {
+          "name": "POST /orders/{orderId}/payments createPayment",
+          "passed": true,
+          "detail": "operationId=createPayment"
+        },
+        {
+          "name": "GET /orders/{orderId}/payments listOrderPayments",
+          "passed": true,
+          "detail": "operationId=listOrderPayments"
+        },
+        {
+          "name": "POST /payments/{paymentId}/refund refundPayment",
+          "passed": true,
+          "detail": "operationId=refundPayment"
+        },
+        {
+          "name": "All original endpoints preserved",
+          "passed": true,
+          "detail": "paths=['/users', '/users/{userId}', '/products', '/products/{productId}', '/products/legacy', '/orders', '/orders/{orderId}/payments', '/payments/{paymentId}/refund']"
+        },
+        {
+          "name": "All original schemas preserved",
+          "passed": true,
+          "detail": "schemas=['User', 'UserPreferences', 'CreateUserRequest', 'UpdateUserRequest', 'UserListResponse', 'Product', 'Dimensions', 'ProductListResponse', 'Order', 'OrderItem', 'Address', 'CreateOrderRequest', 'OrderListResponse', 'ErrorResponse', 'Payment', 'Refund']"
+        },
+        {
+          "name": "createPayment requestBody amount+method required",
+          "passed": true,
+          "detail": "required=['amount', 'method']"
+        }
+      ],
+      "format": "yaml"
+    }
+  ]
+}

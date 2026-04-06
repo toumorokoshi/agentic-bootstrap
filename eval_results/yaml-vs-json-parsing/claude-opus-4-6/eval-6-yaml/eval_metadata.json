@@ -1,0 +1,6 @@
+{
+  "eval_id": 6,
+  "eval_name": "eval-6-yaml",
+  "format": "yaml",
+  "prompt": "Generate a complete, valid OpenAPI 3.0.3 specification from scratch for a Library Management API. Do NOT read any existing file. Write the spec to a file called `output` in the same format as the `openapi` file in this directory (if `openapi.yaml` exists, write YAML; if `openapi.json` exists, write JSON).\n\nThe spec must contain exactly the following:\n\ninfo:\n  - title: \"City Library API\"\n  - version: \"1.0.0\"\n  - description: \"API for managing library books and borrowing.\"\n\nservers:\n  - url: \"http"
+}

@@ -11,181 +11,113 @@ When agents need to read, mutate, and write structured data (e.g., OpenAPI specs
   - **Evals 1-3** (basic): Targeted field mutations (changing descriptions, types, enum values, adding/removing fields). 6-7 assertions each.
   - **Evals 4-14** (structural): Complex transformations including list-to-map conversion, schema generation, $ref inlining, spec merging, deep nesting manipulation, key sorting, schema deletion with ref repair, format-specific annotations, cross-format extraction to markdown, and bidirectional YAML/JSON conversion. 6-12 assertions each.
 - **Configurations**: Each eval was run once with YAML input/output and once with JSON input/output, using the same underlying OpenAPI spec content.
-- **Date**: 2026-04-04 (evals 1-3), 2026-04-05 (evals 4-14)
 
----
+## Results (claude-opus-4-6, 2026-04-06)
 
-## Results: Claude Sonnet 4.6
+Runs used `claude -p` with `--permission-mode bypassPermissions` and prompts from `evals/evals.json`. Scenarios were copied into temp directories and outputs saved to `eval_results/yaml-vs-json-parsing/claude-opus-4-6/eval-{id}-{yaml|json}/` per `eval_experiments/AGENTS.md`. Outputs were graded with `scripts/programmatic_grade.py`.
 
-**Model**: claude-sonnet-4-6 (via Claude Code subagents)
+**Overall: 217/218 assertions passed (99.5%)**
 
-| Metric        | YAML         | JSON         | Delta                    |
-| ------------- | ------------ | ------------ | ------------------------ |
-| Pass Rate     | 100% (21/21) | 100% (21/21) | +0.00                    |
-| Time (mean)   | 59.4s        | 77.1s        | -17.7s (YAML 23% faster) |
-| Tokens (mean) | 19,981       | 24,347       | -4,366 (YAML 18% fewer)  |
+| Eval                             | YAML               | JSON                | YAML Time (s) | JSON Time (s) |
+| -------------------------------- | ------------------ | ------------------- | ------------- | ------------- |
+| 1 — basic field mutations        | 6/6                | 6/6                 | 26.0          | 16.0          |
+| 2 — enum/extension changes       | 6/6                | 5/6                 | 18.9          | 22.3          |
+| 3 — info/constraint changes      | 6/6                | 6/6                 | 15.6          | 19.4          |
+| 4 — list-to-map structural       | 11/11              | 11/11               | 60.6          | 21.4          |
+| 5 — schema+endpoint addition     | 9/9                | 9/9                 | 67.6          | 25.5          |
+| 6 — spec from scratch            | 12/12              | 12/12               | 15.2          | 17.2          |
+| 7 — markdown extraction          | 7/7                | 7/7                 | 45.4          | 27.5          |
+| 8 — $ref inlining                | 6/6                | 6/6                 | 126.8         | 23.7          |
+| 9 — spec merging                 | 10/10              | 10/10               | 62.2          | 30.1          |
+| 10 — deep nesting mutations      | 7/7                | 7/7                 | 77.8          | 23.4          |
+| 11 — alphabetical key sorting    | 7/7                | 7/7                 | 22.6          | 14.0          |
+| 12 — schema deletion+ref repair  | 10/10              | 10/10               | 57.3          | 74.8          |
+| 13 — format-specific annotations | 10/10              | 10/10               | 54.1          | 34.2          |
+| 14 — cross-format conversion     | 7/7                | 7/7                 | 19.9          | 20.1          |
+| **Total**                        | **114/114 (100%)** | **103/104 (99.0%)** | **669.9**     | **369.6**     |
 
-### Per-Eval Breakdown
+**Cost (proxy for token usage):**
 
-| Eval                                      | YAML Time | JSON Time | YAML Tokens | JSON Tokens |
-| ----------------------------------------- | --------- | --------- | ----------- | ----------- |
-| 1: email format + createdAt               | 60.9s     | 76.2s     | 20,004      | 24,379      |
-| 2: order status enum + deprecated removal | 58.9s     | 75.9s     | 19,965      | 24,347      |
-| 3: title/version + username length        | 58.4s     | 79.3s     | 19,974      | 24,314      |
+| Eval                             | YAML Cost | JSON Cost | JSON/YAML |
+| -------------------------------- | --------- | --------- | --------- |
+| 1 — basic field mutations        | $0.055    | $0.133    | 2.39x     |
+| 2 — enum/extension changes       | $0.117    | $0.133    | 1.14x     |
+| 3 — info/constraint changes      | $0.112    | $0.161    | 1.43x     |
+| 4 — list-to-map structural       | $0.327    | $0.149    | 0.46x     |
+| 5 — schema+endpoint addition     | $0.283    | $0.173    | 0.61x     |
+| 6 — spec from scratch            | $0.085    | $0.126    | 1.48x     |
+| 7 — markdown extraction          | $0.155    | $0.201    | 1.30x     |
+| 8 — $ref inlining                | $0.422    | $0.160    | 0.38x     |
+| 9 — spec merging                 | $0.295    | $0.183    | 0.62x     |
+| 10 — deep nesting mutations      | $0.305    | $0.141    | 0.46x     |
+| 11 — alphabetical key sorting    | $0.166    | $0.131    | 0.79x     |
+| 12 — schema deletion+ref repair  | $0.309    | $0.354    | 1.14x     |
+| 13 — format-specific annotations | $0.289    | $0.206    | 0.71x     |
+| 14 — cross-format conversion     | $0.176    | $0.181    | 1.03x     |
+| **Total**                        | **$3.10** | **$2.43** | **0.78x** |
 
----
+**Key findings:**
 
-## Results: Gemini 2.5 Flash
+- **Accuracy**: Near-perfect on both formats. The single JSON failure (eval 2) was a dropped trailing period in a string literal — a minor transcription error, not a structural mistake.
+- **Speed**: JSON processing was 1.8x faster overall (370s vs 670s). The gap was largest on structural evals (eval 8: 24s JSON vs 127s YAML for $ref inlining). Eval 12 (schema deletion) was an exception where YAML was faster.
+- **Cost/Tokens**: JSON was 22% cheaper overall ($2.43 vs $3.10). However, the pattern split by eval complexity:
+  - **Basic evals (1-3, 6)**: JSON was _more expensive_ (1.1-2.4x), likely because the JSON spec has more raw characters (braces, quotes, commas) that inflate input tokens.
+  - **Structural evals (4-5, 8-11, 13)**: YAML was _more expensive_ (1.3-2.6x), suggesting the model needed more output tokens to write/rewrite YAML correctly for complex transformations.
+- **YAML had 100% accuracy** across all 14 evals despite taking longer and costing more.
 
-**Model**: gemini-2.5-flash (via Gemini CLI)
+Graded results: `eval_results/yaml-vs-json-parsing/programmatic_grade_claude-opus-4-6.json`
 
-| Metric      | YAML          | JSON          | Delta                                  |
-| ----------- | ------------- | ------------- | -------------------------------------- |
-| Pass Rate   | 90.5% (19/21) | 95.2% (20/21) | -4.7% (JSON slightly better)           |
-| Time (mean) | 122.4s        | 129.0s        | -6.6s (YAML slightly faster)           |
-| Tokens      | N/A           | N/A           | N/A (gemini CLI doesn't report tokens) |
+## Results (gemini-2.5-flash-lite, 2026-04-06)
 
-### Per-Eval Breakdown
+Runs used `gemini -m gemini-2.5-flash-lite` with `--approval-mode yolo` and prompts from `evals/evals.json`. Outputs graded with `scripts/programmatic_grade.py`. Evals that failed to produce output on the first pass were retried once.
 
-| Eval                                      | YAML Pass | JSON Pass | YAML Time | JSON Time |
-| ----------------------------------------- | --------- | --------- | --------- | --------- |
-| 1: email format + createdAt               | 7/7       | 7/7       | 113.8s    | 107.3s    |
-| 2: order status enum + deprecated removal | 7/7       | 6/7       | 122.8s    | 105.1s    |
-| 3: title/version + username length        | 5/7       | 7/7       | 130.7s    | 174.6s    |
+**Overall: 174/201 assertions passed (86.6%)**
 
-### Gemini 2.5 Flash Failure Details (Evals 1-3)
+| Eval                             | YAML               | JSON              | YAML Time (s) | JSON Time (s) |
+| -------------------------------- | ------------------ | ----------------- | ------------- | ------------- |
+| 1 — basic field mutations        | 6/6                | 6/6               | 59.7          | 25.2          |
+| 2 — enum/extension changes       | 6/6                | ERR               | 14.7          | —             |
+| 3 — info/constraint changes      | 6/6                | 6/6               | 23.4          | 44.1          |
+| 4 — list-to-map structural       | 10/10              | 3/10              | 91.2          | 143.1         |
+| 5 — schema+endpoint addition     | 7/8                | 8/8               | 206.7         | 57.5          |
+| 6 — spec from scratch            | 11/11              | 11/11             | 13.0          | 81.3          |
+| 7 — markdown extraction          | 7/7                | 6/7               | 40.8          | 79.8          |
+| 8 — $ref inlining                | 0/6                | 6/6               | 53.7          | 99.4          |
+| 9 — spec merging                 | 9/10               | 9/10              | 73.3          | 45.6          |
+| 10 — deep nesting mutations      | 5/6                | 5/6               | 167.3         | 48.3          |
+| 11 — alphabetical key sorting    | 7/7                | 7/7               | 15.7          | 19.1          |
+| 12 — schema deletion+ref repair  | 7/9                | 6/9               | 53.7          | 199.4         |
+| 13 — format-specific annotations | 10/10              | 10/10             | 20.8          | 63.4          |
+| 14 — cross-format conversion     | 0/1                | ERR               | 18.0          | —             |
+| **Total**                        | **91/103 (88.3%)** | **83/98 (84.7%)** | **851.6**     | **906.3**     |
 
-- **Eval 2 JSON (6/7)**: Dropped the trailing period from `"Submit a new customer order."` → `"Submit a new customer order"`. A precision error on exact string reproduction.
-- **Eval 3 YAML (5/7)**: Produced **structurally malformed YAML** — the `username` property key in `CreateUserRequest` was dropped entirely, leaving orphaned `maxLength`, `pattern`, and `description` values with no parent key. This corrupted the document structure, causing both `minLength` and `maxLength` assertions to fail.
+**Key findings:**
 
----
+- **Accuracy**: 86.6% overall — significantly lower than claude-opus-4-6 (99.5%). Common failure modes: incomplete $ref inlining (eval 8 YAML), structural mutation errors (eval 4 JSON — 3/10), and empty output files (eval 2 JSON, eval 14).
+- **Speed**: Unlike claude-opus-4-6, JSON was _not_ consistently faster. Total times were roughly similar (852s YAML vs 906s JSON). Some evals were dramatically slower in one format vs the other (eval 5: 207s YAML vs 58s JSON; eval 12: 54s YAML vs 199s JSON).
+- **Format comparison**: YAML had slightly higher accuracy (88.3% vs 84.7%) — the opposite of claude-opus-4-6 where JSON had slightly lower accuracy. Both formats had evals where the model completely failed (eval 8 YAML: 0/6, eval 4 JSON: 3/10).
+- **Reliability**: The model sometimes failed to write output files even when the API call succeeded (3/28 initial runs, resolved by retry for 2 of them). Eval 14 (format conversion) was a complete failure on both formats.
 
-## Results: Gemini 2.5 Flash — Structural Evals (4-14)
+Graded results: `eval_results/yaml-vs-json-parsing/programmatic_grade_gemini-2.5-flash-lite.json`
 
-**Model**: gemini-2.5-flash (via Gemini CLI)
-**Date**: 2026-04-05
+## Results (gemini-2.5-flash, 2026-04-06)
 
-### Execution Summary
+Runs used the `gemini` CLI with `-m gemini-2.5-flash`, `--approval-mode yolo`, and prompts from `evals/evals.json`. Scenarios were copied into `eval_results/yaml-vs-json-parsing/gemini-2.5-flash/eval-{id}-{yaml|json}/` per `eval_experiments/AGENTS.md`, and outputs were graded with `scripts/programmatic_grade.py`.
 
-| Eval | Category                      | YAML                | JSON                |
-| ---- | ----------------------------- | ------------------- | ------------------- |
-| 4    | list→map structural transform | TIMEOUT (no output) | 100% (268s)         |
-| 5    | generate new schema+endpoints | YAML parse error    | 100% (278s)         |
-| 6    | generate spec from scratch    | 100% (77s)          | 100% (45s)          |
-| 7    | extract schemas to markdown   | TIMEOUT (no output) | 100% (150s)         |
-| 8    | $ref inlining                 | 100% (300s)         | 100% (252s)         |
-| 9    | spec merging                  | 100% (154s)         | 100% (188s)         |
-| 10   | deep nesting manipulation     | 100% (300s)         | 100% (233s)         |
-| 11   | canonical key sorting         | 100% (287s)         | 100% (56s)          |
-| 12   | schema deletion + ref repair  | 100% (268s)         | 100% (134s)         |
-| 13   | format-specific annotations   | 100% (263s)         | 100% (122s)         |
-| 14   | bidirectional conversion      | 100% (245s)         | empty output (300s) |
+**API quota:** The Gemini API returned `QUOTA_EXHAUSTED` (HTTP 429) during the batch. Several runs exited with code 1 after partial tool use; some produced no `output` file. Do not treat the aggregate **60 / 80** programmatic checks as a full end-to-end score for all 14 evals.
 
-### Aggregate (Evals 4-14 only)
+**Programmatic pass rate (checks that passed / checks defined in the grader) for runs with a usable artifact:**
 
-| Metric                 | YAML                          | JSON                          | Delta                      |
-| ---------------------- | ----------------------------- | ----------------------------- | -------------------------- |
-| Pass Rate              | 73/73 gradeable checks passed | 95/96 gradeable checks passed | JSON more reliable overall |
-| Execution failures     | 3 (2 timeouts, 1 parse error) | 1 (empty output on eval 14)   | YAML less reliable         |
-| Mean time (successful) | 214s                          | 168s                          | JSON 27% faster            |
+| Eval  | YAML                                   | JSON      |
+| ----- | -------------------------------------- | --------- |
+| 1     | Invalid YAML in `output` (parse error) | 6/6       |
+| 2     | 6/6                                    | 6/6       |
+| 3     | 6/6                                    | 6/6       |
+| 4     | 10/10                                  | 10/10     |
+| 5–8   | No output                              | No output |
+| 9     | No output                              | 10/10     |
+| 10–14 | No output                              | No output |
 
-### Key Findings from Structural Evals
+Graded JSON and logs: `eval_results/yaml-vs-json-parsing/gemini-2.5-flash/programmatic_grade.json` and per-directory `gemini_run.log`. Re-run individual cases after quota resets, for example:
 
-1. **JSON is significantly more reliable for Gemini 2.5 Flash**: YAML had 3 execution failures (2 timeouts + 1 invalid YAML) vs only 1 for JSON. Combined with evals 1-3, YAML mean pass rate is 64.3% vs JSON 91.7%.
-
-2. **YAML failures cluster around the malformed `CreateUserRequest`**: Evals 2, 3, and 5 all produce invalid YAML due to the same structural issue — the `username` key under `CreateUserRequest.properties` gets dropped, leaving orphaned properties. This is the malformed region in the source `openapi.yaml` (lines 355-361) which Gemini propagates and worsens.
-
-3. **When YAML succeeds, accuracy matches JSON**: Evals 6, 8-14 all scored 100% on both formats. The complexity of the task (deep nesting, $ref inlining, spec merging) did not differentiate YAML from JSON — only the source file's structural quirks did.
-
-4. **JSON is faster**: Successful JSON runs averaged 168s vs 214s for YAML, consistent with JSON's explicit delimiters making it easier for the model to parse and regenerate.
-
-5. **Task complexity didn't predict difficulty**: The "hardest" evals ($ref inlining, spec merging, schema deletion) all scored 100%. The actual difficulty driver was format reliability, not task complexity.
-
----
-
-## Results: Gemini 2.5 Pro
-
-**Model**: gemini-2.5-pro (via Gemini CLI: `gemini -y -m gemini-2.5-pro`)
-
-**Grading**: Same six semantic checks per eval as `scripts/grade_openapi_evals.py` (24 checks total across YAML+JSON; see `eval_results/programmatic_grade_gemini-2.5-pro.json`).
-
-| Metric              | YAML          | JSON          | Delta                     |
-| ------------------- | ------------- | ------------- | ------------------------- |
-| Pass rate (6-check) | 66.7% (12/18) | 66.7% (12/18) | 0 (tie)                   |
-| Time (mean)         | 50.8s         | 97.0s         | −46.2s (YAML ~48% faster) |
-| Tokens              | N/A           | N/A           | N/A (CLI)                 |
-
-### Per-Eval Breakdown
-
-| Eval                               | YAML checks        | JSON checks        | YAML time | JSON time |
-| ---------------------------------- | ------------------ | ------------------ | --------- | --------- |
-| 1: email format + createdAt        | 0/6 (invalid YAML) | 6/6                | 62.0s     | 54.1s     |
-| 2: order status enum + deprecated  | 6/6                | 6/6                | 50.2s     | 148.9s    |
-| 3: title/version + username length | 6/6                | 0/6 (invalid JSON) | 40.3s     | 88.1s     |
-
-### Gemini 2.5 Pro failure details
-
-- **Eval 1 YAML**: **Invalid YAML** — under `CreateUserRequest.properties`, the `username` key was omitted; `maxLength` / `pattern` / `description` were left at the wrong indentation (same structural pattern as a bad region in `scenario-yaml/openapi.yaml`). PyYAML cannot parse the file.
-- **Eval 3 JSON**: **Invalid JSON** — typo on the `password` field: `"format": "password",.` (stray `.` after the comma), so the whole document fails `json.loads`.
-
----
-
-## Cross-Model Comparison
-
-### Evals 1-3 (basic mutations)
-
-|                    | Claude Sonnet 4.6 | Gemini 2.5 Flash                                    | Gemini 2.5 Pro                                           |
-| ------------------ | ----------------- | --------------------------------------------------- | -------------------------------------------------------- |
-| **YAML accuracy**  | 100% (21/21)      | 90.5% (19/21)                                       | 66.7% (12/18)\*                                          |
-| **JSON accuracy**  | 100% (21/21)      | 95.2% (20/21)                                       | 66.7% (12/18)\*                                          |
-| **YAML mean time** | 59.4s             | 122.4s                                              | 50.8s                                                    |
-| **JSON mean time** | 77.1s             | 129.0s                                              | 97.0s                                                    |
-| **YAML tokens**    | 19,981            | N/A                                                 | N/A                                                      |
-| **JSON tokens**    | 24,347            | N/A                                                 | N/A                                                      |
-| **Failure mode**   | None              | YAML: structural corruption; JSON: string precision | YAML: invalid file (eval 1); JSON: invalid file (eval 3) |
-
-\*Pro figures use the six-check programmatic grader; Flash/Claude rows use the original 7-assertion human/subagent rubric for comparability with earlier runs.
-
-### Evals 4-14 (structural transformations) — Gemini 2.5 Flash only
-
-| Metric                              | YAML                          | JSON             |
-| ----------------------------------- | ----------------------------- | ---------------- |
-| **Evals with output**               | 8/11                          | 10/11            |
-| **Accuracy (when output produced)** | 100% (73/73)                  | 99% (95/96)      |
-| **Execution failures**              | 3 (2 timeouts, 1 parse error) | 1 (empty output) |
-| **Mean time (successful)**          | 214s                          | 168s             |
-
----
-
-## Conclusions
-
-1. **Claude Sonnet 4.6 achieves perfect accuracy on both formats** (evals 1-3). 100% on all 42 assertions (21 YAML + 21 JSON). No errors of any kind.
-
-2. **For Gemini 2.5 Flash, JSON is clearly more reliable than YAML.** Across all 14 evals: JSON mean pass rate 91.7% vs YAML 64.3%. YAML failures are dominated by structural corruption (invalid YAML output), while JSON failures are minor (string precision, one empty output).
-
-3. **Task complexity is not the bottleneck — format reliability is.** The structural evals (4-14) include objectively harder tasks ($ref inlining, spec merging, schema deletion with ref repair) yet all scored 100% on both formats when output was produced. The failures were entirely about format corruption, not task comprehension.
-
-4. **YAML failures trace to a specific source file quirk.** The malformed `CreateUserRequest` region (lines 355-361 in `openapi.yaml`, where the `username` key is missing) is consistently propagated and worsened by Gemini. Evals 2, 3, and 5 all fail on YAML for this same reason. JSON's explicit braces make this issue invisible.
-
-5. **YAML is faster for Claude but JSON is faster for Gemini.** Claude: YAML 23% faster. Gemini Flash (evals 4-14): JSON 27% faster on average. This suggests YAML's conciseness helps models that handle whitespace well, but adds overhead for models that struggle with indentation.
-
-6. **YAML uses fewer tokens (Claude data).** 18% fewer tokens for YAML vs JSON, driven by format verbosity differences.
-
-7. **Gemini 2.5 Pro (evals 1-3 only) tied YAML vs JSON on pass rate but failed on different evals.** Eval 1 produced unparseable YAML; eval 3 produced unparseable JSON — the dominant failure was syntax corruption in one run each.
-
-## Recommendation
-
-**For Claude: prefer YAML.** It's faster, cheaper (fewer tokens), and just as accurate. The 23% speed improvement and 18% token savings are meaningful at scale.
-
-**For Gemini: prefer JSON.** The expanded eval set (14 evals) makes this recommendation stronger: JSON had a 91.7% mean pass rate vs 64.3% for YAML, with fewer execution failures and faster completion times. JSON's explicit delimiters provide a safety net against the structural corruption that plagues YAML output.
-
-**General principle**: The best format depends on the model's capability with whitespace-significant output. Strong models benefit from YAML's conciseness; models with weaker structural fidelity benefit from JSON's explicit delimiters. Test with your specific model before choosing.
-
-## Caveats
-
-- This eval used a single OpenAPI spec of moderate size (~625 lines YAML / ~800 lines JSON). The source YAML contains an intentional structural quirk (malformed `CreateUserRequest`) that disproportionately affects YAML outputs.
-- Only 1 run per eval per format per model (no variance measurement across repeated runs).
-- Evals 4-14 were only run on Gemini 2.5 Flash. Claude Sonnet and Gemini Pro results are limited to evals 1-3.
-- Gemini timing is noisy — some runs hit rate limit retries, and the gemini CLI agent sometimes takes longer due to internal tool-use loops.
-- Token data is unavailable for Gemini (the CLI doesn't report it in headless mode).
-- Some YAML evals timed out at 300s but may have succeeded with a longer timeout — the 300s limit was chosen pragmatically.
+`cd eval_results/yaml-vs-json-parsing/gemini-2.5-flash/eval-5-yaml && gemini -m gemini-2.5-flash -p "$(jq -r '.evals[4].prompt' ../../../../eval_experiments/yaml-vs-json-parsing/evals/evals.json)" --approval-mode yolo`

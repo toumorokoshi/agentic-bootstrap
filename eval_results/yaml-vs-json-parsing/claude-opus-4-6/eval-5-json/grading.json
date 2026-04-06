@@ -1,0 +1,50 @@
+{
+  "expectations": [
+    {
+      "text": "Review schema has all fields",
+      "passed": true,
+      "evidence": "fields=['id', 'productId', 'userId', 'rating', 'title', 'body', 'verified', 'createdAt']"
+    },
+    {
+      "text": "Review required fields",
+      "passed": true,
+      "evidence": "required=['id', 'productId', 'userId', 'rating', 'createdAt']"
+    },
+    {
+      "text": "Review.verified boolean default false",
+      "passed": true,
+      "evidence": "verified={'type': 'boolean', 'default': False, 'description': 'Whether the reviewer has purchased the product.'}"
+    },
+    {
+      "text": "ReviewListResponse.averageRating min 1 max 5",
+      "passed": true,
+      "evidence": "averageRating={'type': 'number', 'format': 'double', 'description': 'Average rating across all reviews.', 'minimum': 1, 'maximum': 5}"
+    },
+    {
+      "text": "GET /products/{productId}/reviews exists",
+      "passed": true,
+      "evidence": "operationId=listProductReviews"
+    },
+    {
+      "text": "POST /products/{productId}/reviews exists",
+      "passed": true,
+      "evidence": "operationId=createReview"
+    },
+    {
+      "text": "POST requestBody rating min 1 max 5",
+      "passed": true,
+      "evidence": "rating={'type': 'integer', 'minimum': 1, 'maximum': 5}"
+    },
+    {
+      "text": "POST requestBody rating is required",
+      "passed": true,
+      "evidence": "required=['rating']"
+    }
+  ],
+  "summary": {
+    "passed": 8,
+    "failed": 0,
+    "total": 8,
+    "pass_rate": 1.0
+  }
+}

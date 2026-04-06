@@ -1,0 +1,6 @@
+{
+  "eval_id": 3,
+  "eval_name": "eval-3-yaml",
+  "format": "yaml",
+  "prompt": "You are given an OpenAPI specification file in this directory called `openapi`. Read it carefully, then make the following mutations and write the result to `output`:\n\n1. Change the API title in the `info` block to: \"Acme Commerce Platform API\".\n2. Change the API version in the `info` block to: \"2.0.0\".\n3. Change the description of the `productId` path parameter on `GET /products/{productId}` to: \"The globally unique identifier of the product.\"\n4. Change the `minLength` of the `username` field i"
+}

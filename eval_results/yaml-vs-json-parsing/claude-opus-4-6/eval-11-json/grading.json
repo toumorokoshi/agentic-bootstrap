@@ -1,0 +1,45 @@
+{
+  "expectations": [
+    {
+      "text": "Top-level keys sorted",
+      "passed": true,
+      "evidence": "keys=['components', 'info', 'openapi', 'paths', 'security', 'servers', 'tags']"
+    },
+    {
+      "text": "info keys sorted",
+      "passed": true,
+      "evidence": "keys=['contact', 'description', 'license', 'title', 'version']"
+    },
+    {
+      "text": "path keys sorted",
+      "passed": true,
+      "evidence": "keys=['/orders', '/products', '/products/legacy', '/products/{productId}', '/users', '/users/{userId}']"
+    },
+    {
+      "text": "User schema keys sorted",
+      "passed": true,
+      "evidence": "keys=['properties', 'required', 'type']"
+    },
+    {
+      "text": "User properties keys sorted",
+      "passed": true,
+      "evidence": "keys=['age', 'createdAt', 'email', 'firstName', 'id', 'lastName', 'metadata', 'middleName', 'preferences', 'role', 'username']"
+    },
+    {
+      "text": "All original schemas present (semantic equiv)",
+      "passed": true,
+      "evidence": "schemas=['Address', 'CreateOrderRequest', 'CreateUserRequest', 'Dimensions', 'ErrorResponse', 'Order', 'OrderItem', 'OrderListResponse', 'Product', 'ProductListResponse', 'UpdateUserRequest', 'User', 'UserListResponse', 'UserPreferences']"
+    },
+    {
+      "text": "All original paths present",
+      "passed": true,
+      "evidence": "paths=['/orders', '/products', '/products/legacy', '/products/{productId}', '/users', '/users/{userId}']"
+    }
+  ],
+  "summary": {
+    "passed": 7,
+    "failed": 0,
+    "total": 7,
+    "pass_rate": 1.0
+  }
+}

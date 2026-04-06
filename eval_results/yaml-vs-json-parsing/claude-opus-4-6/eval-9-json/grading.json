@@ -1,0 +1,60 @@
+{
+  "expectations": [
+    {
+      "text": "Payment schema has all 7 fields",
+      "passed": true,
+      "evidence": "fields=['id', 'orderId', 'amount', 'currency', 'method', 'status', 'processedAt']"
+    },
+    {
+      "text": "Payment required fields",
+      "passed": true,
+      "evidence": "required=['id', 'orderId', 'amount', 'currency', 'method', 'status']"
+    },
+    {
+      "text": "Refund schema has all 5 fields",
+      "passed": true,
+      "evidence": "fields=['id', 'paymentId', 'amount', 'reason', 'createdAt']"
+    },
+    {
+      "text": "payments tag exists",
+      "passed": true,
+      "evidence": "tags=['users', 'products', 'orders', 'payments']"
+    },
+    {
+      "text": "POST /orders/{orderId}/payments createPayment",
+      "passed": true,
+      "evidence": "operationId=createPayment"
+    },
+    {
+      "text": "GET /orders/{orderId}/payments listOrderPayments",
+      "passed": true,
+      "evidence": "operationId=listOrderPayments"
+    },
+    {
+      "text": "POST /payments/{paymentId}/refund refundPayment",
+      "passed": true,
+      "evidence": "operationId=refundPayment"
+    },
+    {
+      "text": "All original endpoints preserved",
+      "passed": true,
+      "evidence": "paths=['/users', '/users/{userId}', '/products', '/products/{productId}', '/products/legacy', '/orders', '/orders/{orderId}/payments', '/payments/{paymentId}/refund']"
+    },
+    {
+      "text": "All original schemas preserved",
+      "passed": true,
+      "evidence": "schemas=['User', 'UserPreferences', 'CreateUserRequest', 'UpdateUserRequest', 'UserListResponse', 'Product', 'Dimensions', 'ProductListResponse', 'Order', 'OrderItem', 'Address', 'CreateOrderRequest', 'OrderListResponse', 'ErrorResponse', 'Payment', 'Refund']"
+    },
+    {
+      "text": "createPayment requestBody amount+method required",
+      "passed": true,
+      "evidence": "required=['amount', 'method']"
+    }
+  ],
+  "summary": {
+    "passed": 10,
+    "failed": 0,
+    "total": 10,
+    "pass_rate": 1.0
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "session_id": "c6c71633-6e37-4c87-aa9a-ba965f130f37",
+  "response": "The OpenAPI specification has been updated with the new schemas and endpoints and saved to `output`.",
+  "stats": {
+    "models": {
+      "gemini-2.5-flash-lite": {
+        "api": {
+          "totalRequests": 5,
+          "totalErrors": 0,
+          "totalLatencyMs": 52685
+        },
+        "tokens": {
+          "input": 16098,
+          "prompt": 111527,
+          "candidates": 8047,
+          "total": 119809,
+          "cached": 95429,
+          "thoughts": 235,
+          "tool": 0
+        },
+        "roles": {
+          "main": {
+            "totalRequests": 5,
+            "totalErrors": 0,
+            "totalLatencyMs": 52685,
+            "tokens": {
+              "input": 16098,
+              "prompt": 111527,
+              "candidates": 8047,
+              "total": 119809,
+              "cached": 95429,
+              "thoughts": 235,
+              "tool": 0
+            }
+          }
+        }
+      }
+    },
+    "tools": {
+      "totalCalls": 2,
+      "totalSuccess": 2,
+      "totalFail": 0,
+      "totalDurationMs": 15,
+      "totalDecisions": {
+        "accept": 2,
+        "reject": 0,
+        "modify": 0,
+        "auto_accept": 0
+      },
+      "byName": {
+        "read_file": {
+          "count": 1,
+          "success": 1,
+          "fail": 0,
+          "durationMs": 5,
+          "decisions": {
+            "accept": 1,
+            "reject": 0,
+            "modify": 0,
+            "auto_accept": 0
+          }
+        },
+        "write_file": {
+          "count": 1,
+          "success": 1,
+          "fail": 0,
+          "durationMs": 10,
+          "decisions": {
+            "accept": 1,
+            "reject": 0,
+            "modify": 0,
+            "auto_accept": 0
+          }
+        }
+      }
+    },
+    "files": {
+      "totalLinesAdded": 1145,
+      "totalLinesRemoved": 0
+    }
+  }
+}

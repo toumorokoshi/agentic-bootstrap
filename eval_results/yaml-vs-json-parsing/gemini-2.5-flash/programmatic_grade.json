@@ -1,0 +1,738 @@
+{
+  "root": "/home/yusuke/workspace/agentic-bootstrap/eval_results/yaml-vs-json-parsing/gemini-2.5-flash",
+  "assertions_passed": 60,
+  "assertions_total": 80,
+  "overall_pass_rate": 0.75,
+  "yaml_mean_pass_rate": 0.21428571428571427,
+  "json_mean_pass_rate": 0.35714285714285715,
+  "runs": [
+    {
+      "path": "eval_results/yaml-vs-json-parsing/gemini-2.5-flash/eval-1-json/output",
+      "eval_id": 1,
+      "passed": 6,
+      "failed": 0,
+      "total": 6,
+      "pass_rate": 1.0,
+      "checks": [
+        {
+          "name": "GET /users/{userId} description",
+          "passed": true,
+          "detail": "got 'Retrieves a single user by their unique identifier.'"
+        },
+        {
+          "name": "User.email format email",
+          "passed": true,
+          "detail": "format='email'"
+        },
+        {
+          "name": "User.age type number",
+          "passed": true,
+          "detail": "type='number'"
+        },
+        {
+          "name": "createdAt type + date-time",
+          "passed": true,
+          "detail": "{'type': 'string', 'format': 'date-time', 'description': 'The date and time the user was created.'}"
+        },
+        {
+          "name": "createdAt in User.required",
+          "passed": true,
+          "detail": "required=['id', 'username', 'email', 'age', 'role', 'createdAt']"
+        },
+        {
+          "name": "GET /users limit description",
+          "passed": true,
+          "detail": "got 'Maximum number of users to return per page.'"
+        }
+      ],
+      "format": "json"
+    },
+    {
+      "path": "eval_results/yaml-vs-json-parsing/gemini-2.5-flash/eval-1-yaml/output",
+      "eval_id": 1,
+      "error": "while parsing a block mapping\n  in \"<unicode string>\", line 109, column 7:\n          operationId: \"getUser\"\n          ^\nexpected <block end>, but found '<scalar>'\n  in \"<unicode string>\", line 111, column 79:\n     ...  their unique identifier!\"      tags: [\"users\"]\n                                         ^",
+      "passed": 0,
+      "failed": 1,
+      "total": 1,
+      "pass_rate": 0.0,
+      "checks": [
+        {
+          "name": "document parses (YAML/JSON)",
+          "passed": false,
+          "detail": "while parsing a block mapping\n  in \"<unicode string>\", line 109, column 7:\n          operationId: \"getUser\"\n          ^\nexpected <block end>, but found '<scalar>'\n  in \"<unicode string>\", line 111, column 79:\n     ...  their unique identifier!\"      tags: [\"users\"]\n                                         ^"
+        }
+      ],
+      "format": "yaml"
+    },
+    {
+      "path": "eval_results/yaml-vs-json-parsing/gemini-2.5-flash/eval-10-json",
+      "eval_id": 10,
+      "error": "No output file found",
+      "passed": 0,
+      "failed": 1,
+      "total": 1,
+      "pass_rate": 0.0,
+      "checks": [
+        {
+          "name": "output file exists",
+          "passed": false,
+          "detail": "No output file found"
+        }
+      ],
+      "format": "json"
+    },
+    {
+      "path": "eval_results/yaml-vs-json-parsing/gemini-2.5-flash/eval-10-yaml",
+      "eval_id": 10,
+      "error": "No output file found",
+      "passed": 0,
+      "failed": 1,
+      "total": 1,
+      "pass_rate": 0.0,
+      "checks": [
+        {
+          "name": "output file exists",
+          "passed": false,
+          "detail": "No output file found"
+        }
+      ],
+      "format": "yaml"
+    },
+    {
+      "path": "eval_results/yaml-vs-json-parsing/gemini-2.5-flash/eval-11-json",
+      "eval_id": 11,
+      "error": "No output file found",
+      "passed": 0,
+      "failed": 1,
+      "total": 1,
+      "pass_rate": 0.0,
+      "checks": [
+        {
+          "name": "output file exists",
+          "passed": false,
+          "detail": "No output file found"
+        }
+      ],
+      "format": "json"
+    },
+    {
+      "path": "eval_results/yaml-vs-json-parsing/gemini-2.5-flash/eval-11-yaml",
+      "eval_id": 11,
+      "error": "No output file found",
+      "passed": 0,
+      "failed": 1,
+      "total": 1,
+      "pass_rate": 0.0,
+      "checks": [
+        {
+          "name": "output file exists",
+          "passed": false,
+          "detail": "No output file found"
+        }
+      ],
+      "format": "yaml"
+    },
+    {
+      "path": "eval_results/yaml-vs-json-parsing/gemini-2.5-flash/eval-12-json",
+      "eval_id": 12,
+      "error": "No output file found",
+      "passed": 0,
+      "failed": 1,
+      "total": 1,
+      "pass_rate": 0.0,
+      "checks": [
+        {
+          "name": "output file exists",
+          "passed": false,
+          "detail": "No output file found"
+        }
+      ],
+      "format": "json"
+    },
+    {
+      "path": "eval_results/yaml-vs-json-parsing/gemini-2.5-flash/eval-12-yaml",
+      "eval_id": 12,
+      "error": "No output file found",
+      "passed": 0,
+      "failed": 1,
+      "total": 1,
+      "pass_rate": 0.0,
+      "checks": [
+        {
+          "name": "output file exists",
+          "passed": false,
+          "detail": "No output file found"
+        }
+      ],
+      "format": "yaml"
+    },
+    {
+      "path": "eval_results/yaml-vs-json-parsing/gemini-2.5-flash/eval-13-json",
+      "eval_id": 13,
+      "error": "No output file found",
+      "passed": 0,
+      "failed": 1,
+      "total": 1,
+      "pass_rate": 0.0,
+      "checks": [
+        {
+          "name": "output file exists",
+          "passed": false,
+          "detail": "No output file found"
+        }
+      ],
+      "format": "json"
+    },
+    {
+      "path": "eval_results/yaml-vs-json-parsing/gemini-2.5-flash/eval-13-yaml",
+      "eval_id": 13,
+      "error": "No output file found",
+      "passed": 0,
+      "failed": 1,
+      "total": 1,
+      "pass_rate": 0.0,
+      "checks": [
+        {
+          "name": "output file exists",
+          "passed": false,
+          "detail": "No output file found"
+        }
+      ],
+      "format": "yaml"
+    },
+    {
+      "path": "eval_results/yaml-vs-json-parsing/gemini-2.5-flash/eval-14-json",
+      "eval_id": 14,
+      "error": "No output file found",
+      "passed": 0,
+      "failed": 1,
+      "total": 1,
+      "pass_rate": 0.0,
+      "checks": [
+        {
+          "name": "output file exists",
+          "passed": false,
+          "detail": "No output file found"
+        }
+      ],
+      "format": "json"
+    },
+    {
+      "path": "eval_results/yaml-vs-json-parsing/gemini-2.5-flash/eval-14-yaml",
+      "eval_id": 14,
+      "error": "No output file found",
+      "passed": 0,
+      "failed": 1,
+      "total": 1,
+      "pass_rate": 0.0,
+      "checks": [
+        {
+          "name": "output file exists",
+          "passed": false,
+          "detail": "No output file found"
+        }
+      ],
+      "format": "yaml"
+    },
+    {
+      "path": "eval_results/yaml-vs-json-parsing/gemini-2.5-flash/eval-2-json/output.json",
+      "eval_id": 2,
+      "passed": 6,
+      "failed": 0,
+      "total": 6,
+      "pass_rate": 1.0,
+      "checks": [
+        {
+          "name": "POST /orders summary exact",
+          "passed": true,
+          "detail": "got 'Submit a new customer order.' expected 'Submit a new customer order.'"
+        },
+        {
+          "name": "OrderItem.quantity type number",
+          "passed": true,
+          "detail": "type='number'"
+        },
+        {
+          "name": "OrderItem.quantity minimum 0.1",
+          "passed": true,
+          "detail": "minimum=0.1"
+        },
+        {
+          "name": "GET /products/legacy no deprecated",
+          "passed": true,
+          "detail": "ok"
+        },
+        {
+          "name": "Order.status enum exact",
+          "passed": true,
+          "detail": "got ['pending', 'confirmed', 'in_transit', 'fulfilled', 'cancelled']"
+        },
+        {
+          "name": "DELETE /users/{userId} x-internal",
+          "passed": true,
+          "detail": "x-internal=True"
+        }
+      ],
+      "format": "json"
+    },
+    {
+      "path": "eval_results/yaml-vs-json-parsing/gemini-2.5-flash/eval-2-yaml/output.yaml",
+      "eval_id": 2,
+      "passed": 6,
+      "failed": 0,
+      "total": 6,
+      "pass_rate": 1.0,
+      "checks": [
+        {
+          "name": "POST /orders summary exact",
+          "passed": true,
+          "detail": "got 'Submit a new customer order.' expected 'Submit a new customer order.'"
+        },
+        {
+          "name": "OrderItem.quantity type number",
+          "passed": true,
+          "detail": "type='number'"
+        },
+        {
+          "name": "OrderItem.quantity minimum 0.1",
+          "passed": true,
+          "detail": "minimum=0.1"
+        },
+        {
+          "name": "GET /products/legacy no deprecated",
+          "passed": true,
+          "detail": "ok"
+        },
+        {
+          "name": "Order.status enum exact",
+          "passed": true,
+          "detail": "got ['pending', 'confirmed', 'in_transit', 'fulfilled', 'cancelled']"
+        },
+        {
+          "name": "DELETE /users/{userId} x-internal",
+          "passed": true,
+          "detail": "x-internal=True"
+        }
+      ],
+      "format": "yaml"
+    },
+    {
+      "path": "eval_results/yaml-vs-json-parsing/gemini-2.5-flash/eval-3-json/output",
+      "eval_id": 3,
+      "passed": 6,
+      "failed": 0,
+      "total": 6,
+      "pass_rate": 1.0,
+      "checks": [
+        {
+          "name": "info.title",
+          "passed": true,
+          "detail": "got 'Acme Commerce Platform API'"
+        },
+        {
+          "name": "info.version",
+          "passed": true,
+          "detail": "got '2.0.0'"
+        },
+        {
+          "name": "productId parameter description",
+          "passed": true,
+          "detail": "got 'The globally unique identifier of the product.'"
+        },
+        {
+          "name": "CreateUserRequest.username minLength",
+          "passed": true,
+          "detail": "minLength=5"
+        },
+        {
+          "name": "CreateUserRequest.username maxLength",
+          "passed": true,
+          "detail": "maxLength=32"
+        },
+        {
+          "name": "User.middleName nullable true",
+          "passed": true,
+          "detail": "nullable=True"
+        }
+      ],
+      "format": "json"
+    },
+    {
+      "path": "eval_results/yaml-vs-json-parsing/gemini-2.5-flash/eval-3-yaml/output",
+      "eval_id": 3,
+      "passed": 6,
+      "failed": 0,
+      "total": 6,
+      "pass_rate": 1.0,
+      "checks": [
+        {
+          "name": "info.title",
+          "passed": true,
+          "detail": "got 'Acme Commerce Platform API'"
+        },
+        {
+          "name": "info.version",
+          "passed": true,
+          "detail": "got '2.0.0'"
+        },
+        {
+          "name": "productId parameter description",
+          "passed": true,
+          "detail": "got 'The globally unique identifier of the product.'"
+        },
+        {
+          "name": "CreateUserRequest.username minLength",
+          "passed": true,
+          "detail": "minLength=5"
+        },
+        {
+          "name": "CreateUserRequest.username maxLength",
+          "passed": true,
+          "detail": "maxLength=32"
+        },
+        {
+          "name": "User.middleName nullable true",
+          "passed": true,
+          "detail": "nullable=True"
+        }
+      ],
+      "format": "yaml"
+    },
+    {
+      "path": "eval_results/yaml-vs-json-parsing/gemini-2.5-flash/eval-4-json/output",
+      "eval_id": 4,
+      "passed": 10,
+      "failed": 0,
+      "total": 10,
+      "pass_rate": 1.0,
+      "checks": [
+        {
+          "name": "Product.tagMap type object with additionalProperties.type string",
+          "passed": true,
+          "detail": "tagMap={'type': 'object', 'description': 'Key-value pairs of tag categories to tag values.', 'additionalProperties': {'type': 'string'}}"
+        },
+        {
+          "name": "Product no tags field",
+          "passed": true,
+          "detail": "ok"
+        },
+        {
+          "name": "Order.lineItems additionalProperties.$ref OrderItem",
+          "passed": true,
+          "detail": "lineItems={'type': 'object', 'description': 'Map of product IDs to order line items.', 'additionalProperties': {'$ref': '#/components/schemas/OrderItem'}}"
+        },
+        {
+          "name": "Order no items field",
+          "passed": true,
+          "detail": "ok"
+        },
+        {
+          "name": "Order required has lineItems not items",
+          "passed": true,
+          "detail": "required=['id', 'userId', 'status', 'total', 'lineItems']"
+        },
+        {
+          "name": "UserListResponse.users additionalProperties.$ref User",
+          "passed": true,
+          "detail": "users={'type': 'object', 'description': 'Map of user IDs to user objects.', 'additionalProperties': {'$ref': '#/components/schemas/User'}}"
+        },
+        {
+          "name": "UserListResponse no data field",
+          "passed": true,
+          "detail": "ok"
+        },
+        {
+          "name": "UserListResponse required has users not data",
+          "passed": true,
+          "detail": "required=['total', 'limit', 'offset', 'users']"
+        },
+        {
+          "name": "User.role oneOf with 4 entries",
+          "passed": true,
+          "detail": "oneOf=[{'const': 'admin', 'title': 'Admin'}, {'const': 'moderator', 'title': 'Moderator'}, {'const': 'user', 'title': 'User'}, {'const': 'guest', 'title': 'Guest'}]"
+        },
+        {
+          "name": "User.role no enum key",
+          "passed": true,
+          "detail": "ok"
+        }
+      ],
+      "format": "json"
+    },
+    {
+      "path": "eval_results/yaml-vs-json-parsing/gemini-2.5-flash/eval-4-yaml/output.yaml",
+      "eval_id": 4,
+      "passed": 10,
+      "failed": 0,
+      "total": 10,
+      "pass_rate": 1.0,
+      "checks": [
+        {
+          "name": "Product.tagMap type object with additionalProperties.type string",
+          "passed": true,
+          "detail": "tagMap={'type': 'object', 'additionalProperties': {'type': 'string'}, 'description': 'Key-value pairs of tag categories to tag values.'}"
+        },
+        {
+          "name": "Product no tags field",
+          "passed": true,
+          "detail": "ok"
+        },
+        {
+          "name": "Order.lineItems additionalProperties.$ref OrderItem",
+          "passed": true,
+          "detail": "lineItems={'type': 'object', 'additionalProperties': {'$ref': '#/components/schemas/OrderItem'}, 'description': 'Map of product IDs to order line items.'}"
+        },
+        {
+          "name": "Order no items field",
+          "passed": true,
+          "detail": "ok"
+        },
+        {
+          "name": "Order required has lineItems not items",
+          "passed": true,
+          "detail": "required=['id', 'userId', 'lineItems', 'status', 'total']"
+        },
+        {
+          "name": "UserListResponse.users additionalProperties.$ref User",
+          "passed": true,
+          "detail": "users={'type': 'object', 'additionalProperties': {'$ref': '#/components/schemas/User'}, 'description': 'Map of user IDs to user objects.'}"
+        },
+        {
+          "name": "UserListResponse no data field",
+          "passed": true,
+          "detail": "ok"
+        },
+        {
+          "name": "UserListResponse required has users not data",
+          "passed": true,
+          "detail": "required=['users', 'total', 'limit', 'offset']"
+        },
+        {
+          "name": "User.role oneOf with 4 entries",
+          "passed": true,
+          "detail": "oneOf=[{'const': 'admin', 'title': 'Admin'}, {'const': 'moderator', 'title': 'Moderator'}, {'const': 'user', 'title': 'User'}, {'const': 'guest', 'title': 'Guest'}]"
+        },
+        {
+          "name": "User.role no enum key",
+          "passed": true,
+          "detail": "ok"
+        }
+      ],
+      "format": "yaml"
+    },
+    {
+      "path": "eval_results/yaml-vs-json-parsing/gemini-2.5-flash/eval-5-json",
+      "eval_id": 5,
+      "error": "No output file found",
+      "passed": 0,
+      "failed": 1,
+      "total": 1,
+      "pass_rate": 0.0,
+      "checks": [
+        {
+          "name": "output file exists",
+          "passed": false,
+          "detail": "No output file found"
+        }
+      ],
+      "format": "json"
+    },
+    {
+      "path": "eval_results/yaml-vs-json-parsing/gemini-2.5-flash/eval-5-yaml",
+      "eval_id": 5,
+      "error": "No output file found",
+      "passed": 0,
+      "failed": 1,
+      "total": 1,
+      "pass_rate": 0.0,
+      "checks": [
+        {
+          "name": "output file exists",
+          "passed": false,
+          "detail": "No output file found"
+        }
+      ],
+      "format": "yaml"
+    },
+    {
+      "path": "eval_results/yaml-vs-json-parsing/gemini-2.5-flash/eval-6-json",
+      "eval_id": 6,
+      "error": "No output file found",
+      "passed": 0,
+      "failed": 1,
+      "total": 1,
+      "pass_rate": 0.0,
+      "checks": [
+        {
+          "name": "output file exists",
+          "passed": false,
+          "detail": "No output file found"
+        }
+      ],
+      "format": "json"
+    },
+    {
+      "path": "eval_results/yaml-vs-json-parsing/gemini-2.5-flash/eval-6-yaml",
+      "eval_id": 6,
+      "error": "No output file found",
+      "passed": 0,
+      "failed": 1,
+      "total": 1,
+      "pass_rate": 0.0,
+      "checks": [
+        {
+          "name": "output file exists",
+          "passed": false,
+          "detail": "No output file found"
+        }
+      ],
+      "format": "yaml"
+    },
+    {
+      "path": "eval_results/yaml-vs-json-parsing/gemini-2.5-flash/eval-7-json",
+      "eval_id": 7,
+      "error": "No output file found",
+      "passed": 0,
+      "failed": 1,
+      "total": 1,
+      "pass_rate": 0.0,
+      "checks": [
+        {
+          "name": "output file exists",
+          "passed": false,
+          "detail": "No output file found"
+        }
+      ],
+      "format": "json"
+    },
+    {
+      "path": "eval_results/yaml-vs-json-parsing/gemini-2.5-flash/eval-7-yaml",
+      "eval_id": 7,
+      "error": "No output file found",
+      "passed": 0,
+      "failed": 1,
+      "total": 1,
+      "pass_rate": 0.0,
+      "checks": [
+        {
+          "name": "output file exists",
+          "passed": false,
+          "detail": "No output file found"
+        }
+      ],
+      "format": "yaml"
+    },
+    {
+      "path": "eval_results/yaml-vs-json-parsing/gemini-2.5-flash/eval-8-json",
+      "eval_id": 8,
+      "error": "No output file found",
+      "passed": 0,
+      "failed": 1,
+      "total": 1,
+      "pass_rate": 0.0,
+      "checks": [
+        {
+          "name": "output file exists",
+          "passed": false,
+          "detail": "No output file found"
+        }
+      ],
+      "format": "json"
+    },
+    {
+      "path": "eval_results/yaml-vs-json-parsing/gemini-2.5-flash/eval-8-yaml",
+      "eval_id": 8,
+      "error": "No output file found",
+      "passed": 0,
+      "failed": 1,
+      "total": 1,
+      "pass_rate": 0.0,
+      "checks": [
+        {
+          "name": "output file exists",
+          "passed": false,
+          "detail": "No output file found"
+        }
+      ],
+      "format": "yaml"
+    },
+    {
+      "path": "eval_results/yaml-vs-json-parsing/gemini-2.5-flash/eval-9-json/output",
+      "eval_id": 9,
+      "passed": 10,
+      "failed": 0,
+      "total": 10,
+      "pass_rate": 1.0,
+      "checks": [
+        {
+          "name": "Payment schema has all 7 fields",
+          "passed": true,
+          "detail": "fields=['id', 'orderId', 'amount', 'currency', 'method', 'status', 'processedAt']"
+        },
+        {
+          "name": "Payment required fields",
+          "passed": true,
+          "detail": "required=['id', 'orderId', 'amount', 'currency', 'method', 'status']"
+        },
+        {
+          "name": "Refund schema has all 5 fields",
+          "passed": true,
+          "detail": "fields=['id', 'paymentId', 'amount', 'reason', 'createdAt']"
+        },
+        {
+          "name": "payments tag exists",
+          "passed": true,
+          "detail": "tags=['users', 'products', 'orders', 'payments']"
+        },
+        {
+          "name": "POST /orders/{orderId}/payments createPayment",
+          "passed": true,
+          "detail": "operationId=createPayment"
+        },
+        {
+          "name": "GET /orders/{orderId}/payments listOrderPayments",
+          "passed": true,
+          "detail": "operationId=listOrderPayments"
+        },
+        {
+          "name": "POST /payments/{paymentId}/refund refundPayment",
+          "passed": true,
+          "detail": "operationId=refundPayment"
+        },
+        {
+          "name": "All original endpoints preserved",
+          "passed": true,
+          "detail": "paths=['/users', '/users/{userId}', '/products', '/products/{productId}', '/products/legacy', '/orders', '/orders/{orderId}/payments', '/payments/{paymentId}/refund']"
+        },
+        {
+          "name": "All original schemas preserved",
+          "passed": true,
+          "detail": "schemas=['User', 'UserPreferences', 'CreateUserRequest', 'UpdateUserRequest', 'UserListResponse', 'Product', 'Dimensions', 'ProductListResponse', 'Order', 'OrderItem', 'Address', 'CreateOrderRequest', 'OrderListResponse', 'ErrorResponse', 'Payment', 'Refund']"
+        },
+        {
+          "name": "createPayment requestBody amount+method required",
+          "passed": true,
+          "detail": "required=['amount', 'method']"
+        }
+      ],
+      "format": "json"
+    },
+    {
+      "path": "eval_results/yaml-vs-json-parsing/gemini-2.5-flash/eval-9-yaml",
+      "eval_id": 9,
+      "error": "No output file found",
+      "passed": 0,
+      "failed": 1,
+      "total": 1,
+      "pass_rate": 0.0,
+      "checks": [
+        {
+          "name": "output file exists",
+          "passed": false,
+          "detail": "No output file found"
+        }
+      ],
+      "format": "yaml"
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "eval_id": 5,
+  "eval_name": "eval-5-yaml",
+  "format": "yaml",
+  "prompt": "You are given an OpenAPI specification file in this directory called `openapi`. Read it carefully, then ADD the following new schemas and endpoints, and write the result to `output`:\n\n1. Add a new schema `Review` under `components/schemas` with the following properties:\n   - `id`: type `string`, format `uuid`, readOnly `true`\n   - `productId`: type `string`, format `uuid`\n   - `userId`: type `string`, format `uuid`\n   - `rating`: type `integer`, minimum `1`, maximum `5`\n   - `title`: type `strin"
+}

@@ -1,0 +1,82 @@
+{
+  "session_id": "a717bb0c-5aff-4dbe-869a-b6c3e0a52cca",
+  "response": "The requested mutations have been successfully applied to the OpenAPI specification and the resulting file has been saved to `/tmp/yaml-vs-json-eval-gemini/eval-2-json/output`.",
+  "stats": {
+    "models": {
+      "gemini-3.1-flash-lite-preview": {
+        "api": {
+          "totalRequests": 3,
+          "totalErrors": 0,
+          "totalLatencyMs": 16189
+        },
+        "tokens": {
+          "input": 22967,
+          "prompt": 50201,
+          "candidates": 6503,
+          "total": 56704,
+          "cached": 27234,
+          "thoughts": 0,
+          "tool": 0
+        },
+        "roles": {
+          "main": {
+            "totalRequests": 3,
+            "totalErrors": 0,
+            "totalLatencyMs": 16189,
+            "tokens": {
+              "input": 22967,
+              "prompt": 50201,
+              "candidates": 6503,
+              "total": 56704,
+              "cached": 27234,
+              "thoughts": 0,
+              "tool": 0
+            }
+          }
+        }
+      }
+    },
+    "tools": {
+      "totalCalls": 2,
+      "totalSuccess": 2,
+      "totalFail": 0,
+      "totalDurationMs": 16,
+      "totalDecisions": {
+        "accept": 2,
+        "reject": 0,
+        "modify": 0,
+        "auto_accept": 0
+      },
+      "byName": {
+        "read_file": {
+          "count": 1,
+          "success": 1,
+          "fail": 0,
+          "durationMs": 4,
+          "decisions": {
+            "accept": 1,
+            "reject": 0,
+            "modify": 0,
+            "auto_accept": 0
+          }
+        },
+        "write_file": {
+          "count": 1,
+          "success": 1,
+          "fail": 0,
+          "durationMs": 12,
+          "decisions": {
+            "accept": 1,
+            "reject": 0,
+            "modify": 0,
+            "auto_accept": 0
+          }
+        }
+      }
+    },
+    "files": {
+      "totalLinesAdded": 973,
+      "totalLinesRemoved": 0
+    }
+  }
+}

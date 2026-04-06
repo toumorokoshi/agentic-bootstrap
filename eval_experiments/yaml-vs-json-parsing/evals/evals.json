@@ -4,85 +4,220 @@
     {
       "id": "1",
       "prompt": "You are given an OpenAPI specification file in this directory called `openapi`. Read it carefully, then make the following mutations and write the result to `output`:\n\n1. Change the description of the `GET /users/{userId}` endpoint to: \"Retrieves a single user by their unique identifier.\"\n2. Change the type of the `email` field in the `User` schema from `string` to `string` with format `email`.\n3. Change the type of the `age` field in the `User` schema from `integer` to `number`.\n4. Add a new required field `createdAt` of type `string` with format `date-time` to the `User` schema.\n5. Change the `GET /users` endpoint's `limit` query parameter description to: \"Maximum number of users to return per page.\"\n\nWrite the mutated spec to a file called `output` in the same format as the input (preserve the format).",
-      "expected_output": "1. The output file exists in the scenario directory.\n2. The description of GET /users/{userId} is exactly: \"Retrieves a single user by their unique identifier.\"\n3. The `email` field in the User schema has format `email`.\n4. The `age` field in the User schema has type `number` (not `integer`).\n5. The `createdAt` field is present in the User schema with type `string` and format `date-time`.\n6. The `createdAt` field is listed as required in the User schema.\n7. The `limit` query parameter description on GET /users is exactly: \"Maximum number of users to return per page.\"",
+      "expected_output": [
+        "1. The output file exists in the scenario directory.",
+        "2. The description of GET /users/{userId} is exactly: \"Retrieves a single user by their unique identifier.\"",
+        "3. The `email` field in the User schema has format `email`.",
+        "4. The `age` field in the User schema has type `number` (not `integer`).",
+        "5. The `createdAt` field is present in the User schema with type `string` and format `date-time`.",
+        "6. The `createdAt` field is listed as required in the User schema.",
+        "7. The `limit` query parameter description on GET /users is exactly: \"Maximum number of users to return per page.\""
+      ],
       "files": []
     },
     {
       "id": "2",
       "prompt": "You are given an OpenAPI specification file in this directory called `openapi`. Read it carefully, then make the following mutations and write the result to `output`:\n\n1. Change the `summary` of the `POST /orders` endpoint to: \"Submit a new customer order.\"\n2. Change the type of the `quantity` field in the `OrderItem` schema from `integer` to `number` with minimum `0.1`.\n3. Remove the `deprecated: true` flag from the `GET /products/legacy` endpoint entirely.\n4. Change the `status` field enum values in the `Order` schema from `[\"pending\", \"processing\", \"shipped\", \"delivered\"]` to `[\"pending\", \"confirmed\", \"in_transit\", \"fulfilled\", \"cancelled\"]`.\n5. Add a `x-internal: true` extension to the `DELETE /users/{userId}` endpoint.\n\nWrite the mutated spec to a file called `output` in the same format as the input (preserve the format).",
-      "expected_output": "1. The output file exists in the scenario directory.\n2. The summary of POST /orders is exactly: \"Submit a new customer order.\"\n3. The `quantity` field in OrderItem has type `number` with minimum `0.1`.\n4. The GET /products/legacy endpoint does not contain `deprecated: true` or `deprecated` key at all.\n5. The `status` enum in Order schema contains exactly: pending, confirmed, in_transit, fulfilled, cancelled.\n6. The DELETE /users/{userId} endpoint contains the extension `x-internal: true`.",
+      "expected_output": [
+        "1. The output file exists in the scenario directory.",
+        "2. The summary of POST /orders is exactly: \"Submit a new customer order.\"",
+        "3. The `quantity` field in OrderItem has type `number` with minimum `0.1`.",
+        "4. The GET /products/legacy endpoint does not contain `deprecated: true` or `deprecated` key at all.",
+        "5. The `status` enum in Order schema contains exactly: pending, confirmed, in_transit, fulfilled, cancelled.",
+        "6. The DELETE /users/{userId} endpoint contains the extension `x-internal: true`."
+      ],
       "files": []
     },
     {
       "id": "3",
       "prompt": "You are given an OpenAPI specification file in this directory called `openapi`. Read it carefully, then make the following mutations and write the result to `output`:\n\n1. Change the API title in the `info` block to: \"Acme Commerce Platform API\".\n2. Change the API version in the `info` block to: \"2.0.0\".\n3. Change the description of the `productId` path parameter on `GET /products/{productId}` to: \"The globally unique identifier of the product.\"\n4. Change the `minLength` of the `username` field in the `CreateUserRequest` schema from `3` to `5`.\n5. Change the `maxLength` of the `username` field in the `CreateUserRequest` schema from `20` to `32`.\n6. Add `nullable: true` to the `middleName` field in the `User` schema.\n\nWrite the mutated spec to a file called `output` in the same format as the input (preserve the format).",
-      "expected_output": "1. The output file exists in the scenario directory.\n2. The API title in the info block is exactly: \"Acme Commerce Platform API\".\n3. The API version in the info block is exactly: \"2.0.0\".\n4. The description of the productId path parameter on GET /products/{productId} is exactly: \"The globally unique identifier of the product.\"\n5. The `username` field in CreateUserRequest has minLength `5`.\n6. The `username` field in CreateUserRequest has maxLength `32`.\n7. The `middleName` field in the User schema has `nullable: true`.",
+      "expected_output": [
+        "1. The output file exists in the scenario directory.",
+        "2. The API title in the info block is exactly: \"Acme Commerce Platform API\".",
+        "3. The API version in the info block is exactly: \"2.0.0\".",
+        "4. The description of the productId path parameter on GET /products/{productId} is exactly: \"The globally unique identifier of the product.\"",
+        "5. The `username` field in CreateUserRequest has minLength `5`.",
+        "6. The `username` field in CreateUserRequest has maxLength `32`.",
+        "7. The `middleName` field in the User schema has `nullable: true`."
+      ],
       "files": []
     },
     {
       "id": "4",
       "prompt": "You are given an OpenAPI specification file in this directory called `openapi`. Read it carefully, then make the following STRUCTURAL mutations and write the result to `output`:\n\n1. In the `Product` schema, replace the `tags` field (which is an array of strings) with a new field called `tagMap`. `tagMap` should be `type: object` with `additionalProperties` of `type: string`. The description should be: \"Key-value pairs of tag categories to tag values.\" Remove the old `tags` field entirely.\n2. In the `Order` schema, replace the `items` field (which is an array referencing OrderItem) with a new field called `lineItems`. `lineItems` should be `type: object` with `additionalProperties` that `$ref` the `OrderItem` schema (i.e. `\"$ref\": \"#/components/schemas/OrderItem\"`). The description should be: \"Map of product IDs to order line items.\" Remove the old `items` field entirely. Update the `required` array on the Order schema to list `lineItems` instead of `items`. Also remove the `minItems` constraint (since it's now an object, not an array).\n3. In the `UserListResponse` schema, replace the `data` field (array of User) with a new field called `users`. `users` should be `type: object` with `additionalProperties` that `$ref` the `User` schema. The description should be: \"Map of user IDs to user objects.\" Remove the old `data` field entirely. Update the `required` array to list `users` instead of `data`.\n4. In the `User` schema, convert the `role` field from using `enum` to using `oneOf`. Each original enum value (\"admin\", \"moderator\", \"user\", \"guest\") should become a separate object in the `oneOf` array with `const` set to that value and `title` set to the capitalized value (e.g. `{\"const\": \"admin\", \"title\": \"Admin\"}`). Remove the `enum` key and add the `oneOf` key. Keep the existing `type`, `description`, and `default` fields.\n\nWrite the mutated spec to a file called `output` in the same format as the input (preserve the format).",
-      "expected_output": "1. The output file exists in the scenario directory.\n2. The Product schema has a `tagMap` field of type `object` with `additionalProperties.type` equal to `string`.\n3. The Product schema does NOT have a `tags` field.\n4. The Order schema has a `lineItems` field of type `object` with `additionalProperties.$ref` equal to `#/components/schemas/OrderItem`.\n5. The Order schema does NOT have an `items` field.\n6. The Order schema's `required` array contains `lineItems` and does NOT contain `items`.\n7. The UserListResponse schema has a `users` field of type `object` with `additionalProperties.$ref` equal to `#/components/schemas/User`.\n8. The UserListResponse schema does NOT have a `data` field.\n9. The UserListResponse schema's `required` array contains `users` and does NOT contain `data`.\n10. The User.role field has a `oneOf` array with exactly 4 entries, each having `const` and `title`.\n11. The User.role field does NOT have an `enum` key.",
+      "expected_output": [
+        "1. The output file exists in the scenario directory.",
+        "2. The Product schema has a `tagMap` field of type `object` with `additionalProperties.type` equal to `string`.",
+        "3. The Product schema does NOT have a `tags` field.",
+        "4. The Order schema has a `lineItems` field of type `object` with `additionalProperties.$ref` equal to `#/components/schemas/OrderItem`.",
+        "5. The Order schema does NOT have an `items` field.",
+        "6. The Order schema's `required` array contains `lineItems` and does NOT contain `items`.",
+        "7. The UserListResponse schema has a `users` field of type `object` with `additionalProperties.$ref` equal to `#/components/schemas/User`.",
+        "8. The UserListResponse schema does NOT have a `data` field.",
+        "9. The UserListResponse schema's `required` array contains `users` and does NOT contain `data`.",
+        "10. The User.role field has a `oneOf` array with exactly 4 entries, each having `const` and `title`.",
+        "11. The User.role field does NOT have an `enum` key."
+      ],
       "files": []
     },
     {
       "id": "5",
       "prompt": "You are given an OpenAPI specification file in this directory called `openapi`. Read it carefully, then ADD the following new schemas and endpoints, and write the result to `output`:\n\n1. Add a new schema `Review` under `components/schemas` with the following properties:\n   - `id`: type `string`, format `uuid`, readOnly `true`\n   - `productId`: type `string`, format `uuid`\n   - `userId`: type `string`, format `uuid`\n   - `rating`: type `integer`, minimum `1`, maximum `5`\n   - `title`: type `string`, maxLength `100`\n   - `body`: type `string`, maxLength `2000`\n   - `verified`: type `boolean`, default `false`, description \"Whether the reviewer has purchased the product.\"\n   - `createdAt`: type `string`, format `date-time`\n   Required fields: `id`, `productId`, `userId`, `rating`, `createdAt`\n\n2. Add a new schema `ReviewListResponse` under `components/schemas` with properties:\n   - `data`: type `array`, items referencing the `Review` schema\n   - `total`: type `integer`, description \"Total number of reviews.\"\n   - `averageRating`: type `number`, format `double`, description \"Average rating across all reviews.\", minimum `1`, maximum `5`\n   Required fields: `data`, `total`, `averageRating`\n\n3. Add a new endpoint `GET /products/{productId}/reviews` with:\n   - operationId: `listProductReviews`\n   - summary: `List reviews for a product`\n   - tags: `[\"products\"]`\n   - parameters: `productId` as a path parameter (required, type string, format uuid, description \"The unique identifier of the product.\")\n   - response 200: description \"A list of reviews for the product.\", content application/json with schema referencing `ReviewListResponse`\n   - response 404: referencing `#/components/responses/NotFound`\n\n4. Add a new endpoint `POST /products/{productId}/reviews` with:\n   - operationId: `createReview`\n   - summary: `Submit a product review`\n   - tags: `[\"products\"]`\n   - parameters: `productId` as a path parameter (required, type string, format uuid, description \"The unique identifier of the product.\")\n   - requestBody: required, application/json, with an inline schema containing:\n     - `rating`: type `integer`, minimum `1`, maximum `5` (required)\n     - `title`: type `string`, maxLength `100`\n     - `body`: type `string`, maxLength `2000`\n   - response 201: description \"Review created successfully.\", content application/json with schema referencing `Review`\n   - response 404: referencing `#/components/responses/NotFound`\n\nWrite the mutated spec to a file called `output` in the same format as the input (preserve the format).",
-      "expected_output": "1. The output file exists in the scenario directory.\n2. A `Review` schema exists under components/schemas with all specified fields and correct types.\n3. The `Review` schema has `required` containing exactly: id, productId, userId, rating, createdAt.\n4. The Review.verified field has type `boolean` and default `false`.\n5. A `ReviewListResponse` schema exists with `data` (array of Review), `total`, and `averageRating` fields.\n6. The ReviewListResponse.averageRating field has minimum `1` and maximum `5`.\n7. A GET endpoint exists at /products/{productId}/reviews with operationId `listProductReviews`.\n8. A POST endpoint exists at /products/{productId}/reviews with operationId `createReview`.\n9. The POST endpoint's requestBody has an inline schema with `rating` as required.\n10. The POST endpoint's requestBody rating field has minimum `1` and maximum `5`.",
+      "expected_output": [
+        "1. The output file exists in the scenario directory.",
+        "2. A `Review` schema exists under components/schemas with all specified fields and correct types.",
+        "3. The `Review` schema has `required` containing exactly: id, productId, userId, rating, createdAt.",
+        "4. The Review.verified field has type `boolean` and default `false`.",
+        "5. A `ReviewListResponse` schema exists with `data` (array of Review), `total`, and `averageRating` fields.",
+        "6. The ReviewListResponse.averageRating field has minimum `1` and maximum `5`.",
+        "7. A GET endpoint exists at /products/{productId}/reviews with operationId `listProductReviews`.",
+        "8. A POST endpoint exists at /products/{productId}/reviews with operationId `createReview`.",
+        "9. The POST endpoint's requestBody has an inline schema with `rating` as required.",
+        "10. The POST endpoint's requestBody rating field has minimum `1` and maximum `5`."
+      ],
       "files": []
     },
     {
       "id": "6",
       "prompt": "Generate a complete, valid OpenAPI 3.0.3 specification from scratch for a Library Management API. Do NOT read any existing file. Write the spec to a file called `output` in the same format as the `openapi` file in this directory (if `openapi.yaml` exists, write YAML; if `openapi.json` exists, write JSON).\n\nThe spec must contain exactly the following:\n\ninfo:\n  - title: \"City Library API\"\n  - version: \"1.0.0\"\n  - description: \"API for managing library books and borrowing.\"\n\nservers:\n  - url: \"https://api.citylibrary.example.com/v1\", description: \"Production\"\n\nSchema `Book`:\n  - `id`: type string, format uuid, readOnly true\n  - `isbn`: type string, pattern \"^[0-9]{13}$\"\n  - `title`: type string\n  - `author`: type string\n  - `genre`: type string, enum [\"fiction\", \"non-fiction\", \"science\", \"history\", \"biography\"]\n  - `availableCopies`: type integer, minimum 0\n  - `totalCopies`: type integer, minimum 1\n  Required: id, isbn, title, author, genre, totalCopies, availableCopies\n\nSchema `BorrowRecord`:\n  - `id`: type string, format uuid, readOnly true\n  - `bookId`: type string, format uuid\n  - `borrowerName`: type string\n  - `borrowDate`: type string, format date\n  - `dueDate`: type string, format date\n  - `returnDate`: type string, format date, nullable true\n  Required: id, bookId, borrowerName, borrowDate, dueDate\n\nEndpoints:\n  GET /books:\n    - operationId: \"listBooks\"\n    - summary: \"List all books\"\n    - tags: [\"books\"]\n    - response 200: description \"A list of books.\", content application/json, schema type array with items referencing Book\n\n  POST /books/{bookId}/borrow:\n    - operationId: \"borrowBook\"\n    - summary: \"Borrow a book\"\n    - tags: [\"books\"]\n    - parameter: bookId (path, required, type string, format uuid)\n    - requestBody: required, application/json, schema with required property `borrowerName` (type string)\n    - response 201: description \"Borrow record created.\", content application/json, schema referencing BorrowRecord\n    - response 404: description \"Book not found.\"\n\nDo NOT include any additional schemas, endpoints, or fields beyond what is specified above.",
-      "expected_output": "1. The output file exists and is valid YAML or JSON.\n2. info.title is exactly \"City Library API\".\n3. info.version is exactly \"1.0.0\".\n4. info.description is exactly \"API for managing library books and borrowing.\"\n5. There is exactly one server with url \"https://api.citylibrary.example.com/v1\".\n6. The Book schema has all 7 specified fields with correct types and constraints.\n7. The Book schema required array contains exactly: id, isbn, title, author, genre, totalCopies, availableCopies.\n8. The BorrowRecord schema has all 6 specified fields with correct types.\n9. BorrowRecord.returnDate has nullable true.\n10. The BorrowRecord required array contains exactly: id, bookId, borrowerName, borrowDate, dueDate.\n11. GET /books exists with operationId \"listBooks\".\n12. POST /books/{bookId}/borrow exists with operationId \"borrowBook\".\n13. The POST endpoint's requestBody has borrowerName as a required field.",
+      "expected_output": [
+        "1. The output file exists and is valid YAML or JSON.",
+        "2. info.title is exactly \"City Library API\".",
+        "3. info.version is exactly \"1.0.0\".",
+        "4. info.description is exactly \"API for managing library books and borrowing.\"",
+        "5. There is exactly one server with url \"https://api.citylibrary.example.com/v1\".",
+        "6. The Book schema has all 7 specified fields with correct types and constraints.",
+        "7. The Book schema required array contains exactly: id, isbn, title, author, genre, totalCopies, availableCopies.",
+        "8. The BorrowRecord schema has all 6 specified fields with correct types.",
+        "9. BorrowRecord.returnDate has nullable true.",
+        "10. The BorrowRecord required array contains exactly: id, bookId, borrowerName, borrowDate, dueDate.",
+        "11. GET /books exists with operationId \"listBooks\".",
+        "12. POST /books/{bookId}/borrow exists with operationId \"borrowBook\".",
+        "13. The POST endpoint's requestBody has borrowerName as a required field."
+      ],
       "files": []
     },
     {
       "id": "7",
       "prompt": "You are given an OpenAPI specification file in this directory called `openapi`. Read it carefully, then extract documentation for every schema defined under `components/schemas` and write it to a file called `output.md`.\n\nThe markdown file MUST follow this exact format for each schema, with schemas in alphabetical order:\n\n```\n## SchemaName\n\n{description from the schema level, or \"No description.\" if none exists}\n\n| Field | Type | Required | Description |\n|-------|------|----------|-------------|\n| fieldName | type | Yes/No | description or \"-\" |\n```\n\nRules:\n- List schemas in strict alphabetical order by name.\n- For each schema, list ALL properties in alphabetical order by field name.\n- For the Type column: use the `type` value directly. If a field uses `$ref`, use the referenced schema name (e.g. `UserPreferences`). If the type is `array` with items, write `array of {itemType}` (e.g. `array of string`, `array of User`).\n- For the Required column: write `Yes` if the field name appears in the schema's `required` array, otherwise `No`.\n- For the Description column: use the field's `description` value, or `-` if none exists.\n- Do NOT include a top-level heading (no `# Title`). Start directly with the first `## SchemaName`.\n- Separate each schema section with exactly one blank line after the table.\n\nWrite the result to `output.md`.",
-      "expected_output": "1. The output.md file exists.\n2. The first schema listed is `Address` (alphabetically first).\n3. All schemas from the spec are present (Address, CreateOrderRequest, CreateUserRequest, Dimensions, ErrorResponse, Order, OrderItem, OrderListResponse, Product, ProductListResponse, UpdateUserRequest, User, UserListResponse, UserPreferences).\n4. The User schema table includes fields: age, createdAt, email, firstName, id, lastName, middleName, metadata, preferences, role, username (alphabetical).\n5. Fields using $ref show the referenced schema name as type (e.g. User.preferences shows `UserPreferences`).\n6. Required fields are correctly marked Yes/No based on each schema's required array.\n7. Array types are formatted as `array of {type}` (e.g. `array of User`, `array of string`).",
+      "expected_output": [
+        "1. The output.md file exists.",
+        "2. The first schema listed is `Address` (alphabetically first).",
+        "3. All schemas from the spec are present (Address, CreateOrderRequest, CreateUserRequest, Dimensions, ErrorResponse, Order, OrderItem, OrderListResponse, Product, ProductListResponse, UpdateUserRequest, User, UserListResponse, UserPreferences).",
+        "4. The User schema table includes fields: age, createdAt, email, firstName, id, lastName, middleName, metadata, preferences, role, username (alphabetical).",
+        "5. Fields using $ref show the referenced schema name as type (e.g. User.preferences shows `UserPreferences`).",
+        "6. Required fields are correctly marked Yes/No based on each schema's required array.",
+        "7. Array types are formatted as `array of {type}` (e.g. `array of User`, `array of string`)."
+      ],
       "files": []
     },
     {
       "id": "8",
       "prompt": "You are given an OpenAPI specification file in this directory called `openapi`. Read it carefully, then create a FULLY INLINED version where every `$ref` reference is resolved and replaced with the actual content it points to. This includes:\n\n- Schema references like `$ref: \"#/components/schemas/User\"` must be replaced with the full User schema object.\n- Response references like `$ref: \"#/components/responses/NotFound\"` must be replaced with the full response object.\n- References within schemas (e.g. Product.dimensions referencing Dimensions) must also be inlined.\n\nAfter inlining:\n- No `$ref` key should exist anywhere in the output document.\n- The `components/schemas` section should still exist and contain all the original schemas (with their own internal `$ref`s also resolved).\n- The `components/responses` section should still exist with inlined schemas.\n\nWrite the fully inlined spec to a file called `output` in the same format as the input (preserve the format).",
-      "expected_output": "1. The output file exists and is valid YAML or JSON.\n2. No `$ref` key exists anywhere in the entire document.\n3. The UserListResponse.data.items object contains User properties inline (e.g. has a `username` property).\n4. The Order.items.items object contains OrderItem properties inline (e.g. has a `productId` property).\n5. The Product.dimensions object contains Dimensions properties inline (e.g. has a `width` property).\n6. The GET /users/{userId} 200 response schema has User properties inlined.\n7. The BadRequest response under components/responses has ErrorResponse properties inlined.",
+      "expected_output": [
+        "1. The output file exists and is valid YAML or JSON.",
+        "2. No `$ref` key exists anywhere in the entire document.",
+        "3. The UserListResponse.data.items object contains User properties inline (e.g. has a `username` property).",
+        "4. The Order.items.items object contains OrderItem properties inline (e.g. has a `productId` property).",
+        "5. The Product.dimensions object contains Dimensions properties inline (e.g. has a `width` property).",
+        "6. The GET /users/{userId} 200 response schema has User properties inlined.",
+        "7. The BadRequest response under components/responses has ErrorResponse properties inlined."
+      ],
       "files": []
     },
     {
       "id": "9",
       "prompt": "You are given an OpenAPI specification file in this directory called `openapi`. Read it carefully, then MERGE the following Payments API specification into it. The merged result should contain all endpoints and schemas from both the original spec and the Payments API below.\n\nPayments API to merge in:\n\nSchema `Payment` (add under components/schemas):\n  - `id`: type string, format uuid, readOnly true\n  - `orderId`: type string, format uuid\n  - `amount`: type number, format double, minimum 0\n  - `currency`: type string, enum [\"USD\", \"EUR\", \"GBP\"], default \"USD\"\n  - `method`: type string, enum [\"credit_card\", \"debit_card\", \"paypal\", \"bank_transfer\"]\n  - `status`: type string, enum [\"pending\", \"completed\", \"failed\", \"refunded\"]\n  - `processedAt`: type string, format date-time\n  Required: id, orderId, amount, currency, method, status\n\nSchema `Refund` (add under components/schemas):\n  - `id`: type string, format uuid, readOnly true\n  - `paymentId`: type string, format uuid\n  - `amount`: type number, format double, minimum 0\n  - `reason`: type string, maxLength 500\n  - `createdAt`: type string, format date-time\n  Required: id, paymentId, amount, createdAt\n\nNew tag:\n  - name: \"payments\", description: \"Payment processing operations\"\n\nEndpoint POST /orders/{orderId}/payments:\n  - operationId: \"createPayment\"\n  - summary: \"Process a payment for an order\"\n  - tags: [\"payments\"]\n  - parameter: orderId (path, required, type string, format uuid, description \"The order to pay for.\")\n  - requestBody: required, application/json, inline schema with:\n    - `amount`: type number, format double, minimum 0 (required)\n    - `currency`: type string, enum [\"USD\", \"EUR\", \"GBP\"]\n    - `method`: type string, enum [\"credit_card\", \"debit_card\", \"paypal\", \"bank_transfer\"] (required)\n  - response 201: description \"Payment processed.\", content application/json, schema referencing Payment\n  - response 404: referencing #/components/responses/NotFound\n\nEndpoint GET /orders/{orderId}/payments:\n  - operationId: \"listOrderPayments\"\n  - summary: \"List payments for an order\"\n  - tags: [\"payments\"]\n  - parameter: orderId (path, required, type string, format uuid, description \"The order to list payments for.\")\n  - response 200: description \"List of payments for the order.\", content application/json, schema type array items referencing Payment\n\nEndpoint POST /payments/{paymentId}/refund:\n  - operationId: \"refundPayment\"\n  - summary: \"Refund a payment\"\n  - tags: [\"payments\"]\n  - parameter: paymentId (path, required, type string, format uuid, description \"The payment to refund.\")\n  - requestBody: required, application/json, inline schema with:\n    - `amount`: type number, format double, minimum 0 (required)\n    - `reason`: type string, maxLength 500\n  - response 201: description \"Refund created.\", content application/json, schema referencing Refund\n  - response 404: referencing #/components/responses/NotFound\n\nIMPORTANT: All original endpoints and schemas must be preserved unchanged. Only ADD the new content.\n\nWrite the merged spec to a file called `output` in the same format as the input (preserve the format).",
-      "expected_output": "1. The output file exists and is valid.\n2. The Payment schema exists with all 7 fields and correct required array.\n3. The Refund schema exists with all 5 fields and correct required array.\n4. A \"payments\" tag exists in the top-level tags array.\n5. POST /orders/{orderId}/payments exists with operationId \"createPayment\".\n6. GET /orders/{orderId}/payments exists with operationId \"listOrderPayments\".\n7. POST /payments/{paymentId}/refund exists with operationId \"refundPayment\".\n8. All original endpoints still exist (GET /users, POST /users, GET /users/{userId}, etc.).\n9. All original schemas still exist (User, Product, Order, etc.).\n10. The createPayment requestBody has amount and method as required fields.",
+      "expected_output": [
+        "1. The output file exists and is valid.",
+        "2. The Payment schema exists with all 7 fields and correct required array.",
+        "3. The Refund schema exists with all 5 fields and correct required array.",
+        "4. A \"payments\" tag exists in the top-level tags array.",
+        "5. POST /orders/{orderId}/payments exists with operationId \"createPayment\".",
+        "6. GET /orders/{orderId}/payments exists with operationId \"listOrderPayments\".",
+        "7. POST /payments/{paymentId}/refund exists with operationId \"refundPayment\".",
+        "8. All original endpoints still exist (GET /users, POST /users, GET /users/{userId}, etc.).",
+        "9. All original schemas still exist (User, Product, Order, etc.).",
+        "10. The createPayment requestBody has amount and method as required fields."
+      ],
       "files": []
     },
     {
       "id": "10",
       "prompt": "You are given an OpenAPI specification file in this directory called `openapi`. Read it carefully, then make the following mutations to DEEPLY NESTED values and write the result to `output`:\n\n1. In the `CreateOrderRequest` schema, the `items` field is an array whose `items` is an inline object. Inside that inline object's `properties`, change the `quantity` field's `minimum` from `1` to `2`.\n2. In that same inline object inside `CreateOrderRequest.items.items.properties`, add `maxLength: 36` to the `productId` field.\n3. In the `UserPreferences` schema, inside the `notifications` nested object's `properties`, add a new boolean property `inApp` with `default: true` and `description: \"In-app notification preference.\"`\n4. In the `ErrorResponse` schema, the `details` field is an array of objects. Add a new property `code` of type `string` with description `\"Machine-readable detail code.\"` to the inline object inside `details.items.properties`.\n5. In the `paths` section, on the `GET /orders` endpoint, the `status` query parameter has an `enum` array. Add `\"returned\"` as a sixth value to that enum (after the existing values).\n6. In the `paths` section, add `x-rate-limit: 100` to the `GET /users` endpoint's `200` response object (as a sibling of `description` and `content`).\n\nWrite the mutated spec to a file called `output` in the same format as the input (preserve the format).",
-      "expected_output": "1. The output file exists and is valid.\n2. CreateOrderRequest.items.items.properties.quantity.minimum is 2.\n3. CreateOrderRequest.items.items.properties.productId.maxLength is 36.\n4. UserPreferences.notifications.properties.inApp exists with type boolean, default true.\n5. ErrorResponse.details.items.properties.code exists with type string.\n6. GET /orders status parameter enum has 6 values including \"returned\".\n7. GET /users 200 response has x-rate-limit: 100.",
+      "expected_output": [
+        "1. The output file exists and is valid.",
+        "2. CreateOrderRequest.items.items.properties.quantity.minimum is 2.",
+        "3. CreateOrderRequest.items.items.properties.productId.maxLength is 36.",
+        "4. UserPreferences.notifications.properties.inApp exists with type boolean, default true.",
+        "5. ErrorResponse.details.items.properties.code exists with type string.",
+        "6. GET /orders status parameter enum has 6 values including \"returned\".",
+        "7. GET /users 200 response has x-rate-limit: 100."
+      ],
       "files": []
     },
     {
       "id": "11",
-      "prompt": "You are given an OpenAPI specification file in this directory called `openapi`. Read it carefully, then write a version where ALL object keys at EVERY nesting level are sorted in alphabetical (lexicographic) order. This includes:\n\n- Top-level keys (components, info, openapi, paths, security, servers, tags)\n- Keys within each path object (/orders, /products, /products/{productId}, /products/legacy, /users, /users/{userId})\n- Keys within each operation (delete, description, get, operationId, parameters, post, put, responses, summary, tags, etc.)\n- Keys within each schema object and its properties\n- Keys within every nested object at any depth\n\nArrays should NOT be reordered — only object/map keys should be sorted.\n\nWrite the sorted spec to a file called `output` in the same format as the input (preserve the format).",
-      "expected_output": "1. The output file exists and is valid YAML or JSON.\n2. Top-level keys are alphabetically sorted.\n3. Keys within info are alphabetically sorted (contact, description, license, title, version).\n4. Path keys are alphabetically sorted (/orders, /products, /products/legacy, /products/{productId}, /users, /users/{userId}).\n5. Keys within the User schema are alphabetically sorted.\n6. Keys within each User property are alphabetically sorted.\n7. The spec is semantically equivalent to the original (same schemas, endpoints, values).",
+      "prompt": "You are given an OpenAPI specification file in this directory called `openapi`. Read it carefully, then write a version where ALL object keys at EVERY nesting level are sorted in alphabetical (lexicographic) order. This includes:\n\n- Top-level keys (components, info, openapi, paths, security, servers, tags)\n- Keys within each path object (/orders, /products, /products/{productId}, /products/legacy, /users, /users/{userId})\n- Keys within each operation (delete, description, get, operationId, parameters, post, put, responses, summary, tags, etc.)\n- Keys within each schema object and its properties\n- Keys within every nested object at any depth\n\nArrays should NOT be reordered \u2014 only object/map keys should be sorted.\n\nWrite the sorted spec to a file called `output` in the same format as the input (preserve the format).",
+      "expected_output": [
+        "1. The output file exists and is valid YAML or JSON.",
+        "2. Top-level keys are alphabetically sorted.",
+        "3. Keys within info are alphabetically sorted (contact, description, license, title, version).",
+        "4. Path keys are alphabetically sorted (/orders, /products, /products/legacy, /products/{productId}, /users, /users/{userId}).",
+        "5. Keys within the User schema are alphabetically sorted.",
+        "6. Keys within each User property are alphabetically sorted.",
+        "7. The spec is semantically equivalent to the original (same schemas, endpoints, values)."
+      ],
       "files": []
     },
     {
       "id": "12",
-      "prompt": "You are given an OpenAPI specification file in this directory called `openapi`. Read it carefully, then perform the following schema deletions with referential integrity repairs:\n\n1. DELETE the `Dimensions` schema from `components/schemas` entirely. Everywhere it was referenced via `$ref: \"#/components/schemas/Dimensions\"` (the `Product.dimensions` field), replace the `$ref` with the full inline definition of Dimensions (i.e. copy the Dimensions schema's type, properties, etc. directly into where the `$ref` was).\n\n2. DELETE the `Address` schema from `components/schemas` entirely. Everywhere it was referenced via `$ref: \"#/components/schemas/Address\"`:\n   - `Order.shippingAddress` — replace the `$ref` with the full inline Address schema\n   - `CreateOrderRequest.shippingAddress` — replace the `$ref` with the full inline Address schema\n\n3. DELETE the `UserPreferences` schema from `components/schemas` entirely. Everywhere it was referenced via `$ref: \"#/components/schemas/UserPreferences\"`:\n   - `User.preferences` — replace the `$ref` with the full inline UserPreferences schema\n   - `UpdateUserRequest.preferences` — replace the `$ref` with the full inline UserPreferences schema\n\nAfter these changes:\n- The three deleted schemas (Dimensions, Address, UserPreferences) must NOT exist in components/schemas.\n- No dangling `$ref` should point to any of the deleted schemas.\n- All other schemas and endpoints must remain unchanged.\n\nWrite the result to a file called `output` in the same format as the input (preserve the format).",
-      "expected_output": "1. The output file exists and is valid.\n2. The Dimensions schema does NOT exist in components/schemas.\n3. Product.dimensions has inline properties (width, height, depth, weight) instead of a $ref.\n4. The Address schema does NOT exist in components/schemas.\n5. Order.shippingAddress has inline properties (street, city, state, postalCode, country) instead of a $ref.\n6. CreateOrderRequest.shippingAddress has inline properties instead of a $ref.\n7. The UserPreferences schema does NOT exist in components/schemas.\n8. User.preferences has inline properties (theme, language, notifications) instead of a $ref.\n9. UpdateUserRequest.preferences has inline properties instead of a $ref.\n10. No $ref pointing to Dimensions, Address, or UserPreferences exists anywhere.",
+      "prompt": "You are given an OpenAPI specification file in this directory called `openapi`. Read it carefully, then perform the following schema deletions with referential integrity repairs:\n\n1. DELETE the `Dimensions` schema from `components/schemas` entirely. Everywhere it was referenced via `$ref: \"#/components/schemas/Dimensions\"` (the `Product.dimensions` field), replace the `$ref` with the full inline definition of Dimensions (i.e. copy the Dimensions schema's type, properties, etc. directly into where the `$ref` was).\n\n2. DELETE the `Address` schema from `components/schemas` entirely. Everywhere it was referenced via `$ref: \"#/components/schemas/Address\"`:\n   - `Order.shippingAddress` \u2014 replace the `$ref` with the full inline Address schema\n   - `CreateOrderRequest.shippingAddress` \u2014 replace the `$ref` with the full inline Address schema\n\n3. DELETE the `UserPreferences` schema from `components/schemas` entirely. Everywhere it was referenced via `$ref: \"#/components/schemas/UserPreferences\"`:\n   - `User.preferences` \u2014 replace the `$ref` with the full inline UserPreferences schema\n   - `UpdateUserRequest.preferences` \u2014 replace the `$ref` with the full inline UserPreferences schema\n\nAfter these changes:\n- The three deleted schemas (Dimensions, Address, UserPreferences) must NOT exist in components/schemas.\n- No dangling `$ref` should point to any of the deleted schemas.\n- All other schemas and endpoints must remain unchanged.\n\nWrite the result to a file called `output` in the same format as the input (preserve the format).",
+      "expected_output": [
+        "1. The output file exists and is valid.",
+        "2. The Dimensions schema does NOT exist in components/schemas.",
+        "3. Product.dimensions has inline properties (width, height, depth, weight) instead of a $ref.",
+        "4. The Address schema does NOT exist in components/schemas.",
+        "5. Order.shippingAddress has inline properties (street, city, state, postalCode, country) instead of a $ref.",
+        "6. CreateOrderRequest.shippingAddress has inline properties instead of a $ref.",
+        "7. The UserPreferences schema does NOT exist in components/schemas.",
+        "8. User.preferences has inline properties (theme, language, notifications) instead of a $ref.",
+        "9. UpdateUserRequest.preferences has inline properties instead of a $ref.",
+        "10. No $ref pointing to Dimensions, Address, or UserPreferences exists anywhere."
+      ],
       "files": []
     },
     {
       "id": "13",
       "prompt": "You are given an OpenAPI specification file in this directory called `openapi`. Read it carefully, then add format-specific documentation annotations AND make a structural change.\n\nDocumentation annotations (format-dependent):\n\nIf the file is YAML format:\n  - Add a comment line `# --- User Management ---` immediately before the `/users:` path key.\n  - Add a comment line `# --- Product Catalog ---` immediately before the `/products:` path key.\n  - Add a comment line `# --- Order Processing ---` immediately before the `/orders:` path key.\n  - Add a comment line `# === Schema Definitions ===` immediately before the `schemas:` key under `components`.\n\nIf the file is JSON format:\n  - Add `\"x-section-doc\": \"User Management\"` inside the `/users` path object.\n  - Add `\"x-section-doc\": \"Product Catalog\"` inside the `/products` path object.\n  - Add `\"x-section-doc\": \"Order Processing\"` inside the `/orders` path object.\n  - Add `\"x-section-doc\": \"Schema Definitions\"` inside the `components` object.\n\nStructural change (both formats):\n  - Add `x-stability: \"stable\"` to every GET operation in the spec. Specifically, add it to: GET /users, GET /users/{userId}, GET /products, GET /products/{productId}, GET /products/legacy, and GET /orders.\n\nWrite the result to a file called `output` in the same format as the input (preserve the format).",
-      "expected_output": "1. The output file exists and is valid.\n2. (YAML) Comment `# --- User Management ---` appears before /users, OR (JSON) /users has x-section-doc \"User Management\".\n3. (YAML) Comment `# --- Product Catalog ---` appears before /products, OR (JSON) /products has x-section-doc \"Product Catalog\".\n4. (YAML) Comment `# --- Order Processing ---` appears before /orders, OR (JSON) /orders has x-section-doc \"Order Processing\".\n5. (YAML) Comment `# === Schema Definitions ===` appears before schemas, OR (JSON) components has x-section-doc \"Schema Definitions\".\n6. GET /users has x-stability: \"stable\".\n7. GET /users/{userId} has x-stability: \"stable\".\n8. GET /products has x-stability: \"stable\".\n9. GET /products/{productId} has x-stability: \"stable\".\n10. GET /products/legacy has x-stability: \"stable\".\n11. GET /orders has x-stability: \"stable\".",
+      "expected_output": [
+        "1. The output file exists and is valid.",
+        "2. (YAML) Comment `# --- User Management ---` appears before /users, OR (JSON) /users has x-section-doc \"User Management\".",
+        "3. (YAML) Comment `# --- Product Catalog ---` appears before /products, OR (JSON) /products has x-section-doc \"Product Catalog\".",
+        "4. (YAML) Comment `# --- Order Processing ---` appears before /orders, OR (JSON) /orders has x-section-doc \"Order Processing\".",
+        "5. (YAML) Comment `# === Schema Definitions ===` appears before schemas, OR (JSON) components has x-section-doc \"Schema Definitions\".",
+        "6. GET /users has x-stability: \"stable\".",
+        "7. GET /users/{userId} has x-stability: \"stable\".",
+        "8. GET /products has x-stability: \"stable\".",
+        "9. GET /products/{productId} has x-stability: \"stable\".",
+        "10. GET /products/legacy has x-stability: \"stable\".",
+        "11. GET /orders has x-stability: \"stable\"."
+      ],
       "files": []
     },
     {
       "id": "14",
-      "prompt": "You are given an OpenAPI specification file in this directory called `openapi`. Read it carefully, then convert it to the OTHER format:\n\n- If the input is `openapi.yaml` (YAML format), convert it to JSON and write it to `output.json`.\n- If the input is `openapi.json` (JSON format), convert it to YAML and write it to `output.yaml`.\n\nThe converted output must be semantically identical to the input — same structure, same values, same types. For JSON output, use 2-space indentation. For YAML output, use standard block style (no flow/inline style for objects or arrays).\n\nDo NOT modify any values, add any fields, or remove any fields. This is a pure format conversion.",
-      "expected_output": "1. The output file exists in the opposite format (output.json for yaml input, output.yaml for json input).\n2. The output is valid in the target format.\n3. info.title matches the original exactly.\n4. info.version matches the original exactly.\n5. All paths from the original exist in the output.\n6. All schemas from the original exist in the output.\n7. The User schema has the same properties and required fields.\n8. The Order.status enum values are identical.",
+      "prompt": "You are given an OpenAPI specification file in this directory called `openapi`. Read it carefully, then convert it to the OTHER format:\n\n- If the input is `openapi.yaml` (YAML format), convert it to JSON and write it to `output.json`.\n- If the input is `openapi.json` (JSON format), convert it to YAML and write it to `output.yaml`.\n\nThe converted output must be semantically identical to the input \u2014 same structure, same values, same types. For JSON output, use 2-space indentation. For YAML output, use standard block style (no flow/inline style for objects or arrays).\n\nDo NOT modify any values, add any fields, or remove any fields. This is a pure format conversion.",
+      "expected_output": [
+        "1. The output file exists in the opposite format (output.json for yaml input, output.yaml for json input).",
+        "2. The output is valid in the target format.",
+        "3. info.title matches the original exactly.",
+        "4. info.version matches the original exactly.",
+        "5. All paths from the original exist in the output.",
+        "6. All schemas from the original exist in the output.",
+        "7. The User schema has the same properties and required fields.",
+        "8. The Order.status enum values are identical."
+      ],
       "files": []
     }
   ]

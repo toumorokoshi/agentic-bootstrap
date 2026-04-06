@@ -1,0 +1,40 @@
+{
+  "expectations": [
+    {
+      "text": "GET /users/{userId} description",
+      "passed": true,
+      "evidence": "got 'Retrieves a single user by their unique identifier.'"
+    },
+    {
+      "text": "User.email format email",
+      "passed": true,
+      "evidence": "format='email'"
+    },
+    {
+      "text": "User.age type number",
+      "passed": true,
+      "evidence": "type='number'"
+    },
+    {
+      "text": "createdAt type + date-time",
+      "passed": true,
+      "evidence": "{'type': 'string', 'format': 'date-time', 'description': 'The date and time the user was created.'}"
+    },
+    {
+      "text": "createdAt in User.required",
+      "passed": true,
+      "evidence": "required=['id', 'username', 'email', 'age', 'role', 'createdAt']"
+    },
+    {
+      "text": "GET /users limit description",
+      "passed": true,
+      "evidence": "got 'Maximum number of users to return per page.'"
+    }
+  ],
+  "summary": {
+    "passed": 6,
+    "failed": 0,
+    "total": 6,
+    "pass_rate": 1.0
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "eval_id": 14,
+  "eval_name": "eval-14-json",
+  "format": "json",
+  "prompt": "You are given an OpenAPI specification file in this directory called `openapi`. Read it carefully, then convert it to the OTHER format:\n\n- If the input is `openapi.yaml` (YAML format), convert it to JSON and write it to `output.json`.\n- If the input is `openapi.json` (JSON format), convert it to YAML and write it to `output.yaml`.\n\nThe converted output must be semantically identical to the input \u2014 same structure, same values, same types. For JSON output, use 2-space indentation. For YAML output,"
+}

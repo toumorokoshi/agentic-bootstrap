@@ -1,0 +1,60 @@
+{
+  "expectations": [
+    {
+      "text": "Product.tagMap type object with additionalProperties.type string",
+      "passed": true,
+      "evidence": "tagMap={'type': 'object', 'additionalProperties': {'type': 'string'}, 'description': 'Key-value pairs of tag categories to tag values.'}"
+    },
+    {
+      "text": "Product no tags field",
+      "passed": true,
+      "evidence": "ok"
+    },
+    {
+      "text": "Order.lineItems additionalProperties.$ref OrderItem",
+      "passed": true,
+      "evidence": "lineItems={'type': 'object', 'additionalProperties': {'$ref': '#/components/schemas/OrderItem'}, 'description': 'Map of product IDs to order line items.'}"
+    },
+    {
+      "text": "Order no items field",
+      "passed": true,
+      "evidence": "ok"
+    },
+    {
+      "text": "Order required has lineItems not items",
+      "passed": true,
+      "evidence": "required=['id', 'userId', 'lineItems', 'status', 'total']"
+    },
+    {
+      "text": "UserListResponse.users additionalProperties.$ref User",
+      "passed": true,
+      "evidence": "users={'type': 'object', 'additionalProperties': {'$ref': '#/components/schemas/User'}, 'description': 'Map of user IDs to user objects.'}"
+    },
+    {
+      "text": "UserListResponse no data field",
+      "passed": true,
+      "evidence": "ok"
+    },
+    {
+      "text": "UserListResponse required has users not data",
+      "passed": true,
+      "evidence": "required=['users', 'total', 'limit', 'offset']"
+    },
+    {
+      "text": "User.role oneOf with 4 entries",
+      "passed": true,
+      "evidence": "oneOf=[{'const': 'admin', 'title': 'Admin'}, {'const': 'moderator', 'title': 'Moderator'}, {'const': 'user', 'title': 'User'}, {'const': 'guest', 'title': 'Guest'}]"
+    },
+    {
+      "text": "User.role no enum key",
+      "passed": true,
+      "evidence": "ok"
+    }
+  ],
+  "summary": {
+    "passed": 10,
+    "failed": 0,
+    "total": 10,
+    "pass_rate": 1.0
+  }
+}

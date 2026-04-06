@@ -1,0 +1,82 @@
+{
+  "session_id": "a433bde4-5049-4d7f-874c-15349d2ca7c6",
+  "response": "The OpenAPI specification has been updated with the requested modifications, including nested schema changes for `CreateOrderRequest`, `UserPreferences`, and `ErrorResponse`, as well as updates to query parameters and response objects in the `paths` section. The final result has been written to `/tmp/yaml-vs-json-eval-gemini/eval-10-yaml/output`.",
+  "stats": {
+    "models": {
+      "gemini-3.1-flash-lite-preview": {
+        "api": {
+          "totalRequests": 3,
+          "totalErrors": 0,
+          "totalLatencyMs": 12502
+        },
+        "tokens": {
+          "input": 16232,
+          "prompt": 43347,
+          "candidates": 4748,
+          "total": 48095,
+          "cached": 27115,
+          "thoughts": 0,
+          "tool": 0
+        },
+        "roles": {
+          "main": {
+            "totalRequests": 3,
+            "totalErrors": 0,
+            "totalLatencyMs": 12502,
+            "tokens": {
+              "input": 16232,
+              "prompt": 43347,
+              "candidates": 4748,
+              "total": 48095,
+              "cached": 27115,
+              "thoughts": 0,
+              "tool": 0
+            }
+          }
+        }
+      }
+    },
+    "tools": {
+      "totalCalls": 2,
+      "totalSuccess": 2,
+      "totalFail": 0,
+      "totalDurationMs": 12,
+      "totalDecisions": {
+        "accept": 2,
+        "reject": 0,
+        "modify": 0,
+        "auto_accept": 0
+      },
+      "byName": {
+        "read_file": {
+          "count": 1,
+          "success": 1,
+          "fail": 0,
+          "durationMs": 5,
+          "decisions": {
+            "accept": 1,
+            "reject": 0,
+            "modify": 0,
+            "auto_accept": 0
+          }
+        },
+        "write_file": {
+          "count": 1,
+          "success": 1,
+          "fail": 0,
+          "durationMs": 7,
+          "decisions": {
+            "accept": 1,
+            "reject": 0,
+            "modify": 0,
+            "auto_accept": 0
+          }
+        }
+      }
+    },
+    "files": {
+      "totalLinesAdded": 639,
+      "totalLinesRemoved": 0
+    }
+  }
+}

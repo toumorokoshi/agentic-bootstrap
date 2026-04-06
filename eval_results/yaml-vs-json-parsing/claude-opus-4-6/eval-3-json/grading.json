@@ -1,0 +1,40 @@
+{
+  "expectations": [
+    {
+      "text": "info.title",
+      "passed": true,
+      "evidence": "got 'Acme Commerce Platform API'"
+    },
+    {
+      "text": "info.version",
+      "passed": true,
+      "evidence": "got '2.0.0'"
+    },
+    {
+      "text": "productId parameter description",
+      "passed": true,
+      "evidence": "got 'The globally unique identifier of the product.'"
+    },
+    {
+      "text": "CreateUserRequest.username minLength",
+      "passed": true,
+      "evidence": "minLength=5"
+    },
+    {
+      "text": "CreateUserRequest.username maxLength",
+      "passed": true,
+      "evidence": "maxLength=32"
+    },
+    {
+      "text": "User.middleName nullable true",
+      "passed": true,
+      "evidence": "nullable=True"
+    }
+  ],
+  "summary": {
+    "passed": 6,
+    "failed": 0,
+    "total": 6,
+    "pass_rate": 1.0
+  }
+}

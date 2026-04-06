@@ -1,0 +1,108 @@
+{
+  "session_id": "359cd921-d8b9-4d31-8c1e-b728aef50f91",
+  "response": "The documentation has been extracted and written to `output.md`.",
+  "stats": {
+    "models": {
+      "gemini-2.5-flash-lite": {
+        "api": {
+          "totalRequests": 5,
+          "totalErrors": 0,
+          "totalLatencyMs": 74955
+        },
+        "tokens": {
+          "input": 44885,
+          "prompt": 82639,
+          "candidates": 8461,
+          "total": 100613,
+          "cached": 37754,
+          "thoughts": 9513,
+          "tool": 0
+        },
+        "roles": {
+          "main": {
+            "totalRequests": 3,
+            "totalErrors": 0,
+            "totalLatencyMs": 23041,
+            "tokens": {
+              "input": 16190,
+              "prompt": 44861,
+              "candidates": 7099,
+              "total": 53281,
+              "cached": 28671,
+              "thoughts": 1321,
+              "tool": 0
+            }
+          },
+          "subagent": {
+            "totalRequests": 2,
+            "totalErrors": 0,
+            "totalLatencyMs": 51914,
+            "tokens": {
+              "input": 28695,
+              "prompt": 37778,
+              "candidates": 1362,
+              "total": 47332,
+              "cached": 9083,
+              "thoughts": 8192,
+              "tool": 0
+            }
+          }
+        }
+      }
+    },
+    "tools": {
+      "totalCalls": 3,
+      "totalSuccess": 3,
+      "totalFail": 0,
+      "totalDurationMs": 51995,
+      "totalDecisions": {
+        "accept": 3,
+        "reject": 0,
+        "modify": 0,
+        "auto_accept": 0
+      },
+      "byName": {
+        "read_file": {
+          "count": 1,
+          "success": 1,
+          "fail": 0,
+          "durationMs": 9,
+          "decisions": {
+            "accept": 1,
+            "reject": 0,
+            "modify": 0,
+            "auto_accept": 0
+          }
+        },
+        "write_file": {
+          "count": 1,
+          "success": 1,
+          "fail": 0,
+          "durationMs": 7,
+          "decisions": {
+            "accept": 1,
+            "reject": 0,
+            "modify": 0,
+            "auto_accept": 0
+          }
+        },
+        "generalist": {
+          "count": 1,
+          "success": 1,
+          "fail": 0,
+          "durationMs": 51979,
+          "decisions": {
+            "accept": 1,
+            "reject": 0,
+            "modify": 0,
+            "auto_accept": 0
+          }
+        }
+      }
+    },
+    "files": {
+      "totalLinesAdded": 162,
+      "totalLinesRemoved": 0
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "eval_id": 2,
+  "eval_name": "eval-2-json",
+  "format": "json",
+  "prompt": "You are given an OpenAPI specification file in this directory called `openapi`. Read it carefully, then make the following mutations and write the result to `output`:\n\n1. Change the `summary` of the `POST /orders` endpoint to: \"Submit a new customer order.\"\n2. Change the type of the `quantity` field in the `OrderItem` schema from `integer` to `number` with minimum `0.1`.\n3. Remove the `deprecated: true` flag from the `GET /products/legacy` endpoint entirely.\n4. Change the `status` field enum val"
+}

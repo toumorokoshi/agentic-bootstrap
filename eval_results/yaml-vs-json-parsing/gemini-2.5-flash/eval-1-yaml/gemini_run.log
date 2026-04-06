@@ -1,0 +1,11 @@
+exit=0
+--- stdout ---
+Okay, the OpenAPI specification file has been modified according to your instructions and saved to `output`.
+
+--- stderr ---
+YOLO mode is enabled. All tool calls will be automatically approved.
+Loaded cached credentials.
+YOLO mode is enabled. All tool calls will be automatically approved.
+Skill "skill-creator" from "/home/yusuke/.gemini/skills/skill-creator/SKILL.md" is overriding the built-in skill.
+Skill conflict detected: "Execute Plan and Commit" from "/home/yusuke/.agents/skills/execute_plan/SKILL.md" is overriding the same skill from "/home/yusuke/.gemini/skills/execute_plan/SKILL.md".Error executing tool replace: Error: Failed to edit, could not find the string to replace.
+

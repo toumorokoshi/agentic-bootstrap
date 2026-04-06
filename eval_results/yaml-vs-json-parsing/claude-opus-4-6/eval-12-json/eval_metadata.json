@@ -1,0 +1,6 @@
+{
+  "eval_id": 12,
+  "eval_name": "eval-12-json",
+  "format": "json",
+  "prompt": "You are given an OpenAPI specification file in this directory called `openapi`. Read it carefully, then perform the following schema deletions with referential integrity repairs:\n\n1. DELETE the `Dimensions` schema from `components/schemas` entirely. Everywhere it was referenced via `$ref: \"#/components/schemas/Dimensions\"` (the `Product.dimensions` field), replace the `$ref` with the full inline definition of Dimensions (i.e. copy the Dimensions schema's type, properties, etc. directly into wher"
+}
