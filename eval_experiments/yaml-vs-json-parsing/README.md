@@ -67,27 +67,27 @@ When agents need to read, mutate, and write structured data (e.g., OpenAPI specs
 
 ### Execution Summary
 
-| Eval | Category | YAML | JSON |
-|------|----------|------|------|
-| 4 | list→map structural transform | TIMEOUT (no output) | 100% (268s) |
-| 5 | generate new schema+endpoints | YAML parse error | 100% (278s) |
-| 6 | generate spec from scratch | 100% (77s) | 100% (45s) |
-| 7 | extract schemas to markdown | TIMEOUT (no output) | 100% (150s) |
-| 8 | $ref inlining | 100% (300s) | 100% (252s) |
-| 9 | spec merging | 100% (154s) | 100% (188s) |
-| 10 | deep nesting manipulation | 100% (300s) | 100% (233s) |
-| 11 | canonical key sorting | 100% (287s) | 100% (56s) |
-| 12 | schema deletion + ref repair | 100% (268s) | 100% (134s) |
-| 13 | format-specific annotations | 100% (263s) | 100% (122s) |
-| 14 | bidirectional conversion | 100% (245s) | empty output (300s) |
+| Eval | Category                      | YAML                | JSON                |
+| ---- | ----------------------------- | ------------------- | ------------------- |
+| 4    | list→map structural transform | TIMEOUT (no output) | 100% (268s)         |
+| 5    | generate new schema+endpoints | YAML parse error    | 100% (278s)         |
+| 6    | generate spec from scratch    | 100% (77s)          | 100% (45s)          |
+| 7    | extract schemas to markdown   | TIMEOUT (no output) | 100% (150s)         |
+| 8    | $ref inlining                 | 100% (300s)         | 100% (252s)         |
+| 9    | spec merging                  | 100% (154s)         | 100% (188s)         |
+| 10   | deep nesting manipulation     | 100% (300s)         | 100% (233s)         |
+| 11   | canonical key sorting         | 100% (287s)         | 100% (56s)          |
+| 12   | schema deletion + ref repair  | 100% (268s)         | 100% (134s)         |
+| 13   | format-specific annotations   | 100% (263s)         | 100% (122s)         |
+| 14   | bidirectional conversion      | 100% (245s)         | empty output (300s) |
 
 ### Aggregate (Evals 4-14 only)
 
-| Metric | YAML | JSON | Delta |
-|--------|------|------|-------|
-| Pass Rate | 73/73 gradeable checks passed | 95/96 gradeable checks passed | JSON more reliable overall |
-| Execution failures | 3 (2 timeouts, 1 parse error) | 1 (empty output on eval 14) | YAML less reliable |
-| Mean time (successful) | 214s | 168s | JSON 27% faster |
+| Metric                 | YAML                          | JSON                          | Delta                      |
+| ---------------------- | ----------------------------- | ----------------------------- | -------------------------- |
+| Pass Rate              | 73/73 gradeable checks passed | 95/96 gradeable checks passed | JSON more reliable overall |
+| Execution failures     | 3 (2 timeouts, 1 parse error) | 1 (empty output on eval 14)   | YAML less reliable         |
+| Mean time (successful) | 214s                          | 168s                          | JSON 27% faster            |
 
 ### Key Findings from Structural Evals
 
@@ -148,12 +148,12 @@ When agents need to read, mutate, and write structured data (e.g., OpenAPI specs
 
 ### Evals 4-14 (structural transformations) — Gemini 2.5 Flash only
 
-| Metric | YAML | JSON |
-|--------|------|------|
-| **Evals with output** | 8/11 | 10/11 |
-| **Accuracy (when output produced)** | 100% (73/73) | 99% (95/96) |
-| **Execution failures** | 3 (2 timeouts, 1 parse error) | 1 (empty output) |
-| **Mean time (successful)** | 214s | 168s |
+| Metric                              | YAML                          | JSON             |
+| ----------------------------------- | ----------------------------- | ---------------- |
+| **Evals with output**               | 8/11                          | 10/11            |
+| **Accuracy (when output produced)** | 100% (73/73)                  | 99% (95/96)      |
+| **Execution failures**              | 3 (2 timeouts, 1 parse error) | 1 (empty output) |
+| **Mean time (successful)**          | 214s                          | 168s             |
 
 ---
 
