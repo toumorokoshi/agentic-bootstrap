@@ -1,0 +1,9 @@
+{
+  "eval_id": 8,
+  "eval_name": "8",
+  "format": "json",
+  "model": "gemini-2.5-flash",
+  "prompt": "You are given an OpenAPI specification file in this directory at `/home/yusuke/workspace/agentic-bootstrap/eval_experiments/yaml-vs-json-parsing/scenario-json/openapi.json`. Read it carefully, then create a FULLY INLINED version where every `$ref` reference is resolved and replaced with the actual content it points to. This includes:\n\n- Schema references like `$ref: \"#/components/schemas/User\"` must be replaced with the full User schema object.\n- Response references like `$ref: \"#/components/responses/NotFound\"` must be replaced with the full response object.\n- References within schemas (e.g. Product.dimensions referencing Dimensions) must also be inlined.\n\nAfter inlining:\n- No `$ref` key should exist anywhere in the output document.\n- The `components/schemas` section should still exist and contain all the original schemas (with their own internal `$ref`s also resolved).\n- The `components/responses` section should still exist with inlined schemas.\n\nWrite the fully inlined spec to a file called `/home/yusuke/workspace/agentic-bootstrap/eval_experiments/yaml-vs-json-parsing/eval_results/gemini-2.5-flash/eval-8-json/output.json` in the same format as the input (preserve the format).",
+  "scenario": "/home/yusuke/workspace/agentic-bootstrap/eval_experiments/yaml-vs-json-parsing/scenario-json/openapi.json",
+  "output": "/home/yusuke/workspace/agentic-bootstrap/eval_experiments/yaml-vs-json-parsing/eval_results/gemini-2.5-flash/eval-8-json/output.json"
+}

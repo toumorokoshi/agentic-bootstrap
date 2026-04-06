@@ -1,0 +1,9 @@
+{
+  "eval_id": 11,
+  "eval_name": "11",
+  "format": "json",
+  "model": "gemini-2.5-flash",
+  "prompt": "You are given an OpenAPI specification file in this directory at `/home/yusuke/workspace/agentic-bootstrap/eval_experiments/yaml-vs-json-parsing/scenario-json/openapi.json`. Read it carefully, then write a version where ALL object keys at EVERY nesting level are sorted in alphabetical (lexicographic) order. This includes:\n\n- Top-level keys (components, info, openapi, paths, security, servers, tags)\n- Keys within each path object (/orders, /products, /products/{productId}, /products/legacy, /users, /users/{userId})\n- Keys within each operation (delete, description, get, operationId, parameters, post, put, responses, summary, tags, etc.)\n- Keys within each schema object and its properties\n- Keys within every nested object at any depth\n\nArrays should NOT be reordered \u2014 only object/map keys should be sorted.\n\nWrite the sorted spec to a file called `/home/yusuke/workspace/agentic-bootstrap/eval_experiments/yaml-vs-json-parsing/eval_results/gemini-2.5-flash/eval-11-json/output.json` in the same format as the input (preserve the format).",
+  "scenario": "/home/yusuke/workspace/agentic-bootstrap/eval_experiments/yaml-vs-json-parsing/scenario-json/openapi.json",
+  "output": "/home/yusuke/workspace/agentic-bootstrap/eval_experiments/yaml-vs-json-parsing/eval_results/gemini-2.5-flash/eval-11-json/output.json"
+}

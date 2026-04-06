@@ -1,0 +1,737 @@
+openapi: "3.0.3"
+info:
+  title: "Acme Commerce Platform API"
+  description: "A comprehensive REST API for the Acme platform, providing access to users, products, and orders."
+  version: "2.0.0"
+  contact:
+    name: "Acme API Support"
+    email: "api-support@acme.example.com"
+    url: "https://acme.example.com/support"
+  license:
+    name: "Apache 2.0"
+    url: "https://www.apache.org/licenses/LICENSE-2.0"
+
+servers:
+  - url: "https://api.acme.example.com/v1"
+    description: "Production"
+  - url: "https://staging-api.acme.example.com/v1"
+    description: "Staging"
+
+tags:
+  - name: "users"
+    description: "User management operations"
+  - name: "products"
+    description: "Product catalog operations"
+  - name: "orders"
+    description: "Order processing operations"
+
+paths:
+  /users:
+    get:
+      operationId: "listUsers"
+      summary: "List all users"
+      description: "Returns a paginated list of all users in the system."
+      tags: ["users"]
+      parameters:
+        - name: "limit"
+          in: "query"
+          description: "Maximum number of users to return per page."
+          required: false
+          schema:
+            type: "integer"
+            minimum: 1
+            maximum: 100
+            default: 20
+        - name: "offset"
+          in: "query"
+          description: "Number of users to skip before returning results."
+          required: false
+          schema:
+            type: "integer"
+            minimum: 0
+            default: 0
+        - name: "sort"
+          in: "query"
+          description: "Field to sort results by."
+          required: false
+          schema:
+            type: "string"
+            enum: ["createdAt", "username", "email"]
+            default: "createdAt"
+      responses:
+        "200":
+          description: "A paginated list of users."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserListResponse"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+    post:
+      operationId: "createUser"
+      summary: "Create a new user"
+      description: "Creates a new user account in the system."
+      tags: ["users"]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateUserRequest"
+      responses:
+        "201":
+          description: "User created successfully."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "409":
+          description: "A user with this email or username already exists."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /users/{userId}:
+    parameters:
+      - name: "userId"
+        in: "path"
+        description: "The unique identifier of the user."
+        required: true
+        schema:
+          type: "string"
+          format: "uuid"
+    get:
+      operationId: "getUser"
+      summary: "Get a user by ID"
+      description: "Retrieves a single user by their unique identifier."
+      tags: ["users"]
+      responses:
+        "200":
+          description: "The requested user."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+        "404":
+          $ref: "#/components/responses/NotFound"
+    put:
+      operationId: "updateUser"
+      summary: "Update a user"
+      description: "Replaces all mutable fields of a user record."
+      tags: ["users"]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateUserRequest"
+      responses:
+        "200":
+          description: "The updated user."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+        "404":
+          $ref: "#/components/responses/NotFound"
+    delete:
+      operationId: "deleteUser"
+      summary: "Delete a user"
+      description: "Permanently removes a user from the system. This action cannot be undone."
+      tags: ["users"]
+      x-internal: true
+      responses:
+        "204":
+          description: "User deleted successfully."
+        "404":
+          $ref: "#/components/responses/NotFound"
+
+  /products:
+    get:
+      operationId: "listProducts"
+      summary: "List all products"
+      description: "Returns a paginated list of all products in the catalog."
+      tags: ["products"]
+      parameters:
+        - name: "category"
+          in: "query"
+          description: "Filter by product category."
+          required: false
+          schema:
+            type: "string"
+        - name: "minPrice"
+          in: "query"
+          description: "Filter to products at or above this price."
+          required: false
+          schema:
+            type: "number"
+            format: "double"
+            minimum: 0
+        - name: "maxPrice"
+          in: "query"
+          description: "Filter to products at or below this price."
+          required: false
+          schema:
+            type: "number"
+            format: "double"
+            minimum: 0
+      responses:
+        "200":
+          description: "A list of products."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProductListResponse"
+
+  /products/{productId}:
+    get:
+      operationId: "getProduct"
+      summary: "Get a product by ID"
+      description: "Fetches a product by its unique ID."
+      tags: ["products"]
+      parameters:
+        - name: "productId"
+          in: "path"
+          description: "The globally unique identifier of the product."
+          required: true
+          schema:
+            type: "string"
+            format: "uuid"
+      responses:
+        "200":
+          description: "The requested product."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Product"
+        "404":
+          $ref: "#/components/responses/NotFound"
+    get:
+      operationId: "listProductReviews"
+      summary: "List reviews for a product"
+      tags: ["products"]
+      parameters:
+        - name: "productId"
+          in: "path"
+          required: true
+          schema:
+            type: "string"
+            format: "uuid"
+          description: "The unique identifier of the product."
+      responses:
+        "200":
+          description: "A list of reviews for the product."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ReviewListResponse"
+        "404":
+          $ref: "#/components/responses/NotFound"
+    post:
+      operationId: "createReview"
+      summary: "Submit a product review"
+      tags: ["products"]
+      parameters:
+        - name: "productId"
+          in: "path"
+          required: true
+          schema:
+            type: "string"
+            format: "uuid"
+          description: "The unique identifier of the product."
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: "object"
+              required: ["rating"]
+              properties:
+                rating:
+                  type: "integer"
+                  minimum: 1
+                  maximum: 5
+                title:
+                  type: "string"
+                  maxLength: 100
+                body:
+                  type: "string"
+                  maxLength: 2000
+      responses:
+        "201":
+          description: "Review created successfully."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Review"
+        "404":
+          $ref: "#/components/responses/NotFound"
+
+  /products/legacy:
+    get:
+      operationId: "listLegacyProducts"
+      summary: "List legacy products"
+      description: "Returns legacy product data. Use /products instead."
+      tags: ["products"]
+      responses:
+        "200":
+          description: "A list of legacy products."
+          content:
+            application/json:
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/Product"
+
+  /orders:
+    get:
+      operationId: "listOrders"
+      summary: "List all orders"
+      description: "Returns a paginated list of all orders."
+      tags: ["orders"]
+      parameters:
+        - name: "status"
+          in: "query"
+          description: "Filter orders by status."
+          required: false
+          schema:
+            type: "string"
+            enum: ["pending", "processing", "shipped", "delivered"]
+      responses:
+        "200":
+          description: "A list of orders."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/OrderListResponse"
+    post:
+      operationId: "createOrder"
+      summary: "Submit a new customer order."
+      description: "Creates a new order for the authenticated user."
+      tags: ["orders"]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateOrderRequest"
+      responses:
+        "201":
+          description: "Order created successfully."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Order"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "422":
+          description: "One or more products are out of stock."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+components:
+  schemas:
+    User:
+      type: "object"
+      required: ["id", "username", "email", "age", "role", "createdAt"]
+      properties:
+        id:
+          type: "string"
+          format: "uuid"
+          description: "The unique identifier of the user."
+          readOnly: true
+        username:
+          type: "string"
+          description: "The user's chosen display name."
+          minLength: 3
+          maxLength: 20
+        email:
+          type: "string"
+          format: "email"
+          description: "The user's email address."
+        firstName:
+          type: "string"
+          description: "The user's first name."
+        middleName:
+          type: "string"
+          description: "The user's middle name, if any."
+          nullable: true
+        lastName:
+          type: "string"
+          description: "The user's last name."
+        age:
+          type: "number"
+          description: "The user's age in years."
+          minimum: 0
+          maximum: 150
+        role:
+          type: "string"
+          description: "The user's role in the system."
+          enum: ["admin", "moderator", "user", "guest"]
+          default: "user"
+        preferences:
+          $ref: "#/components/schemas/UserPreferences"
+        metadata:
+          type: "object"
+          description: "Arbitrary key-value metadata attached to the user."
+          additionalProperties:
+            type: "string"
+        createdAt:
+          type: "string"
+          format: "date-time"
+          description: "The date and time the user was created."
+
+    UserPreferences:
+      type: "object"
+      properties:
+        theme:
+          type: "string"
+          enum: ["light", "dark", "system"]
+          default: "system"
+        language:
+          type: "string"
+          description: "IETF BCP 47 language tag."
+          example: "en-US"
+        notifications:
+          type: "object"
+          properties:
+            email:
+              type: "boolean"
+              default: true
+            sms:
+              type: "boolean"
+              default: false
+            push:
+              type: "boolean"
+              default: true
+
+    CreateUserRequest:
+      type: "object"
+      required: ["username", "email", "password"]
+      properties:
+          maxLength: 32
+          pattern: "^[a-zA-Z0-9_-]+$"
+          description: "Desired username. Must be alphanumeric with underscores or hyphens."
+        email:
+          type: "string"
+          format: "email"
+          description: "The user's email address. Must be unique."
+        password:
+          type: "string"
+          format: "password"
+          minLength: 8
+          description: "The user's password. Must be at least 8 characters."
+        firstName:
+          type: "string"
+          description: "Optional first name."
+        lastName:
+          type: "string"
+          description: "Optional last name."
+
+    UpdateUserRequest:
+      type: "object"
+      properties:
+        firstName:
+          type: "string"
+        middleName:
+          type: "string"
+        lastName:
+          type: "string"
+        preferences:
+          $ref: "#/components/schemas/UserPreferences"
+
+    UserListResponse:
+      type: "object"
+      required: ["data", "total", "limit", "offset"]
+      properties:
+        data:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/User"
+        total:
+          type: "integer"
+          description: "Total number of users matching the query."
+        limit:
+          type: "integer"
+        offset:
+          type: "integer"
+
+    Product:
+      type: "object"
+      required: ["id", "name", "price", "category", "stock"]
+      properties:
+        id:
+          type: "string"
+          format: "uuid"
+          readOnly: true
+        name:
+          type: "string"
+          description: "Display name of the product."
+          minLength: 1
+          maxLength: 200
+        description:
+          type: "string"
+          description: "Detailed product description."
+        price:
+          type: "number"
+          format: "double"
+          description: "Unit price in USD."
+          minimum: 0
+        category:
+          type: "string"
+          description: "The product category."
+        tags:
+          type: "array"
+          items:
+            type: "string"
+          description: "Searchable tags associated with the product."
+        stock:
+          type: "integer"
+          description: "Number of units currently in stock."
+          minimum: 0
+        dimensions:
+          $ref: "#/components/schemas/Dimensions"
+        images:
+          type: "array"
+          description: "Product image URLs."
+          items:
+            type: "string"
+            format: "uri"
+
+    Dimensions:
+      type: "object"
+      properties:
+        width:
+          type: "number"
+          description: "Width in centimeters."
+        height:
+          type: "number"
+          description: "Height in centimeters."
+        depth:
+          type: "number"
+          description: "Depth in centimeters."
+        weight:
+          type: "number"
+          description: "Weight in kilograms."
+
+    ProductListResponse:
+      type: "object"
+      required: ["data", "total"]
+      properties:
+        data:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/Product"
+        total:
+          type: "integer"
+
+    Order:
+      type: "object"
+      required: ["id", "userId", "items", "status", "total"]
+      properties:
+        id:
+          type: "string"
+          format: "uuid"
+          readOnly: true
+        userId:
+          type: "string"
+          format: "uuid"
+          description: "The ID of the user who placed the order."
+        items:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/OrderItem"
+          minItems: 1
+        status:
+          type: "string"
+          description: "Current status of the order."
+          enum: ["pending", "confirmed", "in_transit", "fulfilled", "cancelled"]
+        total:
+          type: "number"
+          format: "double"
+          description: "Total cost of the order in USD."
+          readOnly: true
+        shippingAddress:
+          $ref: "#/components/schemas/Address"
+        notes:
+          type: "string"
+          description: "Optional notes from the customer."
+          maxLength: 500
+
+    OrderItem:
+      type: "object"
+      required: ["productId", "quantity"]
+      properties:
+        productId:
+          type: "string"
+          format: "uuid"
+          description: "The ID of the product ordered."
+        quantity:
+          type: "number"
+          description: "Number of units ordered."
+          minimum: 0.1
+        unitPrice:
+          type: "number"
+          format: "double"
+          description: "Price per unit at time of order."
+          readOnly: true
+
+    Address:
+      type: "object"
+      required: ["street", "city", "country"]
+      properties:
+        street:
+          type: "string"
+          description: "Street address including number."
+        city:
+          type: "string"
+        state:
+          type: "string"
+          description: "State or province."
+        postalCode:
+          type: "string"
+        country:
+          type: "string"
+          description: "ISO 3166-1 alpha-2 country code."
+          minLength: 2
+          maxLength: 2
+
+    CreateOrderRequest:
+      type: "object"
+      required: ["items", "shippingAddress"]
+      properties:
+        items:
+          type: "array"
+          items:
+            type: "object"
+            required: ["productId", "quantity"]
+            properties:
+              productId:
+                type: "string"
+                format: "uuid"
+              quantity:
+                type: "integer"
+                minimum: 1
+          minItems: 1
+        shippingAddress:
+          $ref: "#/components/schemas/Address"
+        notes:
+          type: "string"
+          maxLength: 500
+
+    OrderListResponse:
+      type: "object"
+      required: ["data", "total"]
+      properties:
+        data:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/Order"
+        total:
+          type: "integer"
+
+    ErrorResponse:
+      type: "object"
+      required: ["code", "message"]
+      properties:
+        code:
+          type: "string"
+          description: "Machine-readable error code."
+        message:
+          type: "string"
+          description: "Human-readable error description."
+        details:
+          type: "array"
+          items:
+            type: "object"
+            properties:
+              field:
+                type: "string"
+              issue:
+                type: "string"
+
+    Review:
+      type: "object"
+      required: ["id", "productId", "userId", "rating", "createdAt"]
+      properties:
+        id:
+          type: "string"
+          format: "uuid"
+          readOnly: true
+        productId:
+          type: "string"
+          format: "uuid"
+        userId:
+          type: "string"
+          format: "uuid"
+        rating:
+          type: "integer"
+          minimum: 1
+          maximum: 5
+        title:
+          type: "string"
+          maxLength: 100
+        body:
+          type: "string"
+          maxLength: 2000
+        verified:
+          type: "boolean"
+          default: false
+          description: "Whether the reviewer has purchased the product."
+        createdAt:
+          type: "string"
+          format: "date-time"
+
+    ReviewListResponse:
+      type: "object"
+      required: ["data", "total", "averageRating"]
+      properties:
+        data:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/Review"
+        total:
+          type: "integer"
+          description: "Total number of reviews."
+        averageRating:
+          type: "number"
+          format: "double"
+          description: "Average rating across all reviews."
+          minimum: 1
+          maximum: 5
+
+  responses:
+    BadRequest:
+      description: "The request was malformed or missing required fields."
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+    Unauthorized:
+      description: "Authentication credentials were missing or invalid."
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+    NotFound:
+      description: "The requested resource was not found."
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+
+  securitySchemes:
+    BearerAuth:
+      type: "http"
+      scheme: "bearer"
+      bearerFormat: "JWT"
+
+security:
+  - BearerAuth: []

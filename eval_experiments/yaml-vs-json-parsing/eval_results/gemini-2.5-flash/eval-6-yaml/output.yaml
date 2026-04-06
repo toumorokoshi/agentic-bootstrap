@@ -1,0 +1,123 @@
+openapi: 3.0.3
+info:
+  title: City Library API
+  version: 1.0.0
+  description: API for managing library books and borrowing.
+servers:
+  - url: https://api.citylibrary.example.com/v1
+    description: Production
+paths:
+  /books:
+    get:
+      operationId: listBooks
+      summary: List all books
+      tags:
+        - books
+      responses:
+        '200':
+          description: A list of books.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Book'
+  /books/{bookId}/borrow:
+    post:
+      operationId: borrowBook
+      summary: Borrow a book
+      tags:
+        - books
+      parameters:
+        - name: bookId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - borrowerName
+              properties:
+                borrowerName:
+                  type: string
+      responses:
+        '201':
+          description: Borrow record created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BorrowRecord'
+        '404':
+          description: Book not found.
+components:
+  schemas:
+    Book:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        isbn:
+          type: string
+          pattern: '^[0-9]{13}$'
+        title:
+          type: string
+        author:
+          type: string
+        genre:
+          type: string
+          enum:
+            - fiction
+            - non-fiction
+            - science
+            - history
+            - biography
+        availableCopies:
+          type: integer
+          minimum: 0
+        totalCopies:
+          type: integer
+          minimum: 1
+      required:
+        - id
+        - isbn
+        - title
+        - author
+        - genre
+        - totalCopies
+        - availableCopies
+    BorrowRecord:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        bookId:
+          type: string
+          format: uuid
+        borrowerName:
+          type: string
+        borrowDate:
+          type: string
+          format: date
+        dueDate:
+          type: string
+          format: date
+        returnDate:
+          type: string
+          format: date
+          nullable: true
+      required:
+        - id
+        - bookId
+        - borrowerName
+        - borrowDate
+        - dueDate

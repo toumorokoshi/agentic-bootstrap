@@ -1,0 +1,120 @@
+{
+  "model": "gemini-2.5-flash",
+  "finished_at": "2026-04-06T07:04:20.218545+00:00",
+  "runs": [
+    {
+      "eval": 5,
+      "format": "json",
+      "seconds": 277.7,
+      "ok": true
+    },
+    {
+      "eval": 6,
+      "format": "yaml",
+      "seconds": 76.8,
+      "ok": true
+    },
+    {
+      "eval": 6,
+      "format": "json",
+      "seconds": 45.1,
+      "ok": true
+    },
+    {
+      "eval": 7,
+      "format": "yaml",
+      "seconds": 300.1,
+      "ok": false
+    },
+    {
+      "eval": 7,
+      "format": "json",
+      "seconds": 150.1,
+      "ok": true
+    },
+    {
+      "eval": 8,
+      "format": "yaml",
+      "seconds": 300.0,
+      "ok": false
+    },
+    {
+      "eval": 8,
+      "format": "json",
+      "seconds": 252.3,
+      "ok": true
+    },
+    {
+      "eval": 9,
+      "format": "yaml",
+      "seconds": 153.6,
+      "ok": true
+    },
+    {
+      "eval": 9,
+      "format": "json",
+      "seconds": 188.3,
+      "ok": true
+    },
+    {
+      "eval": 10,
+      "format": "yaml",
+      "seconds": 300.0,
+      "ok": false
+    },
+    {
+      "eval": 10,
+      "format": "json",
+      "seconds": 232.7,
+      "ok": true
+    },
+    {
+      "eval": 11,
+      "format": "yaml",
+      "seconds": 287.4,
+      "ok": true
+    },
+    {
+      "eval": 11,
+      "format": "json",
+      "seconds": 55.9,
+      "ok": true
+    },
+    {
+      "eval": 12,
+      "format": "yaml",
+      "seconds": 268.1,
+      "ok": true
+    },
+    {
+      "eval": 12,
+      "format": "json",
+      "seconds": 134.0,
+      "ok": true
+    },
+    {
+      "eval": 13,
+      "format": "yaml",
+      "seconds": 263.4,
+      "ok": true
+    },
+    {
+      "eval": 13,
+      "format": "json",
+      "seconds": 122.4,
+      "ok": true
+    },
+    {
+      "eval": 14,
+      "format": "yaml",
+      "seconds": 245.3,
+      "ok": true
+    },
+    {
+      "eval": 14,
+      "format": "json",
+      "seconds": 300.1,
+      "ok": false
+    }
+  ]
+}

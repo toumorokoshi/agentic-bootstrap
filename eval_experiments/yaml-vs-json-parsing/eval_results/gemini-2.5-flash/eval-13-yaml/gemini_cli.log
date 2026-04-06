@@ -1,0 +1,14 @@
+returncode=0
+
+STDOUT:
+```
+All changes have been successfully applied and the modified OpenAPI specification has been written to `/home/yusuke/workspace/agentic-bootstrap/eval_experiments/yaml-vs-json-parsing/eval_results/gemini-2.5-flash/eval-13-yaml/output.yaml`.
+```
+
+
+STDERR:
+YOLO mode is enabled. All tool calls will be automatically approved.
+Loaded cached credentials.
+YOLO mode is enabled. All tool calls will be automatically approved.
+Skill "skill-creator" from "/home/yusuke/.gemini/skills/skill-creator/SKILL.md" is overriding the built-in skill.
+Skill conflict detected: "Execute Plan and Commit" from "/home/yusuke/.agents/skills/execute_plan/SKILL.md" is overriding the same skill from "/home/yusuke/.gemini/skills/execute_plan/SKILL.md".
