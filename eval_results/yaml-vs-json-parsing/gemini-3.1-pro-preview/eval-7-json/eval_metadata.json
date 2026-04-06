@@ -1,0 +1,6 @@
+{
+  "eval_id": 7,
+  "eval_name": "eval-7-json",
+  "format": "json",
+  "model": "gemini-3.1-pro-preview"
+}
