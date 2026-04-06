@@ -121,3 +121,35 @@ Runs used the `gemini` CLI with `-m gemini-2.5-flash`, `--approval-mode yolo`, a
 Graded JSON and logs: `eval_results/yaml-vs-json-parsing/gemini-2.5-flash/programmatic_grade.json` and per-directory `gemini_run.log`. Re-run individual cases after quota resets, for example:
 
 `cd eval_results/yaml-vs-json-parsing/gemini-2.5-flash/eval-5-yaml && gemini -m gemini-2.5-flash -p "$(jq -r '.evals[4].prompt' ../../../../eval_experiments/yaml-vs-json-parsing/evals/evals.json)" --approval-mode yolo`
+
+## Results (gemini-3.1-pro-preview, 2026-04-06)
+
+Runs used a mix of the `gemini` CLI and direct sub-agent invocation to avoid quota limits. Outputs were graded with `scripts/programmatic_grade.py`.
+
+**Overall: 217/218 assertions passed (99.5%)**
+
+| Eval                             | YAML               | JSON              |
+| -------------------------------- | ------------------ | ----------------- |
+| 1 — basic field mutations        | 6/6                | 6/6               |
+| 2 — enum/extension changes       | 6/6                | 5/6               |
+| 3 — info/constraint changes      | 6/6                | 6/6               |
+| 4 — list-to-map structural       | 10/10              | 10/10             |
+| 5 — schema+endpoint addition     | 8/8                | 8/8               |
+| 6 — spec from scratch            | 11/11              | 11/11             |
+| 7 — markdown extraction          | 7/7                | 7/7               |
+| 8 — $ref inlining                | 6/6                | 6/6               |
+| 9 — spec merging                 | 10/10              | 10/10             |
+| 10 — deep nesting mutations      | 6/6                | 6/6               |
+| 11 — alphabetical key sorting    | 7/7                | 7/7               |
+| 12 — schema deletion+ref repair  | 9/9                | 9/9               |
+| 13 — format-specific annotations | 10/10              | 10/10             |
+| 14 — cross-format conversion     | 7/7                | 7/7               |
+| **Total**                        | **109/109 (100%)** | **108/109 (99.1%)**|
+
+**Key findings:**
+
+- **Accuracy**: Near-perfect on both formats (99.5% overall). The single JSON failure (eval 2) was a dropped trailing period in a string literal (`Submit a new customer order` instead of `Submit a new customer order.`), identical to the error made by `claude-opus-4-6`.
+- **YAML vs JSON**: YAML had 100% accuracy, while JSON had 99.1%. Both formats are handled exceptionally well by the model.
+- **Speed & Cost (First 8 Evals)**: JSON was significantly faster and cheaper. Across the first 8 evals, JSON processing was **~2.7x faster** than YAML (671s vs 1818s). JSON also used **27% fewer input tokens** (190k vs 263k) and **29% fewer output tokens** (5.7k vs 8.1k) compared to YAML. This contrasts with `claude-opus-4-6`, where JSON was sometimes more expensive on basic evals due to curly braces/quotes. For `gemini-3.1-pro-preview`, JSON is a clear winner on both speed and cost.
+
+Graded results: `eval_results/yaml-vs-json-parsing/programmatic_grade_gemini-3.1-pro-preview.json`
