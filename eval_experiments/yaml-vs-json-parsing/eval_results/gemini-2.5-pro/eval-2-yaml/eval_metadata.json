@@ -1,9 +1,0 @@
-{
-  "eval_id": 2,
-  "eval_name": "2",
-  "format": "yaml",
-  "model": "gemini-2.5-pro",
-  "prompt": "You are given an OpenAPI specification file at /home/yusuke/workspace/agentic-bootstrap/eval_experiments/yaml-vs-json-parsing/scenario-yaml/openapi.yaml. Read it carefully, then make the following mutations and write the result to /home/yusuke/workspace/agentic-bootstrap/eval_experiments/yaml-vs-json-parsing/eval_results/gemini-2.5-pro/eval-2-yaml/output.yaml:\n\n1. Change the `summary` of the `POST /orders` endpoint to: \"Submit a new customer order.\"\n2. Change the type of the `quantity` field in the `OrderItem` schema from `integer` to `number` with minimum `0.1`.\n3. Remove the `deprecated: true` flag from the `GET /products/legacy` endpoint entirely.\n4. Change the `status` field enum values in the `Order` schema from `[\"pending\", \"processing\", \"shipped\", \"delivered\"]` to `[\"pending\", \"confirmed\", \"in_transit\", \"fulfilled\", \"cancelled\"]`.\n5. Add a `x-internal: true` extension to the `DELETE /users/{userId}` endpoint.\n\nPreserve the YAML format in the output.",
-  "scenario": "/home/yusuke/workspace/agentic-bootstrap/eval_experiments/yaml-vs-json-parsing/scenario-yaml/openapi.yaml",
-  "output": "/home/yusuke/workspace/agentic-bootstrap/eval_experiments/yaml-vs-json-parsing/eval_results/gemini-2.5-pro/eval-2-yaml/output.yaml"
-}

@@ -1,9 +1,0 @@
-{
-  "eval_id": 3,
-  "eval_name": "3",
-  "format": "json",
-  "model": "gemini-2.5-pro",
-  "prompt": "You are given an OpenAPI specification file at /home/yusuke/workspace/agentic-bootstrap/eval_experiments/yaml-vs-json-parsing/scenario-json/openapi.json. Read it carefully, then make the following mutations and write the result to /home/yusuke/workspace/agentic-bootstrap/eval_experiments/yaml-vs-json-parsing/eval_results/gemini-2.5-pro/eval-3-json/output.json:\n\n1. Change the API title in the `info` block to: \"Acme Commerce Platform API\".\n2. Change the API version in the `info` block to: \"2.0.0\".\n3. Change the description of the `productId` path parameter on `GET /products/{productId}` to: \"The globally unique identifier of the product.\"\n4. Change the `minLength` of the `username` field in the `CreateUserRequest` schema from `3` to `5`.\n5. Change the `maxLength` of the `username` field in the `CreateUserRequest` schema from `20` to `32`.\n6. Add `nullable: true` to the `middleName` field in the `User` schema.\n\nPreserve the JSON format in the output.",
-  "scenario": "/home/yusuke/workspace/agentic-bootstrap/eval_experiments/yaml-vs-json-parsing/scenario-json/openapi.json",
-  "output": "/home/yusuke/workspace/agentic-bootstrap/eval_experiments/yaml-vs-json-parsing/eval_results/gemini-2.5-pro/eval-3-json/output.json"
-}

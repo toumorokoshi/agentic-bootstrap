@@ -1,9 +1,0 @@
-{
-  "eval_id": 14,
-  "eval_name": "14",
-  "format": "yaml",
-  "model": "gemini-2.5-flash",
-  "prompt": "You are given an OpenAPI specification file in this directory at `/home/yusuke/workspace/agentic-bootstrap/eval_experiments/yaml-vs-json-parsing/scenario-yaml/openapi.yaml`. Read it carefully, then convert it to the OTHER format:\n\n- If the input is YAML format (the file is at `/home/yusuke/workspace/agentic-bootstrap/eval_experiments/yaml-vs-json-parsing/scenario-yaml/openapi.yaml`), convert it to JSON and write it to `/home/yusuke/workspace/agentic-bootstrap/eval_experiments/yaml-vs-json-parsing/eval_results/gemini-2.5-flash/eval-14-yaml/output.json`.\n- If the input is JSON format (the file is at `/home/yusuke/workspace/agentic-bootstrap/eval_experiments/yaml-vs-json-parsing/scenario-yaml/openapi.yaml`), convert it to YAML and write it to `/home/yusuke/workspace/agentic-bootstrap/eval_experiments/yaml-vs-json-parsing/eval_results/gemini-2.5-flash/eval-14-yaml/output.yaml`.\n\nThe converted output must be semantically identical to the input \u2014 same structure, same values, same types. For JSON output, use 2-space indentation. For YAML output, use standard block style (no flow/inline style for objects or arrays).\n\nDo NOT modify any values, add any fields, or remove any fields. This is a pure format conversion.",
-  "scenario": "/home/yusuke/workspace/agentic-bootstrap/eval_experiments/yaml-vs-json-parsing/scenario-yaml/openapi.yaml",
-  "output": "/home/yusuke/workspace/agentic-bootstrap/eval_experiments/yaml-vs-json-parsing/eval_results/gemini-2.5-flash/eval-14-yaml/output.json"
-}

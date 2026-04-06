@@ -5,3 +5,4 @@
 template/eval_results/**
 eval_results/**
 .venv
+__pycache__

@@ -1,9 +1,0 @@
-{
-  "eval_id": 1,
-  "eval_name": "1",
-  "format": "yaml",
-  "model": "gemini-2.5-pro",
-  "prompt": "You are given an OpenAPI specification file at /home/yusuke/workspace/agentic-bootstrap/eval_experiments/yaml-vs-json-parsing/scenario-yaml/openapi.yaml. Read it carefully, then make the following mutations and write the result to /home/yusuke/workspace/agentic-bootstrap/eval_experiments/yaml-vs-json-parsing/eval_results/gemini-2.5-pro/eval-1-yaml/output.yaml:\n\n1. Change the description of the `GET /users/{userId}` endpoint to: \"Retrieves a single user by their unique identifier.\"\n2. Change the type of the `email` field in the `User` schema from `string` to `string` with format `email`.\n3. Change the type of the `age` field in the `User` schema from `integer` to `number`.\n4. Add a new required field `createdAt` of type `string` with format `date-time` to the `User` schema.\n5. Change the `GET /users` endpoint's `limit` query parameter description to: \"Maximum number of users to return per page.\"\n\nPreserve the YAML format in the output.",
-  "scenario": "/home/yusuke/workspace/agentic-bootstrap/eval_experiments/yaml-vs-json-parsing/scenario-yaml/openapi.yaml",
-  "output": "/home/yusuke/workspace/agentic-bootstrap/eval_experiments/yaml-vs-json-parsing/eval_results/gemini-2.5-pro/eval-1-yaml/output.yaml"
-}
