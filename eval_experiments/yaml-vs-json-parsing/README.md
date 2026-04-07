@@ -12,6 +12,16 @@ When agents need to read, mutate, and write structured data (e.g., OpenAPI specs
   - **Evals 4-14** (structural): Complex transformations including list-to-map conversion, schema generation, $ref inlining, spec merging, deep nesting manipulation, key sorting, schema deletion with ref repair, format-specific annotations, cross-format extraction to markdown, and bidirectional YAML/JSON conversion. 6-12 assertions each.
 - **Configurations**: Each eval was run once with YAML input/output and once with JSON input/output, using the same underlying OpenAPI spec content.
 
+## Summary
+
+This table summarizes the programmatic grading pass rates across all evaluated models for both YAML and JSON formats.
+
+| Model                  | Overall Pass Rate | YAML Pass Rate | JSON Pass Rate |
+| ---------------------- | ----------------- | -------------- | -------------- |
+| claude-opus-4-6        | 99.5%             | 100.0%         | 99.0%          |
+| gemini-2.5-flash-lite  | 86.6%             | 88.3%          | 84.7%          |
+| gemini-3.1-pro-preview | 99.5%             | 100.0%         | 99.1%          |
+
 ## Results (claude-opus-4-6, 2026-04-06)
 
 Runs used `claude -p` with `--permission-mode bypassPermissions` and prompts from `evals/evals.json`. Scenarios were copied into temp directories and outputs saved to `eval_results/yaml-vs-json-parsing/claude-opus-4-6/eval-{id}-{yaml|json}/` per `eval_experiments/AGENTS.md`. Outputs were graded with `scripts/programmatic_grade.py`.
@@ -128,23 +138,23 @@ Runs used a mix of the `gemini` CLI and direct sub-agent invocation to avoid quo
 
 **Overall: 217/218 assertions passed (99.5%)**
 
-| Eval                             | YAML               | JSON              |
-| -------------------------------- | ------------------ | ----------------- |
-| 1 — basic field mutations        | 6/6                | 6/6               |
-| 2 — enum/extension changes       | 6/6                | 5/6               |
-| 3 — info/constraint changes      | 6/6                | 6/6               |
-| 4 — list-to-map structural       | 10/10              | 10/10             |
-| 5 — schema+endpoint addition     | 8/8                | 8/8               |
-| 6 — spec from scratch            | 11/11              | 11/11             |
-| 7 — markdown extraction          | 7/7                | 7/7               |
-| 8 — $ref inlining                | 6/6                | 6/6               |
-| 9 — spec merging                 | 10/10              | 10/10             |
-| 10 — deep nesting mutations      | 6/6                | 6/6               |
-| 11 — alphabetical key sorting    | 7/7                | 7/7               |
-| 12 — schema deletion+ref repair  | 9/9                | 9/9               |
-| 13 — format-specific annotations | 10/10              | 10/10             |
-| 14 — cross-format conversion     | 7/7                | 7/7               |
-| **Total**                        | **109/109 (100%)** | **108/109 (99.1%)**|
+| Eval                             | YAML               | JSON                |
+| -------------------------------- | ------------------ | ------------------- |
+| 1 — basic field mutations        | 6/6                | 6/6                 |
+| 2 — enum/extension changes       | 6/6                | 5/6                 |
+| 3 — info/constraint changes      | 6/6                | 6/6                 |
+| 4 — list-to-map structural       | 10/10              | 10/10               |
+| 5 — schema+endpoint addition     | 8/8                | 8/8                 |
+| 6 — spec from scratch            | 11/11              | 11/11               |
+| 7 — markdown extraction          | 7/7                | 7/7                 |
+| 8 — $ref inlining                | 6/6                | 6/6                 |
+| 9 — spec merging                 | 10/10              | 10/10               |
+| 10 — deep nesting mutations      | 6/6                | 6/6                 |
+| 11 — alphabetical key sorting    | 7/7                | 7/7                 |
+| 12 — schema deletion+ref repair  | 9/9                | 9/9                 |
+| 13 — format-specific annotations | 10/10              | 10/10               |
+| 14 — cross-format conversion     | 7/7                | 7/7                 |
+| **Total**                        | **109/109 (100%)** | **108/109 (99.1%)** |
 
 **Key findings:**
 
