@@ -1,5 +1,5 @@
 {
-  "session_id": "719f0f75-74e1-479a-b00f-84f9d6c0115a",
+  "session_id": "REDACTED",
   "response": "The `openapi.yaml` file has been processed, and all `$ref` references have been inlined into a new file named `output` in the same directory.\n",
   "stats": {
     "models": {

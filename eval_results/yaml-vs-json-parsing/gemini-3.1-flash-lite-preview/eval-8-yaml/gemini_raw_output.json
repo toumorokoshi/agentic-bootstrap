@@ -1,5 +1,5 @@
 {
-  "session_id": "d6dfafde-8012-4c2d-9144-32288ee2dda4",
+  "session_id": "REDACTED",
   "response": "The fully inlined OpenAPI specification has been created and saved to `/tmp/yaml-vs-json-eval-gemini/eval-8-yaml/output`. All `$ref` references have been resolved, and the document structure preserves the requested components sections.",
   "stats": {
     "models": {

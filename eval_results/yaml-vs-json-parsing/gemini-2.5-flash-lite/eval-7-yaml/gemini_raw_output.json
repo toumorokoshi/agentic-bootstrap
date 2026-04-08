@@ -1,5 +1,5 @@
 {
-  "session_id": "35187a4f-dca4-44de-8cb4-d667fdc50852",
+  "session_id": "REDACTED",
   "response": "I have successfully extracted the documentation for all schemas defined under `components/schemas` from the `openapi.yaml` file and written it to `output.md` in the requested markdown format.",
   "stats": {
     "models": {

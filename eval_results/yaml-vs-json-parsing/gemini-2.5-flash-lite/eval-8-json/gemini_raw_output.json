@@ -1,5 +1,5 @@
 {
-  "session_id": "94eda44b-689c-40a1-94b9-3dbb3d03d8f8",
+  "session_id": "REDACTED",
   "response": "The OpenAPI specification has been successfully inlined, resolving all `$ref` references and writing the complete version to `/tmp/yaml-vs-json-eval-gemini/eval-8-json/output`.",
   "stats": {
     "models": {
