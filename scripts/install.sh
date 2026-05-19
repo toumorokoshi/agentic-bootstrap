@@ -11,4 +11,4 @@ fi
 ROOT_DIR="$(dirname "$(dirname "$(realpath "$0")")")"
 TEMPLATE_DIR="${ROOT_DIR}/template"
 
-rsync -avh --exclude=".gitignore" "${TEMPLATE_DIR}/" "${TARGET_DIR}/"
+rsync -avh --exclude=".gitignore" --exclude=".*" "${TEMPLATE_DIR}/" "${TARGET_DIR}/"

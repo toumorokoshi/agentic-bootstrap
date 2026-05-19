@@ -10,12 +10,10 @@ order of operations.
 5. study the relevant documents.
 6. implement the change requested in the prompt.
 7. run linting and formatting before committing.
-8. Identify any remaining issues or features that need to be implemented
-   1. file them as bd issues (see [Issue Management](#issue-management)).
-   2. include them in GAPS.md
-9. commit and push the change.
-10. if you were not able to fully address the bd issue, mark it as "blocked".
-    This will ensure the next worker does not pick it up again until a human reviews.
+8. Identify any remaining issues or features that need to be implemented.
+  8a. include them in GAPS.md
+9. summarize any major decisions or changes into DESIGN-DECISION-LOG.md. Include the date.
+10. commit and push the change.
 
 ## Branch cleanup
 
