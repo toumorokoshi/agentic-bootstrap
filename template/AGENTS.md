@@ -45,6 +45,11 @@ task.
 - The commit description must explain the problem first.
 - The commit description must a summary of each area modified.
 
+## Commit and PR descriptions
+
+- When writing commit or PR descriptions, use the `/yft-pr-commit-description`
+  skill if available.
+
 ## Linting
 
 - Always run linting and formatting before committing.
