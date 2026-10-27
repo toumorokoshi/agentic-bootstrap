@@ -22,8 +22,7 @@ any of this guidance. But following these practices ensures success with low-per
 6. implement the change requested in the prompt.
 7. run linting and formatting before committing.
 8. Identify any remaining issues or features that need to be implemented
-   1. file them as bd issues (see [Issue Management](#issue-management)).
-   2. include them in GAPS.md
+   1. include them in GAPS.md
 9. commit and push the change.
 ```
 

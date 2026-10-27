@@ -1,7 +1,4 @@
 
-# Dolt database files (added by bd init)
-.dolt/
-*.db
 template/eval_results/**
 .venv
 __pycache__

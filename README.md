@@ -12,9 +12,8 @@ contained inside this repository include:
 ## Workflow Overview
 
 1. Create empty version control (git or jujutsu) repository
-2. initialize the repository for [beads](https://github.com/steveyegge/beads) and [lelouch](https://github.com/toumorokoshi/lelouch):
-   1. `beads init --stealth`
-   2. `lelouch init . --executor="gemini" --model="gemini-3-flash-preview"`
+2. initialize the repository for [lelouch](https://github.com/toumorokoshi/lelouch):
+   `lelouch init . --executor="gemini" --model="gemini-3-flash-preview"`
 3. `run ./scripts/install.sh <target_dir>` to bootstrap agentic development.
 4. Flesh out the `README.md` and add whatever specs you want.
 5. Run the [initial-issue-seed](prompts/initial-issue-seed.md) to enqueue issues.

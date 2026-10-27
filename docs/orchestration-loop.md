@@ -5,15 +5,13 @@ context and delivers those.
 
 This is more of less achieved with something like:
 
-```bash
-while [ `bd read --json` -ne "[]" ]; do
- bd ready --json -n 1 | jq ".[0].description" | gemini --yolo
-end
+```
+while there are open issues:
+    pass the next ready issue's description to the agent
 ```
 
 And this generally works fine.
 
 ## Using the best practice tools
 
-I use [beads]() and [lelouch]() in concert to handle the issue management queue
-and orchestration, respectively.
+I use [lelouch](https://github.com/toumorokoshi/lelouch) to handle orchestration.
