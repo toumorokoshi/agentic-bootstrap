@@ -11,10 +11,9 @@ order of operations.
 6. implement the change requested in the prompt.
 7. run linting and formatting before committing.
 8. Identify any remaining issues or features that need to be implemented
-   1. file them as bd issues (see [Issue Management](#issue-management)).
-   2. include them in GAPS.md
+   1. include them in GAPS.md
 9. commit and push the change.
-10. if you were not able to fully address the bd issue, mark it as "blocked".
+10. if you were not able to fully address the issue, mark it as "blocked".
     This will ensure the next worker does not pick it up again until a human reviews.
 
 ## Branch cleanup
@@ -34,8 +33,7 @@ Always add and update documentation as appropriate. Update at least the followin
 File issues liberally to help keep context minimal and focus on your current
 task.
 
-- Issues are managed via the `bd` commmand line.
-- Issues are created via `bd create`
+- Issues are tracked in GAPS.md.
   - Priority should be set to the following (P2 otherwise):
     - P0: Any required project fundamentals or initialization
 
