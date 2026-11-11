@@ -1,19 +1,15 @@
 ## ALWAYS RUN
 
-Important: this list is separate from any others in the prompt. Follow this
-order of operations.
+run the following, in order:
 
-1. study the README.md
-2. grep `specs/` for any relevant keywords to the task you are implementing.
-3. study the relevant specs.
-4. grep `design/` for any relevant keywords to the task you are implementing.
-5. study the relevant documents.
-6. implement the change requested in the prompt.
-7. run linting and formatting before committing.
-8. Identify any remaining issues or features that need to be implemented.
-  8a. include them in GAPS.md
-9. summarize any major decisions or changes into DESIGN-DECISION-LOG.md. Include the date.
-10. commit and push the change.
+- study the README.md
+- grep `specs/`, `design/`, and `human_specs/` for any relevant keywords to the task you are implementing.
+- study the relevant files found.
+- implement the change requested in the prompt.
+- run linting and formatting before committing.
+- Identify any remaining issues or features that need to be implemented. include them in GAPS.md
+- summarize any major decisions or changes into DESIGN-DECISION-LOG.md. Include the date.
+- commit and push the change. If the work was done in a work tree, merge without a merge commit, and delete the worktree unless the user says otherwise.
 
 ## Branch cleanup
 
@@ -26,15 +22,11 @@ Always add and update documentation as appropriate. Update at least the followin
 
 - any relevant files in the `docs/` directory.
 - any updated designs and considerations in the `specs/` directory.
+- do not update `human_specs/` unless told to explicitly - those are for humans.
 
 ## Issue Management
 
-File issues liberally to help keep context minimal and focus on your current
-task.
-
 - Issues are tracked in GAPS.md.
-  - Priority should be set to the following (P2 otherwise):
-    - P0: Any required project fundamentals or initialization
 
 ## Committing code
 
