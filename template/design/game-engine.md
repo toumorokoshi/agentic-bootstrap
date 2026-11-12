@@ -4,7 +4,7 @@ If this repository is for a video game, it uses [Godot](https://godotengine.org/
 
 ## Godot MCP server
 
-You **must** use the Godot MCP server to interact with the Godot editor.
+You **should** use the Godot MCP server to interact with the Godot editor.
 
 ## Core Requirements
 
@@ -32,3 +32,9 @@ You **must** use the Godot MCP server to interact with the Godot editor.
 - **Type Safety**: Leverage C#'s type safety. Always use `GetNode<T>("Path")` over untyped `GetNode()`.
 - **Connecting Signals**: Prefer standard C# event syntax for connecting Godot signals from code: `button.Pressed += OnButtonPressed;`.
 - **Scene Unique Nodes**: Use `%` (Scene Unique Nodes) to retrieve references to internal nodes and avoid brittle string paths: `GetNode<Label>("%ScoreLabel");`.
+
+## Verification
+
+Verify:
+
+- assets have their shapes appear within bounding boxes of objects.

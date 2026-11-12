@@ -7,7 +7,7 @@ run the following, in order:
 - study the relevant files found.
 - implement the change requested in the prompt.
 - run linting and formatting before committing.
-- Identify any remaining issues or features that need to be implemented. include them in GAPS.md
+- Identify any remaining issues or features that need to be implemented. include them in tasks/
 - summarize any major decisions or changes into DESIGN-DECISION-LOG.md. Include the date.
 - commit and push the change. If the work was done in a work tree, merge without a merge commit, and delete the worktree unless the user says otherwise.
 
@@ -26,7 +26,7 @@ Always add and update documentation as appropriate. Update at least the followin
 
 ## Issue Management
 
-- Issues are tracked in GAPS.md.
+- Issues are tracked in individual files in tasks/, in markdown files with an issue description, and optionally a suggested fix where.
 
 ## Committing code
 
